@@ -14,6 +14,7 @@
 	<onload condition="String.IsEmpty(Skin.String(DefaultFanartBrightness))">Skin.SetString(DefaultFanartBrightness,Medium)</onload>
 	<controls>
 		<include>DefaultBackground</include>
+		<!-- FULLSCREEN FANART -->
 		<control type="multiimage">
 			<depth>DepthBackground</depth>
 			<include>FullScreenDimensions</include>
@@ -26,14 +27,344 @@
 			<imagepath background="true" colordiffuse="bg_overlay">$VAR[HomeFanartVar]</imagepath>
 			<visible>!Player.HasMedia</visible>
 		</control>
+		<!-- BOTTOM GRADIENT OVERLAY for readability -->
+		<control type="image">
+			<depth>DepthContentPanel</depth>
+			<include>FullScreenDimensions</include>
+			<texture colordiffuse="E0000000">overlays/overlayfade.png</texture>
+			<animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+		</control>
+		<!-- LEFT SIDE GRADIENT for info readability -->
+		<control type="image">
+			<depth>DepthContentPanel</depth>
+			<left>-200</left>
+			<top>0</top>
+			<width>1200</width>
+			<height>100%</height>
+			<texture colordiffuse="C0000000" flipx="true">lists/contentpanel-fade.png</texture>
+			<animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+		</control>
+
 		<control type="group">
 			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
-			<!-- WIDGETS GROUP -->
+
+			<!-- ==================== -->
+			<!-- HIDDEN SIDEBAR MENU  -->
+			<!-- ==================== -->
+			<!-- Keep for navigation but visually hidden -->
+			<control type="group">
+				<visible allowhiddenfocus="true">true</visible>
+				<animation effect="fade" start="0" end="0" time="0" condition="true">Conditional</animation>
+				<control type="fixedlist" id="9000">
+					<left>-2000</left>
+					<top>0</top>
+					<width>1</width>
+					<height>1</height>
+					<movement>7</movement>
+					<focusposition>0</focusposition>
+					<onfocus>ClearProperty(listposition,home)</onfocus>
+					<onright>SetFocus($INFO[Container(9000).ListItem.Property(menu_id)])</onright>
+					<onup>700</onup>
+					<ondown>700</ondown>
+					<scrolltime tween="cubic" easing="out">500</scrolltime>
+					<focusedlayout height="1">
+						<control type="label">
+							<width>1</width>
+							<height>1</height>
+							<label>$INFO[ListItem.Label]</label>
+							<visible>false</visible>
+						</control>
+					</focusedlayout>
+					<itemlayout height="1">
+						<control type="label">
+							<width>1</width>
+							<height>1</height>
+							<label>$INFO[ListItem.Label]</label>
+							<visible>false</visible>
+						</control>
+					</itemlayout>
+					<content>
+						<!-- MOVIES 19000 -->
+						<include content="MoviesMainMenu" condition="!Skin.HasSetting(HomeMenuNoMoviesButton)" />
+						<!-- TVSHOWS 22000 -->
+						<include content="TVShowsMainMenu" condition="!Skin.HasSetting(HomeMenuNoTVShowsButton)" />
+						<!-- CUSTOM 1 23000 -->
+						<include content="Custom1MainMenu" condition="!Skin.HasSetting(HomeMenuNoCustom1Button)" />
+						<!-- CUSTOM 2 24000 -->
+						<include content="Custom2MainMenu" condition="!Skin.HasSetting(HomeMenuNoCustom2Button)" />
+						<!-- CUSTOM 3 25000 -->
+						<include content="Custom3MainMenu" condition="!Skin.HasSetting(HomeMenuNoCustom3Button)" />
+						<item>
+							<label>$LOCALIZE[2]</label>
+							<onclick>ActivateWindow(Music,root,return)</onclick>
+							<property name="menu_id">$NUMBER[7000]</property>
+							<thumb>icons/sidemenu/music.png</thumb>
+							<property name="id">music</property>
+							<visible>!Skin.HasSetting(HomeMenuNoMusicButton)</visible>
+						</item>
+						<item>
+							<label>$LOCALIZE[427]</label>
+							<onclick>PlayDisc</onclick>
+							<property name="menu_id">$NUMBER[21000]</property>
+							<thumb>icons/sidemenu/disc.png</thumb>
+							<property name="id">disc</property>
+							<visible>System.HasMediaDVD</visible>
+						</item>
+						<item>
+							<label>$LOCALIZE[20389]</label>
+							<property name="menu_id">$NUMBER[16000]</property>
+							<onclick>ActivateWindow(Videos,musicvideos,return)</onclick>
+							<thumb>icons/sidemenu/musicvideos.png</thumb>
+							<property name="id">musicvideos</property>
+							<visible>!Skin.HasSetting(HomeMenuNoMusicVideoButton)</visible>
+						</item>
+						<item>
+							<label>Live TV</label>
+							<property name="menu_id">$NUMBER[12000]</property>
+							<onclick>ActivateWindow(TVGuide)</onclick>
+							<thumb>icons/sidemenu/livetv.png</thumb>
+							<property name="id">livetv</property>
+							<visible>!Skin.HasSetting(HomeMenuNoTVButton)</visible>
+						</item>
+						<item>
+							<label>$LOCALIZE[19021]</label>
+							<property name="menu_id">$NUMBER[13000]</property>
+							<onclick>ActivateWindow(RadioChannels)</onclick>
+							<thumb>icons/sidemenu/radio.png</thumb>
+							<property name="id">radio</property>
+							<visible>!Skin.HasSetting(HomeMenuNoRadioButton)</visible>
+						</item>
+						<item>
+							<label>$LOCALIZE[15016]</label>
+							<property name="menu_id">$NUMBER[17000]</property>
+							<onclick>ActivateWindow(Games)</onclick>
+							<thumb>icons/sidemenu/games.png</thumb>
+							<property name="id">games</property>
+							<visible>System.GetBool(gamesgeneral.enable) + !Skin.HasSetting(HomeMenuNoGamesButton)</visible>
+						</item>
+						<item>
+							<label>$LOCALIZE[24001]</label>
+							<property name="menu_id">$NUMBER[8000]</property>
+							<onclick>ActivateWindow(1100)</onclick>
+							<thumb>icons/sidemenu/addons.png</thumb>
+							<property name="id">addons</property>
+							<visible>!Skin.HasSetting(HomeMenuNoProgramsButton)</visible>
+						</item>
+						<item>
+							<label>$LOCALIZE[1]</label>
+							<onclick>ActivateWindow(Pictures)</onclick>
+							<property name="menu_id">$NUMBER[4000]</property>
+							<thumb>icons/sidemenu/pictures.png</thumb>
+							<property name="id">pictures</property>
+							<visible>!Skin.HasSetting(HomeMenuNoPicturesButton)</visible>
+						</item>
+						<item>
+							<label>$LOCALIZE[3]</label>
+							<onclick>ActivateWindow(Videos,root)</onclick>
+							<property name="menu_id">$NUMBER[11000]</property>
+							<thumb>icons/sidemenu/videos.png</thumb>
+							<property name="id">video</property>
+							<visible>!Skin.HasSetting(HomeMenuNoVideosButton)</visible>
+						</item>
+						<item>
+							<label>$LOCALIZE[10134]</label>
+							<onclick>ActivateWindow(favouritesbrowser)</onclick>
+							<property name="menu_id">$NUMBER[14000]</property>
+							<thumb>icons/sidemenu/favourites.png</thumb>
+							<property name="id">favorites</property>
+							<visible>!Skin.HasSetting(HomeMenuNoFavButton)</visible>
+						</item>
+						<item>
+							<label>$LOCALIZE[8]</label>
+							<onclick condition="!String.IsEmpty(Weather.Plugin)">ActivateWindow(Weather)</onclick>
+							<onclick condition="String.IsEmpty(Weather.Plugin)">ReplaceWindow(servicesettings,weather)</onclick>
+							<property name="menu_id">$NUMBER[15000]</property>
+							<thumb>icons/sidemenu/weather.png</thumb>
+							<property name="id">weather</property>
+							<visible>!Skin.HasSetting(HomeMenuNoWeatherButton)</visible>
+						</item>
+					</content>
+				</control>
+			</control>
+
+			<!-- ================================= -->
+			<!-- HERO INFO OVERLAY (LEFT SIDE)     -->
+			<!-- ================================= -->
+			<control type="group">
+				<depth>DepthBars</depth>
+				<visible>!Skin.HasSetting(TrailerPlaying)</visible>
+				<animation effect="fade" start="0" end="100" time="400" delay="200">WindowOpen</animation>
+				<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+				<visible>$EXP[is_video_library_content_or_episode]</visible>
+
+				<!-- Clearlogo -->
+				<control type="image">
+					<left>80</left>
+					<top>120</top>
+					<width>420</width>
+					<height>160</height>
+					<texture background="true">$VAR[ClearlogoVar]</texture>
+					<aspectratio align="left" aligny="center">keep</aspectratio>
+				</control>
+				<!-- Title fallback when no clearlogo -->
+				<control type="textbox">
+					<top>130</top>
+					<left>80</left>
+					<width>500</width>
+					<height>120</height>
+					<font>font52_title</font>
+					<label>$INFO[ListItem.Label]</label>
+					<shadowcolor>text_shadow</shadowcolor>
+					<visible>String.IsEmpty(ListItem.Art(clearlogo))</visible>
+				</control>
+
+				<!-- Tagline -->
+				<control type="label">
+					<left>80</left>
+					<top>295</top>
+					<width>600</width>
+					<height>30</height>
+					<font>font12</font>
+					<textcolor>grey</textcolor>
+					<label>[I]$INFO[ListItem.Tagline][/I]</label>
+					<shadowcolor>text_shadow</shadowcolor>
+					<visible>!String.IsEmpty(ListItem.Tagline)</visible>
+				</control>
+
+				<!-- Ratings Row -->
+				<include condition="![Skin.HasSetting(Disable.RatingsINF) | String.IsEmpty(Skin.String(mdblist_api_key))]" content="HomeHeroRatings" />
+
+				<!-- Metadata Line: Year | Duration | Season/Episode info -->
+				<control type="grouplist">
+					<left>80</left>
+					<top>380</top>
+					<width>700</width>
+					<height>32</height>
+					<orientation>horizontal</orientation>
+					<itemgap>20</itemgap>
+					<control type="label">
+						<width>auto</width>
+						<height>32</height>
+						<font>font12</font>
+						<textcolor>unfocused_text</textcolor>
+						<label>$INFO[ListItem.Year]</label>
+						<shadowcolor>text_shadow</shadowcolor>
+						<visible>!String.IsEmpty(ListItem.Year)</visible>
+					</control>
+					<control type="label">
+						<width>auto</width>
+						<height>32</height>
+						<font>font12</font>
+						<textcolor>grey</textcolor>
+						<label>$INFO[ListItem.Duration]</label>
+						<shadowcolor>text_shadow</shadowcolor>
+						<visible>!String.IsEmpty(ListItem.Duration)</visible>
+					</control>
+					<control type="label">
+						<width>auto</width>
+						<height>32</height>
+						<font>font12</font>
+						<textcolor>grey</textcolor>
+						<label>$INFO[ListItem.Season,Season ,]$INFO[ListItem.Episode,  Episode ,]</label>
+						<shadowcolor>text_shadow</shadowcolor>
+						<visible>!String.IsEmpty(ListItem.Season)</visible>
+					</control>
+					<control type="label">
+						<width>auto</width>
+						<height>32</height>
+						<font>font12</font>
+						<textcolor>grey</textcolor>
+						<label>$INFO[ListItem.Mpaa]</label>
+						<shadowcolor>text_shadow</shadowcolor>
+						<visible>!String.IsEmpty(ListItem.Mpaa)</visible>
+					</control>
+				</control>
+
+				<!-- Genre Tags as Pills -->
+				<control type="label">
+					<left>80</left>
+					<top>425</top>
+					<width>600</width>
+					<height>30</height>
+					<font>font12</font>
+					<textcolor>accent_color</textcolor>
+					<label>$INFO[ListItem.Genre]</label>
+					<shadowcolor>text_shadow</shadowcolor>
+					<visible>!String.IsEmpty(ListItem.Genre)</visible>
+				</control>
+
+				<!-- Plot Summary -->
+				<control type="textbox">
+					<left>80</left>
+					<top>470</top>
+					<width>550</width>
+					<height>160</height>
+					<font>font12</font>
+					<textcolor>unfocused_text</textcolor>
+					<label>$VAR[InfoPanel]</label>
+					<shadowcolor>text_shadow</shadowcolor>
+					<autoscroll delay="10000" time="3000" repeat="10000">Skin.HasSetting(autoscroll)</autoscroll>
+				</control>
+
+				<!-- Watch Now Button -->
+				<control type="button" id="9500">
+					<left>80</left>
+					<top>650</top>
+					<width>220</width>
+					<height>55</height>
+					<label>[B]Watch Now[/B]</label>
+					<font>font13</font>
+					<align>center</align>
+					<textcolor>focused_text</textcolor>
+					<focusedcolor>focused_text</focusedcolor>
+					<texturefocus border="40" colordiffuse="button_focus">buttons/dfo.png</texturefocus>
+					<texturenofocus border="40" colordiffuse="button_focus">buttons/dnfo.png</texturenofocus>
+					<onclick>Action(Select)</onclick>
+					<onup>700</onup>
+					<ondown>SetFocus($INFO[Container(9000).ListItem.Property(menu_id)])</ondown>
+					<onleft>9000</onleft>
+					<onright>SetFocus($INFO[Container(9000).ListItem.Property(menu_id)])</onright>
+					<visible>$EXP[is_video_library_content_or_episode]</visible>
+				</control>
+			</control>
+
+			<!-- ====================================== -->
+			<!-- HERO INFO FOR NON-VIDEO LIBRARY ITEMS  -->
+			<!-- ====================================== -->
+			<control type="group">
+				<depth>DepthBars</depth>
+				<visible>!Skin.HasSetting(TrailerPlaying)</visible>
+				<visible>!$EXP[is_video_library_content_or_episode]</visible>
+				<animation effect="fade" start="0" end="100" time="400" delay="200">WindowOpen</animation>
+				<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+
+				<!-- Category Title -->
+				<control type="label">
+					<left>80</left>
+					<top>200</top>
+					<width>500</width>
+					<height>60</height>
+					<font>font45_title</font>
+					<label>$INFO[Container(9000).ListItem.Label]</label>
+					<shadowcolor>text_shadow</shadowcolor>
+					<textcolor>selected</textcolor>
+				</control>
+			</control>
+
+			<!-- ========================== -->
+			<!-- WIDGET ROWS (BOTTOM AREA)  -->
+			<!-- ========================== -->
 			<control type="group" id="2000">
-				<left>462</left>
+				<left>0</left>
+				<top>720</top>
+				<right>0</right>
+				<bottom>0</bottom>
 				<include>OpenClose_Right</include>
 				<visible>!Skin.HasSetting(TrailerPlaying)</visible>
-				<animation effect="slide" time="700" start="1380,0" end="0,0" tween="sine" easing="inout">VisibleChange</animation>
+				<animation effect="slide" time="700" start="0,360" end="0,0" tween="sine" easing="inout">VisibleChange</animation>
+
 				<control type="group" id="27000">
 					<visible>false</visible>
 					<include content="Visible_Right_Delayed">
@@ -814,304 +1145,183 @@
 					</include>
 				</control>
 			</control>
-			<include content="TopBar">
-				<param name="breadcrumbs_label" value="" />
-			</include>
-			<include>BottomBar</include>
+
+			<!-- ======================== -->
+			<!-- TOP-RIGHT ICON BUTTONS   -->
+			<!-- ======================== -->
 			<control type="group">
+				<depth>DepthBars</depth>
 				<visible>!Skin.HasSetting(TrailerPlaying)</visible>
-				<animation effect="slide" time="700" start="-492,0" end="0,0" tween="sine" easing="inout">VisibleChange</animation>
-				<depth>DepthContentPanel</depth>
-				<include>OpenClose_Left</include>
-				<include content="ContentPanel">
-					<param name="width" value="900" />
-				</include>
-				<control type="group">
-					<animation effect="slide" time="300" start="-492,0" end="0,0" tween="sine" easing="inout">VisibleChange</animation>
-					<visible allowhiddenfocus="true">!$EXP[is_video_library_content_or_episode]</visible>
-					<!-- TODO Add sideblade panel for direct editing of widgets, hiding sections, other shortcuts -->
-					<control type="fixedlist" id="9000">
-						<left>25</left>
-						<top>240</top>
-						<width>492</width>
-						<bottom>-10</bottom>
-						<movement>7</movement>
-						<focusposition>0</focusposition>
-						<onfocus>ClearProperty(listposition,home)</onfocus>
-						<onright>SetFocus($INFO[Container(9000).ListItem.Property(menu_id)])</onright>
-						<onup>700</onup>
-						<ondown>700</ondown>
-						<scrolltime tween="cubic" easing="out">500</scrolltime>
-						<focusedlayout height="95">
-							<control type="group">
-								<animation effect="fade" start="100" end="0" time="0">UnFocus</animation>
-							</control>
-							<!-- SideMenu Focused Icons -->
-							<control type="label">
-								<include>FocusBounce</include>
-								<left>65</left>
-								<top>0</top>
-								<height>95</height>
-								<width>315</width>
-								<aligny>center</aligny>
-								<font>font45</font>
-								<textcolor>darkgrey</textcolor>
-								<label>$INFO[ListItem.Label]</label>
-								<shadowcolor>text_shadow</shadowcolor>
-								<visible>ControlGroup(700).HasFocus</visible>
-							</control>
-							<control type="label">
-								<include>FocusBounce</include>
-								<left>65</left>
-								<top>0</top>
-								<height>95</height>
-								<width>315</width>
-								<aligny>center</aligny>
-								<font>font45_title</font>
-								<label>$INFO[ListItem.Label]</label>
-								<textcolor>selected</textcolor>
-								<shadowcolor>text_shadow</shadowcolor>
-								<visible>!ControlGroup(700).HasFocus</visible>
-							</control>
-						</focusedlayout>
-						<itemlayout height="90">
-							<control type="label">
-								<left>65</left>
-								<top>0</top>
-								<height>95</height>
-								<width>315</width>
-								<aligny>center</aligny>
-								<font>font45</font>
-								<textcolor>darkgrey</textcolor>
-								<label>$INFO[ListItem.Label]</label>
-								<shadowcolor>text_shadow</shadowcolor>
-							</control>
-						</itemlayout>
-						<content>
-							<!-- MOVIES 19000 -->
-							<include content="MoviesMainMenu" condition="!Skin.HasSetting(HomeMenuNoMoviesButton)" />
-							<!-- TVSHOWS 22000 -->
-							<include content="TVShowsMainMenu" condition="!Skin.HasSetting(HomeMenuNoTVShowsButton)" />
-							<!-- CUSTOM 1 23000 -->
-							<include content="Custom1MainMenu" condition="!Skin.HasSetting(HomeMenuNoCustom1Button)" />
-							<!-- CUSTOM 2 24000 -->
-							<include content="Custom2MainMenu" condition="!Skin.HasSetting(HomeMenuNoCustom2Button)" />
-							<!-- CUSTOM 3 25000 -->
-							<include content="Custom3MainMenu" condition="!Skin.HasSetting(HomeMenuNoCustom3Button)" />
-							<item>
-								<label>$LOCALIZE[2]</label>
-								<onclick>ActivateWindow(Music,root,return)</onclick>
-								<property name="menu_id">$NUMBER[7000]</property>
-								<thumb>icons/sidemenu/music.png</thumb>
-								<property name="id">music</property>
-								<visible>!Skin.HasSetting(HomeMenuNoMusicButton)</visible>
-							</item>
-							<item>
-								<label>$LOCALIZE[427]</label>
-								<onclick>PlayDisc</onclick>
-								<property name="menu_id">$NUMBER[21000]</property>
-								<thumb>icons/sidemenu/disc.png</thumb>
-								<property name="id">disc</property>
-								<visible>System.HasMediaDVD</visible>
-							</item>
-							<item>
-								<label>$LOCALIZE[20389]</label>
-								<property name="menu_id">$NUMBER[16000]</property>
-								<onclick>ActivateWindow(Videos,musicvideos,return)</onclick>
-								<thumb>icons/sidemenu/musicvideos.png</thumb>
-								<property name="id">musicvideos</property>
-								<visible>!Skin.HasSetting(HomeMenuNoMusicVideoButton)</visible>
-							</item>
-							<item>
-								<label>Live TV</label>
-								<property name="menu_id">$NUMBER[12000]</property>
-								<onclick>ActivateWindow(TVGuide)</onclick>
-								<thumb>icons/sidemenu/livetv.png</thumb>
-								<property name="id">livetv</property>
-								<visible>!Skin.HasSetting(HomeMenuNoTVButton)</visible>
-							</item>
-							<item>
-								<label>$LOCALIZE[19021]</label>
-								<property name="menu_id">$NUMBER[13000]</property>
-								<onclick>ActivateWindow(RadioChannels)</onclick>
-								<thumb>icons/sidemenu/radio.png</thumb>
-								<property name="id">radio</property>
-								<visible>!Skin.HasSetting(HomeMenuNoRadioButton)</visible>
-							</item>
-							<item>
-								<label>$LOCALIZE[15016]</label>
-								<property name="menu_id">$NUMBER[17000]</property>
-								<onclick>ActivateWindow(Games)</onclick>
-								<thumb>icons/sidemenu/games.png</thumb>
-								<property name="id">games</property>
-								<visible>System.GetBool(gamesgeneral.enable) + !Skin.HasSetting(HomeMenuNoGamesButton)</visible>
-							</item>
-							<item>
-								<label>$LOCALIZE[24001]</label>
-								<property name="menu_id">$NUMBER[8000]</property>
-								<onclick>ActivateWindow(1100)</onclick>
-								<thumb>icons/sidemenu/addons.png</thumb>
-								<property name="id">addons</property>
-								<visible>!Skin.HasSetting(HomeMenuNoProgramsButton)</visible>
-							</item>
-							<item>
-								<label>$LOCALIZE[1]</label>
-								<onclick>ActivateWindow(Pictures)</onclick>
-								<property name="menu_id">$NUMBER[4000]</property>
-								<thumb>icons/sidemenu/pictures.png</thumb>
-								<property name="id">pictures</property>
-								<visible>!Skin.HasSetting(HomeMenuNoPicturesButton)</visible>
-							</item>
-							<item>
-								<label>$LOCALIZE[3]</label>
-								<onclick>ActivateWindow(Videos,root)</onclick>
-								<property name="menu_id">$NUMBER[11000]</property>
-								<thumb>icons/sidemenu/videos.png</thumb>
-								<property name="id">video</property>
-								<visible>!Skin.HasSetting(HomeMenuNoVideosButton)</visible>
-							</item>
-							<item>
-								<label>$LOCALIZE[10134]</label>
-								<onclick>ActivateWindow(favouritesbrowser)</onclick>
-								<property name="menu_id">$NUMBER[14000]</property>
-								<thumb>icons/sidemenu/favourites.png</thumb>
-								<property name="id">favorites</property>
-								<visible>!Skin.HasSetting(HomeMenuNoFavButton)</visible>
-							</item>
-							<item>
-								<label>$LOCALIZE[8]</label>
-								<onclick condition="!String.IsEmpty(Weather.Plugin)">ActivateWindow(Weather)</onclick>
-								<onclick condition="String.IsEmpty(Weather.Plugin)">ReplaceWindow(servicesettings,weather)</onclick>
-								<property name="menu_id">$NUMBER[15000]</property>
-								<thumb>icons/sidemenu/weather.png</thumb>
-								<property name="id">weather</property>
-								<visible>!Skin.HasSetting(HomeMenuNoWeatherButton)</visible>
-							</item>
-						</content>
+				<animation effect="fade" start="0" end="100" time="300" delay="200">WindowOpen</animation>
+				<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+				<animation effect="slide" end="0,-112" time="300" tween="sine" easing="inout" condition="$EXP[infodialog_active]">conditional</animation>
+
+				<!-- Top gradient bar -->
+				<control type="image">
+					<left>0</left>
+					<top>0</top>
+					<width>110%</width>
+					<height>100</height>
+					<texture>frame/InfoBar.png</texture>
+				</control>
+
+				<!-- Clock -->
+				<control type="label">
+					<right>30</right>
+					<top>0</top>
+					<font>font_clock</font>
+					<textcolor>unfocused_text</textcolor>
+					<shadowcolor>text_shadow</shadowcolor>
+					<height>90</height>
+					<width>auto</width>
+					<align>right</align>
+					<label>$INFO[System.Time]</label>
+				</control>
+
+				<!-- Weather info -->
+				<control type="grouplist">
+					<right>200</right>
+					<top>0</top>
+					<height>90</height>
+					<width>400</width>
+					<align>right</align>
+					<orientation>horizontal</orientation>
+					<itemgap>10</itemgap>
+					<visible>Skin.HasSetting(show_weatherinfo) + Weather.IsFetched + ![String.IsEqual(Weather.FanartCode,na)]</visible>
+					<control type="image">
+						<width>50</width>
+						<height>90</height>
+						<fadetime>300</fadetime>
+						<aspectratio aligny="center" align="left">keep</aspectratio>
+						<texture colordiffuse="unfocused_text">$INFO[Weather.FanartCode,weather/small/,.png]</texture>
 					</control>
-					<control type="grouplist" id="700">
-						<orientation>horizontal</orientation>
-						<itemgap>0</itemgap>
-						<left>45</left>
-						<width>380</width>
-						<height>110</height>
-						<top>115</top>
-						<onup>SetFocus(9000,99,absolute)</onup>
-						<ondown>SetFocus(9000,0,absolute)</ondown>
-						<onright>2000</onright>
-						<align>justify</align>
-						<include content="IconButton" condition="Skin.HasSetting(OneClickClose)">
-							<param name="control_id" value="801" />
-							<param name="onclick" value="Quit()" />
-							<param name="icon" value="icons/power.png" />
-							<param name="label" value="$LOCALIZE[33060]" />
-						</include>
-						<include content="IconButton" condition="!Skin.HasSetting(OneClickClose)">
-							<param name="control_id" value="802" />
-							<param name="onclick" value="ActivateWindow(shutdownmenu)" />
-							<param name="icon" value="icons/power.png" />
-							<param name="label" value="$LOCALIZE[33060]" />
-						</include>
-						<include content="IconButton">
-							<param name="control_id" value="803" />
-							<param name="onclick" value="ActivateWindow(settings)" />
-							<param name="icon" value="icons/settings.png" />
-							<param name="label" value="$LOCALIZE[21417]" />
-						</include>
-						<include content="IconButton" condition="Skin.HasSetting(NoSearchResultsWindow)">
-							<param name="control_id" value="804" />
-							<param name="onclick" value="ActivateWindow(1107)" />
-							<param name="icon" value="icons/search.png" />
-							<param name="label" value="$LOCALIZE[137]" />
-						</include>
-						<include content="IconButton" condition="!Skin.HasSetting(NoSearchResultsWindow) + Skin.HasSetting(DefaultSearchWindowBehavior)">
-							<param name="control_id" value="805" />
-							<param name="onclick" value="RunScript(script.fentastic.helper,mode=search_input)" />
-							<param name="icon" value="icons/search.png" />
-							<param name="label" value="$LOCALIZE[137]" />
-						</include>
-						<include content="IconButton" condition="!Skin.HasSetting(NoSearchResultsWindow) + !Skin.HasSetting(DefaultSearchWindowBehavior)">
-							<param name="control_id" value="806" />
-							<param name="onclick" value="RunScript(script.fentastic.helper,mode=open_search_window)" />
-							<param name="icon" value="icons/search.png" />
-							<param name="label" value="$LOCALIZE[137]" />
-						</include>
-						<include content="IconButton">
-							<param name="control_id" value="807" />
-							<param name="onclick" value="Fullscreen" />
-							<param name="icon" value="icons/now-playing/fullscreen.png" />
-							<param name="label" value="$LOCALIZE[31000]" />
-							<param name="visible" value="Player.HasMedia" />
-						</include>
+					<control type="label">
+						<font>font_clock_small</font>
+						<height>90</height>
+						<width>auto</width>
+						<aligny>center</aligny>
+						<align>right</align>
+						<label>$INFO[Window(Weather).Property(Current.Temperature)]$INFO[System.TemperatureUnits]</label>
+						<textcolor>unfocused_text</textcolor>
 					</control>
 				</control>
 
-				<control type="group">
-					<animation effect="slide" time="300" start="-492,0" end="0,0" tween="sine" easing="inout">VisibleChange</animation>
-					<width>550</width>
-					<visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
-					<include>OpenClose_Left</include>
-					<control type="image">
-						<left>30</left>
-						<top>50</top>
-						<width>395</width>
-						<height>153</height>
-						<texture background="true">$VAR[ClearlogoVar]</texture>
-						<aspectratio align="center">keep</aspectratio>
-					</control>
-					<control type="textbox">
-						<top>75</top>
-						<left>30</left>
-						<width>430</width>
-						<aligny>center</aligny>
-						<height>98</height>
-						<font>font36_title</font>
-						<label>$INFO[ListItem.Label]</label>
-						<visible>String.IsEmpty(ListItem.Art(clearlogo))</visible>
-					</control>
-					<control type="group">
-						<visible>Skin.HasSetting(Disable.RatingsINF) | String.IsEmpty(Skin.String(mdblist_api_key))</visible>
-						<control type="textbox">
-							<left>30</left>
-							<top>239</top>
-							<width>410</width>
-							<bottom>60</bottom>
-							<label>$VAR[InfoPanel]</label>
-							<textcolor>unfocused_text</textcolor>
-							<autoscroll delay="10000" time="3000" repeat="10000">Skin.HasSetting(autoscroll)</autoscroll>
-						</control>
-						<control type="textbox">
-							<left>30</left>
-							<top>323</top>
-							<width>410</width>
-							<bottom>60</bottom>
-							<label>$VAR[InfoPanelEpisode]</label>
-							<textcolor>unfocused_text</textcolor>
-							<autoscroll delay="10000" time="3000" repeat="10000">Skin.HasSetting(autoscroll)</autoscroll>
-						</control>
-						<control type="textbox">
-							<left>30</left>
-							<top>213</top>
-							<width>410</width>
-							<aligny>center</aligny>
-							<height>110</height>
-							<bottom>60</bottom>
-							<font>font36_title</font>
-							<label>Season $INFO[ListItem.Season], Episode $INFO[ListItem.Episode]</label>
-							<visible>String.IsEqual(ListItem.DBType,episode)</visible>
-						</control>
-					</control>
-					<include condition="![Skin.HasSetting(Disable.RatingsINF) | String.IsEmpty(Skin.String(mdblist_api_key))]" content="RatingsInfoPanel">
-						<param name="left" value="30" />
-						<param name="width" value="410" />
-						<param name="top" value="239" />
-						<param name="ratings_spacing" value="7" />
-						<param name="height_noalt" value="460" />
-						<param name="height_alt_movie" value="330" />
-						<param name="height_alt_tvshow" value="290" />
+				<!-- Icon buttons row -->
+				<control type="grouplist" id="700">
+					<orientation>horizontal</orientation>
+					<itemgap>0</itemgap>
+					<right>30</right>
+					<width>380</width>
+					<height>90</height>
+					<top>70</top>
+					<align>right</align>
+					<onup>SetFocus(9000,99,absolute)</onup>
+					<ondown>SetFocus(9000,0,absolute)</ondown>
+					<onright>2000</onright>
+					<onleft>9000</onleft>
+					<include content="IconButton" condition="Skin.HasSetting(OneClickClose)">
+						<param name="control_id" value="801" />
+						<param name="onclick" value="Quit()" />
+						<param name="icon" value="icons/power.png" />
+						<param name="label" value="$LOCALIZE[33060]" />
+					</include>
+					<include content="IconButton" condition="!Skin.HasSetting(OneClickClose)">
+						<param name="control_id" value="802" />
+						<param name="onclick" value="ActivateWindow(shutdownmenu)" />
+						<param name="icon" value="icons/power.png" />
+						<param name="label" value="$LOCALIZE[33060]" />
+					</include>
+					<include content="IconButton">
+						<param name="control_id" value="803" />
+						<param name="onclick" value="ActivateWindow(settings)" />
+						<param name="icon" value="icons/settings.png" />
+						<param name="label" value="$LOCALIZE[21417]" />
+					</include>
+					<include content="IconButton" condition="Skin.HasSetting(NoSearchResultsWindow)">
+						<param name="control_id" value="804" />
+						<param name="onclick" value="ActivateWindow(1107)" />
+						<param name="icon" value="icons/search.png" />
+						<param name="label" value="$LOCALIZE[137]" />
+					</include>
+					<include content="IconButton" condition="!Skin.HasSetting(NoSearchResultsWindow) + Skin.HasSetting(DefaultSearchWindowBehavior)">
+						<param name="control_id" value="805" />
+						<param name="onclick" value="RunScript(script.fentastic.helper,mode=search_input)" />
+						<param name="icon" value="icons/search.png" />
+						<param name="label" value="$LOCALIZE[137]" />
+					</include>
+					<include content="IconButton" condition="!Skin.HasSetting(NoSearchResultsWindow) + !Skin.HasSetting(DefaultSearchWindowBehavior)">
+						<param name="control_id" value="806" />
+						<param name="onclick" value="RunScript(script.fentastic.helper,mode=open_search_window)" />
+						<param name="icon" value="icons/search.png" />
+						<param name="label" value="$LOCALIZE[137]" />
+					</include>
+					<include content="IconButton">
+						<param name="control_id" value="807" />
+						<param name="onclick" value="Fullscreen" />
+						<param name="icon" value="icons/now-playing/fullscreen.png" />
+						<param name="label" value="$LOCALIZE[31000]" />
+						<param name="visible" value="Player.HasMedia" />
 					</include>
 				</control>
+
+				<!-- Profile avatar -->
+				<control type="group">
+					<visible>Integer.IsGreater(System.ProfileCount,1) + !Player.HasMedia</visible>
+					<right>20</right>
+					<top>75</top>
+					<control type="image">
+						<visible>Skin.HasSetting(show_profileavatar)</visible>
+						<width>45</width>
+						<height>45</height>
+						<texture>$INFO[System.ProfileThumb]</texture>
+						<aspectratio>scale</aspectratio>
+					</control>
+				</control>
+
+				<!-- Now Playing info when media playing -->
+				<control type="group">
+					<width>500</width>
+					<left>80</left>
+					<top>10</top>
+					<visible>!Control.IsVisible(503) + Player.HasMedia + String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))</visible>
+					<animation effect="fade" time="200">VisibleChange</animation>
+					<control type="grouplist">
+						<orientation>horizontal</orientation>
+						<height>38</height>
+						<top>10</top>
+						<width>500</width>
+						<itemgap>8</itemgap>
+						<control type="image">
+							<top>4</top>
+							<width>32</width>
+							<height>32</height>
+							<aspectratio>keep</aspectratio>
+							<texture colordiffuse="accent_color">$VAR[NowPlayingIconVar]</texture>
+						</control>
+						<control type="label">
+							<label>$INFO[Player.Title]</label>
+							<textcolor>unfocused_text</textcolor>
+							<font>font27</font>
+							<shadowcolor>text_shadow</shadowcolor>
+							<height>35</height>
+							<width min="1" max="450">auto</width>
+						</control>
+					</control>
+					<control type="label">
+						<label>$VAR[NowPlayingSublabelVar]</label>
+						<top>44</top>
+						<font>font12</font>
+						<textcolor>grey</textcolor>
+						<shadowcolor>text_shadow</shadowcolor>
+						<height>25</height>
+						<width>500</width>
+					</control>
+				</control>
 			</control>
+
+			<!-- ======================== -->
+			<!-- MEDIA FLAGS (BOTTOM)     -->
+			<!-- ======================== -->
 			<control type="group">
 				<depth>DepthBars</depth>
 				<bottom>0</bottom>
@@ -1122,28 +1332,14 @@
 					<param name="infolabel_prefix" value="Container." />
 					<param name="resolution_var" value="$VAR[ContainerResolutionFlagVar]" />
 				</include>
-				<control type="rss">
-					<animation effect="slide" end="0,90" time="300" tween="sine" easing="inout" condition="$EXP[infodialog_active]">conditional</animation>
-					<left>0</left>
-					<bottom>0</bottom>
-					<height>39</height>
-					<width>100%</width>
-					<font>font12</font>
-					<urlset>1</urlset>
-					<hitrect x="-100" y="0" w="1" h="1" />
-					<titlecolor>button_focus</titlecolor>
-					<textcolor>button_focus</textcolor>
-					<shadowcolor>text_shadow</shadowcolor>
-					<headlinecolor>FFC0C0C0</headlinecolor>
-					<visible>Skin.HasSetting(hide_mediaflags) | !ControlGroup(2000).HasFocus</visible>
-					<animation effect="fade" time="300">VisibleChange</animation>
-				</control>
 			</control>
+
+			<!-- ============ -->
+			<!-- CE BRANDING  -->
+			<!-- ============ -->
 			<control type="group">
-				<animation effect="slide" time="300" start="-492,0" end="0,0" tween="sine" easing="inout">VisibleChange</animation>
 				<visible>!$EXP[is_video_library_content_or_episode] + !Skin.HasSetting(TrailerPlaying)</visible>
 				<depth>DepthBars</depth>
-				<animation effect="slide" end="0,-90" time="300" tween="sine" easing="inout" condition="$EXP[infodialog_active]">conditional</animation>
 				<animation effect="fade" start="0" end="100" time="300">WindowOpen</animation>
 				<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
 				<top>35</top>

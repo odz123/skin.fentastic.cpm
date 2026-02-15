@@ -1916,6 +1916,157 @@
 		</control>
 	</include>
 
+	<!-- HomeHeroRatings: Compact horizontal ratings row for home screen hero overlay -->
+	<include name="HomeHeroRatings">
+		<control type="grouplist">
+			<left>80</left>
+			<top>330</top>
+			<width>700</width>
+			<height>40</height>
+			<orientation>horizontal</orientation>
+			<itemgap>18</itemgap>
+			<visible>$EXP[is_video_library_content_or_episode] + !String.IsEmpty(ListItem.Genre)</visible>
+			<!-- Metacritic -->
+			<control type="grouplist">
+				<width>90</width>
+				<height>36</height>
+				<orientation>horizontal</orientation>
+				<itemgap>6</itemgap>
+				<visible>![String.IsEmpty(Window.Property(fentastic.metascore)) | Skin.HasSetting(Disable.MetacriticRating)]</visible>
+				<control type="image">
+					<width>24</width>
+					<height>36</height>
+					<aspectratio aligny="center">keep</aspectratio>
+					<texture>$INFO[Window.Property(fentastic.metascoreImage)]</texture>
+				</control>
+				<control type="label">
+					<width max="60">auto</width>
+					<height>36</height>
+					<aligny>center</aligny>
+					<font>font12</font>
+					<textcolor>unfocused_text</textcolor>
+					<shadowcolor>text_shadow</shadowcolor>
+					<label>$INFO[Window.Property(fentastic.metascore)]</label>
+				</control>
+			</control>
+			<!-- Rotten Tomatoes Critic -->
+			<control type="grouplist">
+				<width>90</width>
+				<height>36</height>
+				<orientation>horizontal</orientation>
+				<itemgap>6</itemgap>
+				<visible>![String.IsEmpty(Window.Property(fentastic.tomatoMeter)) | Skin.HasSetting(Disable.RTCRating)]</visible>
+				<control type="image">
+					<width>24</width>
+					<height>36</height>
+					<aspectratio aligny="center">keep</aspectratio>
+					<texture>$INFO[Window.Property(fentastic.tomatoImage)]</texture>
+				</control>
+				<control type="label">
+					<width max="60">auto</width>
+					<height>36</height>
+					<aligny>center</aligny>
+					<font>font12</font>
+					<textcolor>unfocused_text</textcolor>
+					<shadowcolor>text_shadow</shadowcolor>
+					<label>$INFO[Window.Property(fentastic.tomatoMeter)]</label>
+				</control>
+			</control>
+			<!-- Rotten Tomatoes Audience -->
+			<control type="grouplist">
+				<width>90</width>
+				<height>36</height>
+				<orientation>horizontal</orientation>
+				<itemgap>6</itemgap>
+				<visible>![String.IsEmpty(Window.Property(fentastic.tomatoUserMeter)) | Skin.HasSetting(Disable.RTARating)]</visible>
+				<control type="image">
+					<width>24</width>
+					<height>36</height>
+					<aspectratio aligny="center">keep</aspectratio>
+					<texture>$INFO[Window.Property(fentastic.tomatoUserImage)]</texture>
+				</control>
+				<control type="label">
+					<width max="60">auto</width>
+					<height>36</height>
+					<aligny>center</aligny>
+					<font>font12</font>
+					<textcolor>unfocused_text</textcolor>
+					<shadowcolor>text_shadow</shadowcolor>
+					<label>$INFO[Window.Property(fentastic.tomatoUserMeter)]</label>
+				</control>
+			</control>
+			<!-- IMDb -->
+			<control type="grouplist">
+				<width>90</width>
+				<height>36</height>
+				<orientation>horizontal</orientation>
+				<itemgap>6</itemgap>
+				<visible>![String.IsEmpty(Window.Property(fentastic.imdbRating)) | Skin.HasSetting(Disable.IMDbRating)]</visible>
+				<control type="image">
+					<width>24</width>
+					<height>36</height>
+					<aspectratio aligny="center">keep</aspectratio>
+					<texture>$INFO[Window.Property(fentastic.imdbImage)]</texture>
+				</control>
+				<control type="label">
+					<width max="60">auto</width>
+					<height>36</height>
+					<aligny>center</aligny>
+					<font>font12</font>
+					<textcolor>unfocused_text</textcolor>
+					<shadowcolor>text_shadow</shadowcolor>
+					<label>$INFO[Window.Property(fentastic.imdbRating)]</label>
+				</control>
+			</control>
+			<!-- IMDb Popular -->
+			<control type="grouplist">
+				<width>100</width>
+				<height>36</height>
+				<orientation>horizontal</orientation>
+				<itemgap>6</itemgap>
+				<visible>![String.IsEmpty(Window.Property(fentastic.popularRating)) | Skin.HasSetting(Disable.IMDbPopularRating)]</visible>
+				<control type="image">
+					<width>30</width>
+					<height>36</height>
+					<aspectratio aligny="center">keep</aspectratio>
+					<texture>$INFO[Window.Property(fentastic.popularImage)]</texture>
+				</control>
+				<control type="label">
+					<width max="65">auto</width>
+					<height>36</height>
+					<aligny>center</aligny>
+					<font>font12</font>
+					<textcolor>unfocused_text</textcolor>
+					<shadowcolor>text_shadow</shadowcolor>
+					<label>$INFO[Window.Property(fentastic.popularRating)]</label>
+				</control>
+			</control>
+			<!-- TMDb -->
+			<control type="grouplist">
+				<width>90</width>
+				<height>36</height>
+				<orientation>horizontal</orientation>
+				<itemgap>6</itemgap>
+				<visible>![String.IsEmpty(Window.Property(fentastic.tmdbRating)) | Skin.HasSetting(Disable.TMDbRating)]</visible>
+				<control type="image">
+					<width>24</width>
+					<height>36</height>
+					<aspectratio aligny="center">keep</aspectratio>
+					<texture>$INFO[Window.Property(fentastic.tmdbImage)]</texture>
+				</control>
+				<control type="label">
+					<width max="60">auto</width>
+					<height>36</height>
+					<aligny>center</aligny>
+					<font>font12</font>
+					<textcolor>unfocused_text</textcolor>
+					<shadowcolor>text_shadow</shadowcolor>
+					<label>$INFO[Window.Property(fentastic.tmdbRating)]</label>
+				</control>
+			</control>
+		</control>
+	</include>
+
 	<include name="VideoCodecFlag">
 		<param name="groupId"/>
 		<param name="imageId"/>
