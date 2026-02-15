@@ -260,7 +260,7 @@
 						<aspectratio aligny="top">keep</aspectratio>
 						<fadetime>300</fadetime>
 						<texture diffuse="masks/landscape.png" fallback="$PARAM[fallback_image]" background="true">$VAR[IconWallThumbVar]</texture>
-						<visible>!String.IsEqual(ListItem.DbType,episode) + !String.IsEqual(ListItem.DBType,song) + !Container.Content(addons) + Skin.HasSetting(UseLandscape) + !String.IsEmpty(ListItem.Art(clearlogo))</visible>
+						<visible>!String.IsEqual(ListItem.DBType,episode) + !String.IsEqual(ListItem.DBType,song) + !Container.Content(addons) + Skin.HasSetting(UseLandscape) + !String.IsEmpty(ListItem.Art(clearlogo))</visible>
 					</control>
 					<control type="image">
 						<left>30</left>
@@ -284,14 +284,14 @@
 						<height>303</height>
 						<fadetime>300</fadetime>
 						<texture diffuse="masks/landscape.png">$INFO[ListItem.Icon]</texture>
-						<visible>String.IsEqual(ListItem.DbType,episode)</visible>
+						<visible>String.IsEqual(ListItem.DBType,episode)</visible>
 					</control>
 					<control type="textbox">
 						<height>auto</height>
 						<font>font36_title</font>
 						<label>Season $INFO[ListItem.Season], Episode $INFO[ListItem.Episode]</label>
 						<textcolor>unfocused_text</textcolor>
-						<visible>String.IsEqual(ListItem.DbType,episode)</visible>
+						<visible>String.IsEqual(ListItem.DBType,episode)</visible>
 					</control>
 					<control type="textbox">
 						<height>auto</height>
@@ -525,7 +525,7 @@
 						<aspectratio aligny="top">keep</aspectratio>
 						<fadetime>300</fadetime>
 						<texture diffuse="masks/landscape.png" fallback="$PARAM[fallback_image]" background="true">$VAR[IconWallThumbVar]</texture>
-						<visible>!String.IsEqual(ListItem.DbType,episode) + !String.IsEqual(ListItem.DBType,song) + !Container.Content(addons) + Skin.HasSetting(UseLandscape)</visible>
+						<visible>!String.IsEqual(ListItem.DBType,episode) + !String.IsEqual(ListItem.DBType,song) + !Container.Content(addons) + Skin.HasSetting(UseLandscape)</visible>
 					</control>
 					<control type="image">
 						<left>30</left>
@@ -574,7 +574,7 @@
 					<height>303</height>
 					<fadetime>300</fadetime>
 					<texture diffuse="masks/landscape.png">$INFO[ListItem.Icon]</texture>
-					<visible>String.IsEmpty(Skin.String(mdblist_api_key)) + String.IsEqual(ListItem.DbType,episode)</visible>
+					<visible>String.IsEmpty(Skin.String(mdblist_api_key)) + String.IsEqual(ListItem.DBType,episode)</visible>
 				</control>
 				<control type="image">
 					<left>30</left>
@@ -593,7 +593,7 @@
 					<height>270</height>
 					<texture>overlays/overlayfade.png</texture>
 					<visible>!ListItem.IsParentFolder</visible>
-					<visible>String.IsEqual(ListItem.DbType,episode) + !String.IsEmpty(ListItem.Art(clearlogo))</visible>
+					<visible>String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(ListItem.Art(clearlogo))</visible>
 				</control>
 				<control type="image">
 					<left>50</left>
@@ -602,7 +602,7 @@
 					<height>70</height>
 					<texture>$INFO[ListItem.Art(clearlogo)]</texture>
 					<aspectratio align="center" aligny="top">keep</aspectratio>
-					<visible>String.IsEqual(ListItem.DbType,episode)</visible>
+					<visible>String.IsEqual(ListItem.DBType,episode)</visible>
 				</control>
 				<include condition="Skin.HasSetting(UseLandscape)" content="ProgressBar">
 					<!-- 30 -->
@@ -611,7 +611,7 @@
 					<param name="width" value="460"/>
 				</include>
 				<control type="group">
-					<visible>!Container.Content() | !String.isempty(ListItem.Plot)</visible>
+					<visible>!Container.Content() | !String.IsEmpty(ListItem.Plot)</visible>
 					<left>30</left>
 					<!-- Plot control -->
 					<control type="group">
@@ -642,7 +642,7 @@
 						<autoscroll time="3000" delay="7000" repeat="5000">!System.HasModalDialog + Skin.HasSetting(AutoScroll)</autoscroll>
 						<label>$VAR[ListBoxInfoVar]</label>
 						<textcolor>unfocused_text</textcolor>
-						<visible>!String.IsEqual(ListItem.DbType,movie) + !String.IsEqual(ListItem.DbType,tvshow) + !String.IsEqual(ListItem.DbType,season) + !String.IsEqual(ListItem.DbType,episode) + !String.IsEqual(ListItem.DBType,song)</visible>
+						<visible>!String.IsEqual(ListItem.DBType,movie) + !String.IsEqual(ListItem.DBType,tvshow) + !String.IsEqual(ListItem.DBType,season) + !String.IsEqual(ListItem.DBType,episode) + !String.IsEqual(ListItem.DBType,song)</visible>
 					</control>
 					<!-- Plot control episodes -->
 					<control type="group">
@@ -663,7 +663,7 @@
 							<font>font36_title</font>
 							<textcolor>unfocused_text</textcolor>
 							<label>Season $INFO[ListItem.Season], Episode $INFO[ListItem.Episode]</label>
-							<visible>String.IsEqual(ListItem.DbType,episode)</visible>
+							<visible>String.IsEqual(ListItem.DBType,episode)</visible>
 						</control>
 					</control>
 					<control type="textbox" id="15503">
@@ -702,7 +702,7 @@
 						<label>$LOCALIZE[19055]</label>
 						<visible>!ListItem.IsParentFolder</visible>
 						<visible>!Integer.IsGreater(Container(42000).NumItems,0) + !Integer.IsGreater(Container(43000).NumItems,0)</visible>
-						<visible>!Container.Content() | !String.isempty(ListItem.Plot)</visible>
+						<visible>!Container.Content() | !String.IsEmpty(ListItem.Plot)</visible>
 					</control>
 					<control type="group">
 						<left>20</left>

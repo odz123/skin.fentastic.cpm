@@ -199,7 +199,7 @@
 						<shadowcolor>text_shadow</shadowcolor>
 						<scroll>true</scroll>
 						<scrollspeed>100</scrollspeed>
-						<visible>[String.IsEqual(ListItem.DBtype,movie) + String.IsEmpty(ListItem.Genre)] + Control.HasFocus($PARAM[list_id])</visible>
+						<visible>[String.IsEqual(ListItem.DBType,movie) + String.IsEmpty(ListItem.Genre)] + Control.HasFocus($PARAM[list_id])</visible>
 						<visible>![String.IsEmpty(Skin.String(mdblist_api_key)) | Skin.HasSetting(Disable.WidgetLabelRatings)]</visible>
 					</control>
 					<!-- RATINGS NOT VISIBLE -->
@@ -227,7 +227,7 @@
 						<shadowcolor>text_shadow</shadowcolor>
 						<scroll>true</scroll>
 						<scrollspeed>100</scrollspeed>
-						<visible>[String.IsEqual(ListItem.DBtype,movie) + String.IsEmpty(ListItem.Genre)] + Control.HasFocus($PARAM[list_id])</visible>
+						<visible>[String.IsEqual(ListItem.DBType,movie) + String.IsEmpty(ListItem.Genre)] + Control.HasFocus($PARAM[list_id])</visible>
 						<visible>[String.IsEmpty(Skin.String(mdblist_api_key)) | Skin.HasSetting(Disable.WidgetLabelRatings)]</visible>
 					</control>
 					<include content="WidgetLabelRatingsRow">
@@ -299,7 +299,7 @@
 						<visible>$PARAM[visible]</visible>
 						<scroll>true</scroll>
 						<scrollspeed>100</scrollspeed>
-						<visible>[String.IsEqual(ListItem.DBtype,movie) + String.IsEmpty(ListItem.Genre)] + Control.HasFocus($PARAM[list_id])</visible>
+						<visible>[String.IsEqual(ListItem.DBType,movie) + String.IsEmpty(ListItem.Genre)] + Control.HasFocus($PARAM[list_id])</visible>
 						<visible>![String.IsEmpty(Skin.String(mdblist_api_key)) | Skin.HasSetting(Disable.WidgetLabelRatings)]</visible>
 					</control>
 					<!-- RATINGS NOT VISIBLE -->
@@ -333,7 +333,7 @@
 						<visible>$PARAM[visible]</visible>
 						<scroll>true</scroll>
 						<scrollspeed>100</scrollspeed>
-						<visible>[String.IsEqual(ListItem.DBtype,movie) + String.IsEmpty(ListItem.Genre)] + Control.HasFocus($PARAM[list_id])</visible>
+						<visible>[String.IsEqual(ListItem.DBType,movie) + String.IsEmpty(ListItem.Genre)] + Control.HasFocus($PARAM[list_id])</visible>
 						<visible>[String.IsEmpty(Skin.String(mdblist_api_key)) | Skin.HasSetting(Disable.WidgetLabelRatings)]</visible>
 					</control>
 					<include content="WidgetLabelRatingsRow">

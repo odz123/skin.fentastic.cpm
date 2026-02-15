@@ -146,7 +146,6 @@
 						<width>174</width>
 						<height>26</height>
 						<texture>info/dolby.vision.horizontal.small.png</texture>
-						<visible>true</visible>
 					</control>
 					<control type="label">
 						<left>185</left>

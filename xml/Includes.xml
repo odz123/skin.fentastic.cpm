@@ -56,9 +56,8 @@
 	<constant name="list_item_height">68</constant>
 	<expression name="infodialog_active">Window.IsActive(musicinformation) | Window.IsActive(songinformation) | Window.IsActive(movieinformation) | Window.IsActive(addoninformation) | Window.IsActive(pvrguideinfo) | Window.IsActive(pvrrecordinginfo) | Window.IsActive(pictureinfo) | Window.IsVisible(script-embuary-video.xml) | Window.IsVisible(script-embuary-person.xml) | Window.IsVisible(script-embuary-image.xml)</expression>
 	<expression name="sidebar_visible">ControlGroup(9000).HasFocus | Control.HasFocus(6130) | Control.HasFocus(6131)</expression>
-	<expression name="ProgessBarMovie">String.IsEqual(ListItem.DBtype,movie) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedProgress)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0)</expression>
-	<expression name="is_video_library_content">[String.IsEqual(ListItem.DbType,movie) | String.IsEqual(ListItem.DbType,tvshow) | String.IsEqual(ListItem.DbType,season)]</expression>
-	<expression name="is_video_library_content_or_episode">[String.IsEqual(ListItem.DbType,movie) | String.IsEqual(ListItem.DbType,tvshow) | String.IsEqual(ListItem.DbType,season) | String.IsEqual(ListItem.DbType,episode)]</expression>
+	<expression name="is_video_library_content">[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)]</expression>
+	<expression name="is_video_library_content_or_episode">[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]</expression>
 	<expression name="search_provider_non_trakt">String.IsEqual(Skin.String(current_search_provider),0) | String.IsEqual(Skin.String(current_search_provider),1) | String.IsEqual(Skin.String(current_search_provider),3)</expression>
 	<expression name="search_provider_trakt">String.IsEqual(Skin.String(current_search_provider),2)</expression>
 	<include name="CommonScrollbars">
@@ -1101,7 +1100,7 @@
 		<control type="label">
 			<label>$INFO[Container.PluginCategory, [B]»[/B] ]</label>
 			<include>BreadcrumbsLabel</include>
-			<visible>!String.isempty(Container.PluginCategory)</visible>
+			<visible>!String.IsEmpty(Container.PluginCategory)</visible>
 		</control>
 		<control type="label">
 			<label>$INFO[Control.GetLabel(10),: ]</label>
@@ -1125,7 +1124,7 @@
 	</include>
 	<include name="ColoredBackgroundImages">
 		<control type="image">
-			<visible>[Skin.HasSetting(no_fanart) | String.IsEmpty(Listitem.Art(fanart))] + !Player.HasMedia + !Skin.HasSetting(TrailerPlaying)</visible>
+			<visible>[Skin.HasSetting(no_fanart) | String.IsEmpty(ListItem.Art(fanart))] + !Player.HasMedia + !Skin.HasSetting(TrailerPlaying)</visible>
 			<depth>DepthBackground</depth>
 			<include>FullScreenDimensions</include>
 			<aspectratio>scale</aspectratio>
@@ -1386,7 +1385,7 @@
 				<right>$PARAM[right]</right>
 				<top>$PARAM[top]</top>
 				<height>$PARAM[height]</height>
-				<visible>[String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season) | String.IsEqual(ListItem.DBtype,episode) | VideoPlayer.Content(LiveTV)]</visible>
+				<visible>[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | VideoPlayer.Content(LiveTV)]</visible>
 			</control>
 		</definition>
 	</include>
@@ -1599,7 +1598,6 @@
 				<width>128</width>
 				<height>128</height>
 				<texture colordiffuse="dimgrey" background="true">rain-drop.png</texture>
-				<visible>true</visible>
 				<animation type="conditional" reversible="false" loop="true" condition="true">
 					<effect type="fade" delay="2000" start="0" end="100" time="200"/>
 					<effect type="fade" delay="2500" start="100" end="0" time="500"/>
@@ -1613,7 +1611,6 @@
 				<width>128</width>
 				<height>128</height>
 				<texture colordiffuse="dimgrey" background="true">rain-drop.png</texture>
-				<visible>true</visible>
 				<animation type="conditional" reversible="false" loop="true" condition="true">
 					<effect type="fade" start="0" end="100" time="200"/>
 					<effect type="fade" start="100" end="0" delay="2500" time="1000"/>
@@ -1627,7 +1624,6 @@
 				<width>128</width>
 				<height>128</height>
 				<texture colordiffuse="dimgrey" background="true">rain-drop.png</texture>
-				<visible>true</visible>
 				<animation type="conditional" reversible="false" loop="true" condition="true">
 					<effect type="fade" delay="400" start="0" end="100" time="200"/>
 					<effect type="fade" delay="1000" start="100" end="0" time="1600"/>
@@ -1641,7 +1637,6 @@
 				<width>128</width>
 				<height>128</height>
 				<texture colordiffuse="dimgrey" background="true">rain-drop.png</texture>
-				<visible>true</visible>
 				<animation type="conditional" reversible="false" loop="true" condition="true">
 					<effect type="fade" delay="800" start="0" end="100" time="200"/>
 					<effect type="fade" delay="2400" start="100" end="0" time="2000"/>
@@ -1655,7 +1650,6 @@
 				<width>128</width>
 				<height>128</height>
 				<texture colordiffuse="dimgrey" background="true">rain-drop.png</texture>
-				<visible>true</visible>
 				<animation type="conditional" reversible="false" loop="true" condition="true">
 					<effect type="fade" delay="1500" start="0" end="100" time="200"/>
 					<effect type="fade" delay="2100" start="100" end="0" time="800"/>
@@ -1669,7 +1663,6 @@
 				<width>128</width>
 				<height>128</height>
 				<texture colordiffuse="dimgrey" background="true">rain-drop.png</texture>
-				<visible>true</visible>
 				<animation type="conditional" reversible="false" loop="true" condition="true">
 					<effect type="fade" delay="2200" start="0" end="100" time="200"/>
 					<effect type="fade" delay="2400" start="100" end="0" time="3000"/>
@@ -1683,7 +1676,6 @@
 				<width>128</width>
 				<height>128</height>
 				<texture colordiffuse="dimgrey" background="true">rain-drop.png</texture>
-				<visible>true</visible>
 				<animation type="conditional" reversible="false" loop="true" condition="true">
 					<effect type="fade" delay="1500" start="0" end="100" time="200"/>
 					<effect type="fade" delay="2100" start="100" end="0" time="2000"/>
@@ -1697,7 +1689,6 @@
 				<width>128</width>
 				<height>128</height>
 				<texture colordiffuse="dimgrey" background="true">rain-drop.png</texture>
-				<visible>true</visible>
 				<animation type="conditional" reversible="false" loop="true" condition="true">
 					<effect type="fade" delay="1000" start="0" end="100" time="200"/>
 					<effect type="fade" delay="700" start="100" end="0" time="3500"/>
@@ -1711,7 +1702,6 @@
 				<width>128</width>
 				<height>128</height>
 				<texture colordiffuse="dimgrey" background="true">rain-drop.png</texture>
-				<visible>true</visible>
 				<animation type="conditional" reversible="false" loop="true" condition="true">
 					<effect type="fade" delay="700" start="0" end="100" time="200"/>
 					<effect type="fade" delay="300" start="100" end="0" time="4000"/>
@@ -1730,7 +1720,7 @@
 			<texturebg></texturebg>
 			<midtexture colordiffuse="button_focus" border="3">progress/texturebg_alt_white.png</midtexture>
 			<info>Container($PARAM[id]).ListItem.Property(WatchedProgress)</info>
-			<visible>[String.IsEqual(ListItem.DBtype,movie) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedProgress)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0)] | [Integer.IsGreater(Container($PARAM[id]).ListItem.Property(UnwatchedEpisodes),0) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedProgress)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0)] | [String.IsEqual(ListItem.DBtype,episode) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedProgress)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0)]</visible>
+			<visible>[String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedProgress)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0)] | [Integer.IsGreater(Container($PARAM[id]).ListItem.Property(UnwatchedEpisodes),0) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedProgress)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0)] | [String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedProgress)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0)]</visible>
 			<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
 		</control>
 	</include>
@@ -1747,7 +1737,7 @@
 				<font>font36_title</font>
 				<label>Season $INFO[ListItem.Season], Episode $INFO[ListItem.Episode]</label>
 				<textcolor>unfocused_text</textcolor>
-				<visible>String.IsEqual(ListItem.DbType,episode)</visible>
+				<visible>String.IsEqual(ListItem.DBType,episode)</visible>
 			</control>
 			<control type="textbox">
 				<height>auto</height>
@@ -1913,7 +1903,7 @@
 				<label>$VAR[InfoPanelBottom]</label>
 				<textcolor>unfocused_text</textcolor>
 				<autoscroll delay="5000" time="2000" repeat="5000">Skin.HasSetting(autoscroll)</autoscroll>
-				<visible>Skin.HasSetting(Enable.AlternateInfo) + [String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,episode) | String.IsEqual(ListItem.DBtype,season)]</visible>
+				<visible>Skin.HasSetting(Enable.AlternateInfo) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,season)]</visible>
 			</control>
 			<control type="textbox">
 				<height max="$PARAM[height_alt_tvshow]">auto</height>
@@ -1921,7 +1911,7 @@
 				<label>$VAR[InfoPanelBottom]</label>
 				<textcolor>unfocused_text</textcolor>
 				<autoscroll delay="5000" time="2000" repeat="5000">Skin.HasSetting(autoscroll)</autoscroll>
-				<visible>Skin.HasSetting(Enable.AlternateInfo) + String.IsEqual(ListItem.DBtype,tvshow)</visible>
+				<visible>Skin.HasSetting(Enable.AlternateInfo) + String.IsEqual(ListItem.DBType,tvshow)</visible>
 			</control>
 		</control>
 	</include>
