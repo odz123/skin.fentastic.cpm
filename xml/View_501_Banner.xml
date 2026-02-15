@@ -30,8 +30,6 @@
 							<width>860</width>
 							<height>195</height>
 							<texture diffuse="masks/banner.png" fallback="dialogs/dialog-bg-nobo.png" background="true">$VAR[BannerArtVar]</texture>
-							<!-- <aspectratio aligny="center">scale</aspectratio> -->
-							<!-- <bordertexture border="21" infill="false">overlays/shadow.png</bordertexture> -->
 							<bordersize>20</bordersize>
 						</control>
 						<control type="label">
@@ -43,7 +41,7 @@
 							<font>font52_title</font>
 							<shadowcolor>text_shadow</shadowcolor>
 							<aligny>center</aligny>
-							<visible>String.IsEmpty(ListItem.Art(banner)) + !Listitem.IsParentFolder</visible>
+							<visible>String.IsEmpty(ListItem.Art(banner)) + !ListItem.IsParentFolder</visible>
 						</control>
 						<control type="group">
 							<top>2</top>
@@ -97,7 +95,7 @@
 							<font>font52_title</font>
 							<shadowcolor>text_shadow</shadowcolor>
 							<aligny>center</aligny>
-							<visible>String.IsEmpty(ListItem.Art(banner)) + !Listitem.IsParentFolder</visible>
+							<visible>String.IsEmpty(ListItem.Art(banner)) + !ListItem.IsParentFolder</visible>
 						</control>
 						<control type="group">
 							<include>Animation_FocusTextureFade</include>
@@ -108,7 +106,7 @@
 								<height>100</height>
 								<texture>overlays/overlayfadebanner.png</texture>
 								<animation effect="fade" start="0" end="80" time="50">Focus</animation>
-								<visible>!Listitem.IsParentFolder</visible>
+								<visible>!ListItem.IsParentFolder</visible>
 							</control>
 							<control type="image">
 								<left>35</left>
@@ -125,7 +123,7 @@
 								<font>font12</font>
 								<aligny>center</aligny>
 								<label>$INFO[ListItem.Label]</label>
-								<visible>!Listitem.IsParentFolder</visible>
+								<visible>!ListItem.IsParentFolder</visible>
 							</control>
 							<control type="image">
 								<right>220</right>
@@ -152,7 +150,7 @@
 								<width>22</width>
 								<height>22</height>
 								<texture>lists/played-total.png</texture>
-								<visible>String.IsEqual(Listitem.dbtype,tvshow) + !String.IsEmpty(ListItem.Property(TotalEpisodes))</visible>
+								<visible>String.IsEqual(ListItem.dbtype,tvshow) + !String.IsEmpty(ListItem.Property(TotalEpisodes))</visible>
 							</control>
 							<control type="label">
 								<right>118</right>

@@ -3,10 +3,10 @@
 	<defaultcontrol>9000</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
 	<onload condition="!Skin.HasSetting(firsttimerun)">ActivateWindow(1112)</onload>
-  <onload condition="Skin.HasSetting(firsttimerun)">RunScript(script.fentastic.helper,mode=check_for_update&amp;skin_id=skin.fentastic)</onload>
+	<onload condition="Skin.HasSetting(firsttimerun)">RunScript(script.fentastic.helper,mode=check_for_update&amp;skin_id=skin.fentastic)</onload>
 	<onload>RunScript(script.fentastic.helper,mode=check_for_profile_change&amp;skin_id=skin.fentastic)</onload>
-  <onload condition="String.IsEmpty(Window(Home).Property(fentastic.starting_widgets))">RunScript(script.fentastic.helper,mode=starting_widgets)</onload>
-  <onload condition="String.IsEmpty(Window(Home).Property(fentastic.starting_widgets))">SetProperty(fentastic.starting_widgets,true)</onload>
+	<onload condition="String.IsEmpty(Window(Home).Property(fentastic.starting_widgets))">RunScript(script.fentastic.helper,mode=starting_widgets)</onload>
+	<onload condition="String.IsEmpty(Window(Home).Property(fentastic.starting_widgets))">SetProperty(fentastic.starting_widgets,true)</onload>
 	<onload>RunScript(script.fentastic.helper,mode=modify_keymap)</onload>
 	<onload>RunScript(script.fentastic.helper,mode=fix_black_screen)</onload>
 	<onload condition="String.IsEmpty(Skin.String(current_search_provider))">Skin.SetString(current_search_provider,0)</onload>
@@ -828,12 +828,12 @@
 				</include>
 				<control type="group">
 					<animation effect="slide" time="300" start="-492,0" end="0,0" tween="sine" easing="inout">VisibleChange</animation>
-					<visible allowhiddenfocus="true">![String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season) | String.IsEqual(ListItem.DBtype,episode)]</visible>
+					<visible allowhiddenfocus="true">!$EXP[is_video_library_content_or_episode]</visible>
 					<!-- TODO Add sideblade panel for direct editing of widgets, hiding sections, other shortcuts -->
 					<control type="fixedlist" id="9000">
 						<left>25</left>
 						<top>240</top>
-            <width>492</width>
+						<width>492</width>
 						<bottom>-10</bottom>
 						<movement>7</movement>
 						<focusposition>0</focusposition>
@@ -992,7 +992,7 @@
 					<control type="grouplist" id="700">
 						<orientation>horizontal</orientation>
 						<itemgap>0</itemgap>
-            <left>45</left>
+						<left>45</left>
 						<width>380</width>
 						<height>110</height>
 						<top>115</top>
@@ -1049,7 +1049,7 @@
 				<control type="group">
 					<animation effect="slide" time="300" start="-492,0" end="0,0" tween="sine" easing="inout">VisibleChange</animation>
 					<width>550</width>
-					<visible>String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season) | String.IsEqual(ListItem.DBtype,episode)</visible>
+					<visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)</visible>
 					<include>OpenClose_Left</include>
 					<control type="image">
 						<left>30</left>
@@ -1098,7 +1098,7 @@
 							<bottom>60</bottom>
 							<font>font36_title</font>
 							<label>Season $INFO[ListItem.Season], Episode $INFO[ListItem.Episode]</label>
-							<visible>String.IsEqual(ListItem.DbType,episode)</visible>
+							<visible>String.IsEqual(ListItem.DBType,episode)</visible>
 						</control>
 					</control>
 					<include condition="![Skin.HasSetting(Disable.RatingsINF) | String.IsEmpty(Skin.String(mdblist_api_key))]" content="RatingsInfoPanel">
@@ -1110,18 +1110,6 @@
 						<param name="height_alt_movie" value="330" />
 						<param name="height_alt_tvshow" value="290" />
 					</include>
-					<!-- <control type="textbox">
-						<left>30</left>
-						<top>467</top>
-						<width>530</width>
-						<height>413</height>
-						<align>center</align>
-						<aligny>center</aligny>
-						<font>font27</font>
-						<textcolor>80FFFFFF</textcolor>
-						<label>$LOCALIZE[19055]</label>
-						<visible>String.IsEmpty(Listitem.Plot) + String.IsEmpty(Listitem.Tagline) + !ListItem.IsCollection + !ListItem.IsParentFolder</visible>
-					</control> -->
 				</control>
 			</control>
 			<control type="group">
@@ -1152,30 +1140,30 @@
 				</control>
 			</control>
 			<control type="group">
-        <animation effect="slide" time="300" start="-492,0" end="0,0" tween="sine" easing="inout">VisibleChange</animation>
-        <visible>![String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season) | String.IsEqual(ListItem.DBtype,episode)] + !Skin.HasSetting(TrailerPlaying)</visible>
+				<animation effect="slide" time="300" start="-492,0" end="0,0" tween="sine" easing="inout">VisibleChange</animation>
+				<visible>!$EXP[is_video_library_content_or_episode] + !Skin.HasSetting(TrailerPlaying)</visible>
 				<depth>DepthBars</depth>
 				<animation effect="slide" end="0,-90" time="300" tween="sine" easing="inout" condition="$EXP[infodialog_active]">conditional</animation>
 				<animation effect="fade" start="0" end="100" time="300">WindowOpen</animation>
 				<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
 				<top>35</top>
 				<left>35</left>
-        <control type="image">
-          <left>19</left>
-          <top>0</top>
-          <aspectratio>keep</aspectratio>
-          <width>130</width>
-          <height>56</height>
-          <texture colordiffuse="selected">special://skin/media/logos/ce-logo.png</texture>
-        </control>
-        <control type="image">
-          <left>120</left>
-          <top>0</top>
-          <aspectratio>keep</aspectratio>
-          <width>192</width>
-          <height>56</height>
-          <texture colordiffuse="unfocused_text">special://skin/media/logos/ce-title.png</texture>
-        </control>
+				<control type="image">
+					<left>19</left>
+					<top>0</top>
+					<aspectratio>keep</aspectratio>
+					<width>130</width>
+					<height>56</height>
+					<texture colordiffuse="selected">special://skin/media/logos/ce-logo.png</texture>
+				</control>
+				<control type="image">
+					<left>120</left>
+					<top>0</top>
+					<aspectratio>keep</aspectratio>
+					<width>192</width>
+					<height>56</height>
+					<texture colordiffuse="unfocused_text">special://skin/media/logos/ce-title.png</texture>
+				</control>
 			</control>
 		</control>
 	</controls>

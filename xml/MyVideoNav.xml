@@ -84,7 +84,7 @@
 							<font>font36_title</font>
 							<textcolor>unfocused_text</textcolor>
 							<label>Season $INFO[ListItem.Season], Episode $INFO[ListItem.Episode]</label>
-							<visible>String.IsEqual(ListItem.DbType,episode)</visible>
+							<visible>String.IsEqual(ListItem.DBType,episode)</visible>
 						</control>
 						<control type="textbox">
 							<left>30</left>
@@ -96,7 +96,7 @@
 							<font>font27</font>
 							<textcolor>80FFFFFF</textcolor>
 							<label>$LOCALIZE[19055]</label>
-							<visible>String.IsEmpty(Listitem.Plot) + String.IsEmpty(Listitem.Tagline) + !ListItem.IsCollection + !ListItem.IsParentFolder</visible>
+							<visible>String.IsEmpty(ListItem.Plot) + String.IsEmpty(ListItem.Tagline) + !ListItem.IsCollection + !ListItem.IsParentFolder</visible>
 						</control>
 					</control>
 					<include condition="!String.IsEmpty(Skin.String(mdblist_api_key))" content="RatingsInfoPanel">

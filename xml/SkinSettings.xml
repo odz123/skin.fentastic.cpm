@@ -285,7 +285,7 @@
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.ToggleSetting(HDRIconsOsd)</onclick>
 					<selected>Skin.HasSetting(HDRIconsOsd)</selected>
-				</control>				
+				</control>
 			</control>
 
 			<control type="grouplist" id="647">
@@ -329,7 +329,6 @@
 				</control>
 				<control type="radiobutton" id="64704">
 					<label>   - TV Shows</label>
-					<!-- <label>   - $LOCALIZE[20343]</label> -->
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.ToggleSetting(HideTVShowResults)</onclick>
 					<selected>!Skin.HasSetting(HideTVShowResults)</selected>
@@ -347,56 +346,56 @@
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.ToggleSetting(HidePeopleResults)</onclick>
 					<selected>!Skin.HasSetting(HidePeopleResults)</selected>
-					<visible>!Skin.HasSetting(NoSearchResultsWindow) + [String.IsEqual(Skin.String(current_search_provider),0) | String.IsEqual(Skin.String(current_search_provider),1) | String.IsEqual(Skin.String(current_search_provider),3)]</visible>
+					<visible>!Skin.HasSetting(NoSearchResultsWindow) + [$EXP[search_provider_non_trakt]]</visible>
 				</control>
 				<control type="radiobutton" id="64707">
 					<label>   - Actors/Actresses (Movies)</label>
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.ToggleSetting(HideUmbrellaPeopleMovieResults)</onclick>
 					<selected>!Skin.HasSetting(HideUmbrellaPeopleMovieResults)</selected>
-					<visible>!Skin.HasSetting(NoSearchResultsWindow) + String.IsEqual(Skin.String(current_search_provider),2)</visible>
+					<visible>!Skin.HasSetting(NoSearchResultsWindow) + $EXP[search_provider_trakt]</visible>
 				</control>
 				<control type="radiobutton" id="64708">
 					<label>   - Actors/Actresses (TV Shows)</label>
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.ToggleSetting(HideUmbrellaPeopleTVResults)</onclick>
 					<selected>!Skin.HasSetting(HideUmbrellaPeopleTVResults)</selected>
-					<visible>!Skin.HasSetting(NoSearchResultsWindow) + String.IsEqual(Skin.String(current_search_provider),2)</visible>
+					<visible>!Skin.HasSetting(NoSearchResultsWindow) + $EXP[search_provider_trakt]</visible>
 				</control>
 				<control type="radiobutton" id="64709">
 					<label>   - $VAR[KeywordMoviesLabelVar]</label>
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.ToggleSetting(HideMovieKeywordResults)</onclick>
 					<selected>!Skin.HasSetting(HideMovieKeywordResults)</selected>
-					<visible>!Skin.HasSetting(NoSearchResultsWindow) + [String.IsEqual(Skin.String(current_search_provider),0) | String.IsEqual(Skin.String(current_search_provider),1) | String.IsEqual(Skin.String(current_search_provider),3)]</visible>
+					<visible>!Skin.HasSetting(NoSearchResultsWindow) + [$EXP[search_provider_non_trakt]]</visible>
 				</control>
 				<control type="radiobutton" id="64710">
 					<label>   - $VAR[KeywordTVShowsLabelVar]</label>
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.ToggleSetting(HideTVShowKeywordResults)</onclick>
 					<selected>!Skin.HasSetting(HideTVShowKeywordResults)</selected>
-					<visible>!Skin.HasSetting(NoSearchResultsWindow) + [String.IsEqual(Skin.String(current_search_provider),0) | String.IsEqual(Skin.String(current_search_provider),1) | String.IsEqual(Skin.String(current_search_provider),3)]</visible>
+					<visible>!Skin.HasSetting(NoSearchResultsWindow) + [$EXP[search_provider_non_trakt]]</visible>
 				</control>
 				<control type="radiobutton" id="64711">
 					<label>   - TRAKT Lists</label>
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.ToggleSetting(HideTraktResults)</onclick>
 					<selected>!Skin.HasSetting(HideTraktResults)</selected>
-					<visible>!Skin.HasSetting(NoSearchResultsWindow) + [String.IsEqual(Skin.String(current_search_provider),0) | String.IsEqual(Skin.String(current_search_provider),1) | String.IsEqual(Skin.String(current_search_provider),3)]</visible>
+					<visible>!Skin.HasSetting(NoSearchResultsWindow) + [$EXP[search_provider_non_trakt]]</visible>
 				</control>
 				<control type="radiobutton" id="64712">
 					<label>   - TRAKT Lists (Movies)</label>
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.ToggleSetting(HideUmbrellaTraktMovieResults)</onclick>
 					<selected>!Skin.HasSetting(HideUmbrellaTraktMovieResults)</selected>
-					<visible>!Skin.HasSetting(NoSearchResultsWindow) + String.IsEqual(Skin.String(current_search_provider),2)</visible>
+					<visible>!Skin.HasSetting(NoSearchResultsWindow) + $EXP[search_provider_trakt]</visible>
 				</control>
 				<control type="radiobutton" id="64713">
 					<label>   - TRAKT Lists (TV Shows)</label>
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.ToggleSetting(HideUmbrellaTraktTVResults)</onclick>
 					<selected>!Skin.HasSetting(HideUmbrellaTraktTVResults)</selected>
-					<visible>!Skin.HasSetting(NoSearchResultsWindow) + String.IsEqual(Skin.String(current_search_provider),2)</visible>
+					<visible>!Skin.HasSetting(NoSearchResultsWindow) + $EXP[search_provider_trakt]</visible>
 				</control>
 				<control type="button" id="64714">
 					<label>Clear search history</label>
@@ -417,7 +416,7 @@
 				<pagecontrol>60</pagecontrol>
 				<ondown>648</ondown>
 				<visible>Container(9000).HasFocus(4)</visible>
-				<!-- RATINGS -->	
+				<!-- RATINGS -->
 				<control type="button" id="6480">
 					<label>Enter MDbList API Key</label>
 					<label2>$INFO[Skin.String(mdblist_api_key)]</label2>
@@ -637,7 +636,7 @@
 					<selected>Skin.HasSetting(show_musicvideoposter)</selected>
 				</control>
 			</control>
-			
+
 			<control type="grouplist" id="622">
 				<top>133</top>
 				<left>25</left>

@@ -9,7 +9,7 @@
 				<include>Visible_Right</include>
 				<control type="fixedlist" id="55">
 					<left>554</left>
-					<top>list_top_offset</top>			
+					<top>list_top_offset</top>
 					<bottom>$PARAM[bottom_offset]</bottom>
 					<right>25</right>
 					<height>83%</height>
@@ -54,7 +54,7 @@
 							<textcolor>selected</textcolor>
 							<label>$INFO[ListItem.Property(WatchedProgress),]% • $VAR[ListLabel2Var]</label>
 							<visible>!Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0)</visible>
-							<visible>!String.IsEqual(ListItem.DBtype,tvshow) + !String.IsEqual(ListItem.DBtype,season)</visible>
+							<visible>!String.IsEqual(ListItem.DBType,tvshow) + !String.IsEqual(ListItem.DBType,season)</visible>
 							<shadowcolor>text_shadow</shadowcolor>
 						</control>
 						<control type="label">
@@ -79,11 +79,11 @@
 							<font>font32_title</font>
 							<textcolor>selected</textcolor>
 							<label>$INFO[ListItem.Property(WatchedEpisodes)]$INFO[ListItem.Property(TotalEpisodes), / ,]</label>
-							<visible>String.IsEqual(ListItem.DBtype,season)</visible>
+							<visible>String.IsEqual(ListItem.DBType,season)</visible>
 							<shadowcolor>text_shadow</shadowcolor>
 						</control>
 						<control type="group">
-							<visible>String.IsEqual(ListItem.DBtype,tvshow)</visible>
+							<visible>String.IsEqual(ListItem.DBType,tvshow)</visible>
 							<control type="label">
 								<width>180</width>
 								<top>0</top>
@@ -128,7 +128,7 @@
 							<textcolor>unfocused_text</textcolor>
 							<label>$INFO[ListItem.Property(WatchedProgress),]% • $VAR[ListLabel2Var]</label>
 							<visible>!Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0)</visible>
-							<visible>!String.IsEqual(ListItem.DBtype,tvshow) + !String.IsEqual(ListItem.DBtype,season)</visible>
+							<visible>!String.IsEqual(ListItem.DBType,tvshow) + !String.IsEqual(ListItem.DBType,season)</visible>
 							<shadowcolor>text_shadow</shadowcolor>
 						</control>
 						<control type="label">
@@ -153,11 +153,11 @@
 							<font>font32</font>
 							<textcolor>unfocused_text</textcolor>
 							<label>$INFO[ListItem.Property(WatchedEpisodes)]$INFO[ListItem.Property(TotalEpisodes), / ,]</label>
-							<visible>String.IsEqual(ListItem.DBtype,season)</visible>
+							<visible>String.IsEqual(ListItem.DBType,season)</visible>
 							<shadowcolor>text_shadow</shadowcolor>
 						</control>
 					<control type="group">
-						<visible>String.IsEqual(ListItem.DBtype,tvshow)</visible>
+						<visible>String.IsEqual(ListItem.DBType,tvshow)</visible>
 							<control type="label">
 								<width>180</width>
 								<top>0</top>

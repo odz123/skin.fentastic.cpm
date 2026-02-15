@@ -1,6 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
+	<include name="WidgetLabelRatingsRow">
+		<definition>
+			<control type="grouplist">
+				<visible>![String.IsEmpty(Skin.String(mdblist_api_key)) | Skin.HasSetting(Disable.WidgetLabelRatings) | Container($PARAM[list_id]).IsUpdating] + $EXP[is_video_library_content_or_episode] + !String.IsEmpty(ListItem.Genre) + Control.HasFocus($PARAM[list_id])</visible>
+				<orientation>horizontal</orientation>
+				<aligny>center</aligny>
+				<itemgap>25</itemgap>
+				<control type="grouplist">
+					<width>95</width>
+					<orientation>horizontal</orientation>
+					<itemgap>8</itemgap>
+					<align>left</align>
+					<visible>![String.IsEmpty(Window.Property(fentastic.metascore)) | Skin.HasSetting(Disable.MetacriticRating)]</visible>
+					<control type="image">
+						<top>45</top>
+						<width>35</width>
+						<aspectratio>keep</aspectratio>
+						<align>left</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Window.Property(fentastic.metascoreImage)]</texture>
+					</control>
+					<control type="label">
+						<width max="60">auto</width>
+						<height>32</height>
+						<align>left</align>
+						<label>$INFO[Window.Property(fentastic.metascore)]</label>
+					</control>
+				</control>
+				<control type="grouplist">
+					<width>95</width>
+					<orientation>horizontal</orientation>
+					<itemgap>8</itemgap>
+					<align>left</align>
+					<visible>![String.IsEmpty(Window.Property(fentastic.tomatoMeter)) | Skin.HasSetting(Disable.RTCRating)]</visible>
+					<control type="image">
+						<top>45</top>
+						<width>35</width>
+						<aspectratio>keep</aspectratio>
+						<align>left</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Window.Property(fentastic.tomatoImage)]</texture>
+					</control>
+					<control type="label">
+						<width max="60">auto</width>
+						<height>32</height>
+						<align>left</align>
+						<label>$INFO[Window.Property(fentastic.tomatoMeter)]</label>
+					</control>
+				</control>
+				<control type="grouplist">
+					<width>95</width>
+					<orientation>horizontal</orientation>
+					<itemgap>6</itemgap>
+					<align>left</align>
+					<visible>![String.IsEmpty(Window.Property(fentastic.tomatoUserMeter)) | Skin.HasSetting(Disable.RTARating)]</visible>
+					<control type="image">
+						<top>45</top>
+						<width>35</width>
+						<aspectratio>keep</aspectratio>
+						<align>left</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Window.Property(fentastic.tomatoUserImage)]</texture>
+					</control>
+					<control type="label">
+						<width max="60">auto</width>
+						<height>32</height>
+						<align>left</align>
+						<label>$INFO[Window.Property(fentastic.tomatoUserMeter)]</label>
+					</control>
+				</control>
+				<control type="grouplist">
+					<width>112</width>
+					<orientation>horizontal</orientation>
+					<itemgap>8</itemgap>
+					<align>left</align>
+					<visible>![String.IsEmpty(Window.Property(fentastic.imdbRating)) | Skin.HasSetting(Disable.IMDbRating)]</visible>
+					<control type="image">
+						<top>45</top>
+						<width>52</width>
+						<aspectratio>keep</aspectratio>
+						<align>left</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Window.Property(fentastic.imdbImage)]</texture>
+					</control>
+					<control type="label">
+						<width max="60">auto</width>
+						<height>32</height>
+						<align>left</align>
+						<label>$INFO[Window.Property(fentastic.imdbRating)]</label>
+					</control>
+				</control>
+				<control type="grouplist">
+					<width>105</width>
+					<orientation>horizontal</orientation>
+					<itemgap>10</itemgap>
+					<align>left</align>
+					<visible>![String.IsEmpty(Window.Property(fentastic.popularRating)) | Skin.HasSetting(Disable.IMDbPopularRating)]</visible>
+					<control type="image">
+						<top>45</top>
+						<width>25</width>
+						<aspectratio>keep</aspectratio>
+						<align>left</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Window.Property(fentastic.popularImage)]</texture>
+					</control>
+					<control type="label">
+						<width max="70">auto</width>
+						<height>32</height>
+						<align>left</align>
+						<label>$INFO[Window.Property(fentastic.popularRating)]</label>
+					</control>
+				</control>
+				<control type="grouplist">
+					<width>93</width>
+					<orientation>horizontal</orientation>
+					<itemgap>8</itemgap>
+					<align>left</align>
+					<visible>![String.IsEmpty(Window.Property(fentastic.tmdbRating)) | Skin.HasSetting(Disable.TMDbRating)]</visible>
+					<control type="image">
+						<top>45</top>
+						<width>36</width>
+						<aspectratio>keep</aspectratio>
+						<align>left</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Window.Property(fentastic.tmdbImage)]</texture>
+					</control>
+					<control type="label">
+						<width max="60">auto</width>
+						<height>32</height>
+						<align>left</align>
+						<label>$INFO[Window.Property(fentastic.tmdbRating)]</label>
+					</control>
+				</control>
+			</control>
+		</definition>
+	</include>
+
 	<include name="WidgetGroupListCommon">
 		<orientation>vertical</orientation>
 		<height>100%</height>
@@ -62,7 +199,7 @@
 						<shadowcolor>text_shadow</shadowcolor>
 						<scroll>true</scroll>
 						<scrollspeed>100</scrollspeed>
-						<visible>[String.IsEqual(ListItem.DBtype,movie) + String.IsEmpty(ListItem.Genre)] + Control.HasFocus($PARAM[list_id])</visible>
+						<visible>[String.IsEqual(ListItem.DBType,movie) + String.IsEmpty(ListItem.Genre)] + Control.HasFocus($PARAM[list_id])</visible>
 						<visible>![String.IsEmpty(Skin.String(mdblist_api_key)) | Skin.HasSetting(Disable.WidgetLabelRatings)]</visible>
 					</control>
 					<!-- RATINGS NOT VISIBLE -->
@@ -90,143 +227,12 @@
 						<shadowcolor>text_shadow</shadowcolor>
 						<scroll>true</scroll>
 						<scrollspeed>100</scrollspeed>
-						<visible>[String.IsEqual(ListItem.DBtype,movie) + String.IsEmpty(ListItem.Genre)] + Control.HasFocus($PARAM[list_id])</visible>
+						<visible>[String.IsEqual(ListItem.DBType,movie) + String.IsEmpty(ListItem.Genre)] + Control.HasFocus($PARAM[list_id])</visible>
 						<visible>[String.IsEmpty(Skin.String(mdblist_api_key)) | Skin.HasSetting(Disable.WidgetLabelRatings)]</visible>
 					</control>
-					<control type="grouplist">
-						<visible>![String.IsEmpty(Skin.String(mdblist_api_key)) | Skin.HasSetting(Disable.WidgetLabelRatings) | Container($PARAM[list_id]).IsUpdating] + [String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season) | String.IsEqual(ListItem.DBtype,episode)] + !String.IsEmpty(ListItem.Genre) + Control.HasFocus($PARAM[list_id])</visible>
-						<orientation>horizontal</orientation>
-						<aligny>center</aligny>
-						<itemgap>25</itemgap>
-						<control type="grouplist">
-							<width>95</width>
-							<orientation>horizontal</orientation>
-							<itemgap>8</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.metascore)) | Skin.HasSetting(Disable.MetacriticRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>35</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.metascoreImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.metascore)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>95</width>
-							<orientation>horizontal</orientation>
-							<itemgap>8</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.tomatoMeter)) | Skin.HasSetting(Disable.RTCRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>35</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.tomatoImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.tomatoMeter)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>95</width>
-							<orientation>horizontal</orientation>
-							<itemgap>6</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.tomatoUserMeter)) | Skin.HasSetting(Disable.RTARating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>35</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.tomatoUserImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.tomatoUserMeter)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>112</width>
-							<orientation>horizontal</orientation>
-							<itemgap>8</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.imdbRating)) | Skin.HasSetting(Disable.IMDbRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>52</width>
-								<!-- <height>32</height> -->
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.imdbImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.imdbRating)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>105</width>
-							<orientation>horizontal</orientation>
-							<itemgap>10</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.popularRating)) | Skin.HasSetting(Disable.IMDbPopularRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>25</width>
-								<!-- <height>32</height> -->
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.popularImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="70">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.popularRating)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>93</width>
-							<orientation>horizontal</orientation>
-							<itemgap>8</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.tmdbRating)) | Skin.HasSetting(Disable.TMDbRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>36</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.tmdbImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.tmdbRating)]</label>
-							</control>
-						</control>
-					</control>
+					<include content="WidgetLabelRatingsRow">
+						<param name="list_id" value="$PARAM[list_id]" />
+					</include>
 				</control>
 			</control>
 		</definition>
@@ -293,7 +299,7 @@
 						<visible>$PARAM[visible]</visible>
 						<scroll>true</scroll>
 						<scrollspeed>100</scrollspeed>
-						<visible>[String.IsEqual(ListItem.DBtype,movie) + String.IsEmpty(ListItem.Genre)] + Control.HasFocus($PARAM[list_id])</visible>
+						<visible>[String.IsEqual(ListItem.DBType,movie) + String.IsEmpty(ListItem.Genre)] + Control.HasFocus($PARAM[list_id])</visible>
 						<visible>![String.IsEmpty(Skin.String(mdblist_api_key)) | Skin.HasSetting(Disable.WidgetLabelRatings)]</visible>
 					</control>
 					<!-- RATINGS NOT VISIBLE -->
@@ -327,143 +333,12 @@
 						<visible>$PARAM[visible]</visible>
 						<scroll>true</scroll>
 						<scrollspeed>100</scrollspeed>
-						<visible>[String.IsEqual(ListItem.DBtype,movie) + String.IsEmpty(ListItem.Genre)] + Control.HasFocus($PARAM[list_id])</visible>
+						<visible>[String.IsEqual(ListItem.DBType,movie) + String.IsEmpty(ListItem.Genre)] + Control.HasFocus($PARAM[list_id])</visible>
 						<visible>[String.IsEmpty(Skin.String(mdblist_api_key)) | Skin.HasSetting(Disable.WidgetLabelRatings)]</visible>
 					</control>
-					<control type="grouplist">
-						<visible>![String.IsEmpty(Skin.String(mdblist_api_key)) | Skin.HasSetting(Disable.WidgetLabelRatings) | Container($PARAM[list_id]).IsUpdating] + [String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season) | String.IsEqual(ListItem.DBtype,episode)] + !String.IsEmpty(ListItem.Genre) + Control.HasFocus($PARAM[list_id])</visible>
-						<orientation>horizontal</orientation>
-						<aligny>center</aligny>
-						<itemgap>25</itemgap>
-						<control type="grouplist">
-							<width>95</width>
-							<orientation>horizontal</orientation>
-							<itemgap>8</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.metascore)) | Skin.HasSetting(Disable.MetacriticRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>35</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.metascoreImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.metascore)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>95</width>
-							<orientation>horizontal</orientation>
-							<itemgap>8</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.tomatoMeter)) | Skin.HasSetting(Disable.RTCRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>35</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.tomatoImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.tomatoMeter)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>95</width>
-							<orientation>horizontal</orientation>
-							<itemgap>6</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.tomatoUserMeter)) | Skin.HasSetting(Disable.RTARating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>35</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.tomatoUserImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.tomatoUserMeter)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>112</width>
-							<orientation>horizontal</orientation>
-							<itemgap>8</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.imdbRating)) | Skin.HasSetting(Disable.IMDbRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>52</width>
-								<!-- <height>32</height> -->
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.imdbImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.imdbRating)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>105</width>
-							<orientation>horizontal</orientation>
-							<itemgap>10</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.popularRating)) | Skin.HasSetting(Disable.IMDbPopularRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>25</width>
-								<!-- <height>32</height> -->
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.popularImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="70">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.popularRating)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>93</width>
-							<orientation>horizontal</orientation>
-							<itemgap>8</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.tmdbRating)) | Skin.HasSetting(Disable.TMDbRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>36</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.tmdbImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.tmdbRating)]</label>
-							</control>
-						</control>
-					</control>
+					<include content="WidgetLabelRatingsRow">
+						<param name="list_id" value="$PARAM[list_id]" />
+					</include>
 				</control>
 			</control>
 		</definition>
@@ -569,290 +444,48 @@
 		</definition>
 	</include>
 
-	<include name="WidgetListPosterStacked">
-    <definition>
-      <include content="CategoryLabelWidget">
-        <param name="label">$PARAM[widget_header]</param>
-        <param name="list_id" value="$PARAM[list_id]" />
-      </include>
-			<include content="BusyListSpinnerWidget">
-				<param name="list_id" value="$PARAM[list_id]" />
-			</include>
-      <control type="fixedlist" id="$PARAM[list_id]">
-        <left>0</left>
-        <top>115</top> 
-        <right>0</right>
-        <height>410</height>
-				<onright>$PARAM[list_id]</onright>
-				<orientation>horizontal</orientation>
-				<movement>5</movement>
-        <include content="WidgetListCommonStacked">
-          <param name="list_id" value="$PARAM[list_id]" />
-        </include>
-        <itemlayout width="225" height="393">
-          <control type="group">
-            <left>68</left>
-            <top>15</top>
-            <include content="InfoWallMovieLayout">
-            <param name="focused" value="false" />
-						<param name="list_id" value="$PARAM[list_id]" />
-            </include>
-          </control>
-        </itemlayout>
-        <focusedlayout width="225" height="393">
-          <control type="group">
-            <depth>DepthContentPopout</depth>
-            <left>68</left>
-            <top>15</top>
-            <include content="InfoWallMovieLayout">
-            <param name="focused" value="true" />
-						<param name="list_id" value="$PARAM[list_id]" />
-            </include>
-          </control>
-        </focusedlayout>
-        <content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" limit="$PARAM[limit]" target="$PARAM[widget_target]">$PARAM[content_path]</content>
-      </control>
-    </definition>
-  </include>
-
 	<include name="WidgetListBigPosterStacked">
-    <definition>
-      <include content="CategoryLabelWidget">
-        <param name="label">$PARAM[widget_header]</param>
-        <param name="list_id" value="$PARAM[list_id]" />
-      </include>
+		<definition>
+			<include content="CategoryLabelWidget">
+				<param name="label">$PARAM[widget_header]</param>
+				<param name="list_id" value="$PARAM[list_id]" />
+			</include>
 			<include content="BusyListSpinnerWidget">
 				<param name="list_id" value="$PARAM[list_id]" />
 			</include>
-      <control type="fixedlist" id="$PARAM[list_id]">
-        <left>0</left>
-        <top>115</top> 
-        <right>0</right>
-        <height>465</height>
+			<control type="fixedlist" id="$PARAM[list_id]">
+				<left>0</left>
+				<top>115</top>
+				<right>0</right>
+				<height>465</height>
 				<onright>$PARAM[list_id]</onright>
 				<orientation>horizontal</orientation>
 				<movement>4</movement>
-        <include content="WidgetListCommonStacked">
-          <param name="list_id" value="$PARAM[list_id]" />
-        </include>
-        <itemlayout width="269" height="393">
-          <control type="group">
-            <left>68</left>
-            <top>15</top>
-            <include content="BigInfoWallMovieLayout">
-            <param name="focused" value="false" />
-						<param name="list_id" value="$PARAM[list_id]" />
-            </include>
-          </control>
-        </itemlayout>
-        <focusedlayout width="269" height="393">
-          <control type="group">
-            <depth>DepthContentPopout</depth>
-            <left>68</left>
-            <top>15</top>
-            <include content="BigInfoWallMovieLayout">
-            <param name="focused" value="true" />
-						<param name="list_id" value="$PARAM[list_id]" />
-            </include>
-          </control>
-        </focusedlayout>
-        <content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" limit="$PARAM[limit]" target="$PARAM[widget_target]">$PARAM[content_path]</content>
-      </control>
-    </definition>
-  </include>
-
-	<include name="WidgetListLandscape">
-		<param name="onclick_condition">false</param>
-		<definition>
-			<include content="CategoryLabel">
-				<param name="label">$PARAM[widget_header]</param>
-				<param name="list_id" value="$PARAM[list_id]"/>
-			</include>
-			<include content="BusyListSpinner">
-				<param name="list_id" value="$PARAM[list_id]"/>
-				<param name="posy" value="185"/>
-			</include>
-			<control type="fixedlist" id="$PARAM[list_id]">
-				<left>0</left>
-				<top>115</top>
-				<onright>$PARAM[list_id]</onright>
-				<orientation>horizontal</orientation>
-				<movement>3</movement>
-				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
-				<right>0</right>
-				<height>307</height>
-				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
-				<include content="WidgetListCommon">
-					<param name="list_id" value="$PARAM[list_id]"/>
-				</include>
-				<itemlayout width="337" height="347">
-					<control type="group">
-						<left>68</left>
-						<top>15</top>
-						<include content="WideInfoWallMovieLayout">
-						<param name="focused" value="false" />
-						<param name="list_id" value="$PARAM[list_id]" />
-						</include>
-					</control>
-				</itemlayout>
-				<focusedlayout width="337" height="347">
-					<control type="group">
-						<depth>DepthContentPopout</depth>
-						<left>68</left>
-						<top>15</top>
-						<include content="WideInfoWallMovieLayout">
-						<param name="focused" value="true" />
-						<param name="list_id" value="$PARAM[list_id]" />
-						</include>
-					</control>
-				</focusedlayout>
-				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
-			</control>
-		</definition>
-	</include>
-
-	<include name="WidgetListBigLandscape">
-		<param name="onclick_condition">false</param>
-		<definition>
-			<include content="CategoryLabel">
-				<param name="label">$PARAM[widget_header]</param>
-				<param name="list_id" value="$PARAM[list_id]"/>
-			</include>
-			<include content="BusyListSpinner">
-				<param name="list_id" value="$PARAM[list_id]"/>
-				<param name="posy" value="185"/>
-			</include>
-			<control type="fixedlist" id="$PARAM[list_id]">
-				<left>0</left>
-				<top>115</top>
-				<onright>$PARAM[list_id]</onright>
-				<orientation>horizontal</orientation>
-				<movement>2</movement>
-				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
-				<right>0</right>
-				<height>366</height>
-				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
-				<include content="WidgetListCommon">
-					<param name="list_id" value="$PARAM[list_id]"/>
-				</include>
-				<itemlayout width="448" height="347">
-					<control type="group">
-						<left>68</left>
-						<top>15</top>
-						<include content="BigWideInfoWallMovieLayout">
-						<param name="focused" value="false" />
-						<param name="list_id" value="$PARAM[list_id]" />
-						</include>
-					</control>
-				</itemlayout>
-				<focusedlayout width="448" height="347">
-					<control type="group">
-						<depth>DepthContentPopout</depth>
-						<left>68</left>
-						<top>15</top>
-						<include content="BigWideInfoWallMovieLayout">
-						<param name="focused" value="true" />
-						<param name="list_id" value="$PARAM[list_id]" />
-						</include>
-					</control>
-				</focusedlayout>
-				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
-			</control>
-		</definition>
-	</include>
-
-	<include name="WidgetListLandscapeStacked">
-		<param name="onclick_condition">false</param>
-		<definition>
-			<include content="CategoryLabelWidget">
-				<param name="label">$PARAM[widget_header]</param>
-				<param name="list_id" value="$PARAM[list_id]"/>
-			</include>
-			<include content="BusyListSpinnerWidget">
-				<param name="list_id" value="$PARAM[list_id]" />
-			</include>
-			<control type="fixedlist" id="$PARAM[list_id]">
-				<left>0</left>
-				<top>115</top>
-				<onright>$PARAM[list_id]</onright>
-				<orientation>horizontal</orientation>
-				<movement>3</movement>
-				<right>0</right>
-				<height>307</height>
 				<include content="WidgetListCommonStacked">
-					<param name="list_id" value="$PARAM[list_id]"/>
+					<param name="list_id" value="$PARAM[list_id]" />
 				</include>
-				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
-				<itemlayout width="337" height="347">
+				<itemlayout width="269" height="393">
 					<control type="group">
 						<left>68</left>
 						<top>15</top>
-						<include content="WideInfoWallMovieLayout">
+						<include content="BigInfoWallMovieLayout">
 						<param name="focused" value="false" />
 						<param name="list_id" value="$PARAM[list_id]" />
 						</include>
 					</control>
 				</itemlayout>
-				<focusedlayout width="337" height="347">
+				<focusedlayout width="269" height="393">
 					<control type="group">
 						<depth>DepthContentPopout</depth>
 						<left>68</left>
 						<top>15</top>
-						<include content="WideInfoWallMovieLayout">
+						<include content="BigInfoWallMovieLayout">
 						<param name="focused" value="true" />
 						<param name="list_id" value="$PARAM[list_id]" />
 						</include>
 					</control>
 				</focusedlayout>
-				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
-			</control>
-		</definition>
-	</include>
-
-	<include name="WidgetListBigLandscapeStacked">
-		<param name="onclick_condition">false</param>
-		<definition>
-			<include content="CategoryLabelWidget">
-				<param name="label">$PARAM[widget_header]</param>
-				<param name="list_id" value="$PARAM[list_id]"/>
-			</include>
-			<include content="BusyListSpinnerWidget">
-				<param name="list_id" value="$PARAM[list_id]" />
-			</include>
-			<control type="fixedlist" id="$PARAM[list_id]">
-				<left>0</left>
-				<top>115</top>
-				<onright>$PARAM[list_id]</onright>
-				<orientation>horizontal</orientation>
-				<movement>2</movement>
-				<right>0</right>
-				<height>366</height>
-				<include content="WidgetListCommonStacked">
-					<param name="list_id" value="$PARAM[list_id]"/>
-				</include>
-				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
-				<itemlayout width="448" height="347">
-					<control type="group">
-						<left>68</left>
-						<top>15</top>
-						<include content="BigWideInfoWallMovieLayout">
-						<param name="focused" value="false" />
-						<param name="list_id" value="$PARAM[list_id]" />
-						</include>
-					</control>
-				</itemlayout>
-				<focusedlayout width="448" height="347">
-					<control type="group">
-						<depth>DepthContentPopout</depth>
-						<left>68</left>
-						<top>15</top>
-						<include content="BigWideInfoWallMovieLayout">
-						<param name="focused" value="true" />
-						<param name="list_id" value="$PARAM[list_id]" />
-						</include>
-					</control>
-				</focusedlayout>
-				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
+				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" limit="$PARAM[limit]" target="$PARAM[widget_target]">$PARAM[content_path]</content>
 			</control>
 		</definition>
 	</include>
@@ -865,7 +498,6 @@
 		<param name="sortby"></param>
 		<param name="visible">True</param>
 		<param name="sortorder">ascending</param>
-		<!-- <param name="widget_limit">10</param> -->
 		<definition>
 			<include content="CategoryLabel">
 				<param name="label">$PARAM[widget_header]</param>
@@ -910,201 +542,6 @@
 						<left>70</left>
 						<top>5</top>
 						<include content="InfoWallEpisodeLayout">
-							<param name="focused" value="true" />
-							<param name="list_id" value="$PARAM[list_id]" />
-							<param name="main_label" value="$PARAM[main_label]" />
-							<param name="sub_label" value="$PARAM[sub_label]" />
-							<param name="networks_label" value="$PARAM[networks_label]"/>
-							<param name="thumb_label" value="$PARAM[thumb_label]" />
-						</include>
-					</control>
-				</focusedlayout>
-				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
-			</control>
-		</definition>
-	</include>
-
-	<include name="WidgetListBigEpisodes">
-		<param name="main_label">$INFO[ListItem.Title]</param>
-		<param name="sub_label">$INFO[ListItem.TVShowTitle]</param>
-		<param name="networks_label">$INFO[ListItem.Label]</param>
-		<param name="thumb_label">$INFO[ListItem.Season,,x]$INFO[ListItem.Episode]</param>
-		<param name="sortby"></param>
-		<param name="visible">True</param>
-		<param name="sortorder">ascending</param>
-		<!-- <param name="widget_limit">10</param> -->
-		<definition>
-			<include content="CategoryLabel">
-				<param name="label">$PARAM[widget_header]</param>
-				<param name="list_id" value="$PARAM[list_id]"/>
-			</include>
-			<include content="BusyListSpinner">
-				<param name="list_id" value="$PARAM[list_id]"/>
-				<param name="posy" value="210"/>
-			</include>
-			<!-- Widget Height Spacing -->
-			<control type="fixedlist" id="$PARAM[list_id]">
-				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
-				<left>0</left>
-				<top>106</top>
-				<right>0</right>
-				<height>541</height>
-				<onright>$PARAM[list_id]</onright>
-				<orientation>horizontal</orientation>
-				<movement>1</movement>
-				<include content="WidgetListCommon">
-					<param name="list_id" value="$PARAM[list_id]"/>
-				</include>
-				<visible>$PARAM[visible]</visible>
-				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
-				<itemlayout width="627" height="770">
-					<control type="group">
-						<left>70</left>
-						<top>5</top>
-						<include content="BigInfoWallEpisodeLayout">
-							<param name="focused" value="false" />
-							<param name="list_id" value="$PARAM[list_id]" />
-							<param name="main_label" value="$PARAM[main_label]" />
-							<param name="sub_label" value="$PARAM[sub_label]" />
-							<param name="networks_label" value="$PARAM[networks_label]"/>
-							<param name="thumb_label" value="$PARAM[thumb_label]" />
-						</include>
-					</control>
-				</itemlayout>
-				<focusedlayout width="627" height="770">
-					<control type="group">
-						<depth>DepthContentPopout</depth>
-						<left>70</left>
-						<top>5</top>
-						<include content="BigInfoWallEpisodeLayout">
-							<param name="focused" value="true" />
-							<param name="list_id" value="$PARAM[list_id]" />
-							<param name="main_label" value="$PARAM[main_label]" />
-							<param name="sub_label" value="$PARAM[sub_label]" />
-							<param name="networks_label" value="$PARAM[networks_label]"/>
-							<param name="thumb_label" value="$PARAM[thumb_label]" />
-						</include>
-					</control>
-				</focusedlayout>
-				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
-			</control>
-		</definition>
-	</include>
-
-	<include name="WidgetListEpisodesStacked">
-		<param name="main_label">$INFO[ListItem.Title]</param>
-		<param name="sub_label">$INFO[ListItem.TVShowTitle]</param>
-		<param name="networks_label">$INFO[ListItem.Label]</param>
-		<param name="thumb_label">$INFO[ListItem.Season,,x]$INFO[ListItem.Episode]</param>
-		<param name="sortby"></param>
-		<param name="visible">True</param>
-		<param name="sortorder">ascending</param>
-		<!-- <param name="widget_limit">10</param> -->
-		<definition>
-			<include content="CategoryLabelWidget">
-				<param name="label">$PARAM[widget_header]</param>
-				<param name="list_id" value="$PARAM[list_id]"/>
-			</include>
-			<include content="BusyListSpinnerWidget">
-				<param name="list_id" value="$PARAM[list_id]" />
-			</include>
-			<!-- Widget Height Spacing -->
-			<control type="fixedlist" id="$PARAM[list_id]">
-				<left>0</left>
-				<top>101</top>
-				<right>0</right>
-				<height>381</height>
-				<onright>$PARAM[list_id]</onright>
-				<orientation>horizontal</orientation>
-				<movement>3</movement>
-				<include content="WidgetListCommonStacked">
-					<param name="list_id" value="$PARAM[list_id]"/>
-				</include>
-				<visible>$PARAM[visible]</visible>
-				<itemlayout width="337" height="550">
-					<control type="group">
-						<left>70</left>
-						<top>5</top>
-						<include content="InfoWallEpisodeLayout">
-							<param name="focused" value="false" />
-							<param name="list_id" value="$PARAM[list_id]" />
-							<param name="main_label" value="$PARAM[main_label]" />
-							<param name="sub_label" value="$PARAM[sub_label]" />
-							<param name="networks_label" value="$PARAM[networks_label]"/>
-							<param name="thumb_label" value="$PARAM[thumb_label]" />
-						</include>
-					</control>
-				</itemlayout>
-				<focusedlayout width="337" height="550">
-					<control type="group">
-						<depth>DepthContentPopout</depth>
-						<left>70</left>
-						<top>5</top>
-						<include content="InfoWallEpisodeLayout">
-							<param name="focused" value="true" />
-							<param name="list_id" value="$PARAM[list_id]" />
-							<param name="main_label" value="$PARAM[main_label]" />
-							<param name="sub_label" value="$PARAM[sub_label]" />
-							<param name="networks_label" value="$PARAM[networks_label]"/>
-							<param name="thumb_label" value="$PARAM[thumb_label]" />
-						</include>
-					</control>
-				</focusedlayout>
-				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
-			</control>
-		</definition>
-	</include>
-
-	<include name="WidgetListBigEpisodesStacked">
-		<param name="main_label">$INFO[ListItem.Title]</param>
-		<param name="sub_label">$INFO[ListItem.TVShowTitle]</param>
-		<param name="networks_label">$INFO[ListItem.Label]</param>
-		<param name="thumb_label">$INFO[ListItem.Season,,x]$INFO[ListItem.Episode]</param>
-		<param name="sortby"></param>
-		<param name="visible">True</param>
-		<param name="sortorder">ascending</param>
-		<!-- <param name="widget_limit">10</param> -->
-		<definition>
-			<include content="CategoryLabelWidget">
-				<param name="label">$PARAM[widget_header]</param>
-				<param name="list_id" value="$PARAM[list_id]"/>
-			</include>
-			<include content="BusyListSpinnerWidget">
-				<param name="list_id" value="$PARAM[list_id]" />
-			</include>
-			<!-- Widget Height Spacing -->
-			<control type="fixedlist" id="$PARAM[list_id]">
-				<left>0</left>
-				<top>106</top>
-				<right>0</right>
-				<height>441</height>
-				<onright>$PARAM[list_id]</onright>
-				<orientation>horizontal</orientation>
-				<movement>2</movement>
-				<include content="WidgetListCommonStacked">
-					<param name="list_id" value="$PARAM[list_id]"/>
-				</include>
-				<visible>$PARAM[visible]</visible>
-				<itemlayout width="448" height="550">
-					<control type="group">
-						<left>70</left>
-						<top>5</top>
-						<include content="BigInfoWallEpisodeLayout">
-							<param name="focused" value="false" />
-							<param name="list_id" value="$PARAM[list_id]" />
-							<param name="main_label" value="$PARAM[main_label]" />
-							<param name="sub_label" value="$PARAM[sub_label]" />
-							<param name="networks_label" value="$PARAM[networks_label]"/>
-							<param name="thumb_label" value="$PARAM[thumb_label]" />
-						</include>
-					</control>
-				</itemlayout>
-				<focusedlayout width="448" height="550">
-					<control type="group">
-						<depth>DepthContentPopout</depth>
-						<left>70</left>
-						<top>5</top>
-						<include content="BigInfoWallEpisodeLayout">
 							<param name="focused" value="true" />
 							<param name="list_id" value="$PARAM[list_id]" />
 							<param name="main_label" value="$PARAM[main_label]" />
@@ -1445,7 +882,7 @@
 			</control>
 		</definition>
 	</include>
-	
+
 	<include name="WidgetListSquare">
 		<param name="sub_label">$INFO[ListItem.Label]</param>
 		<param name="sortby"></param>
@@ -2100,19 +1537,17 @@
 		<onback>9000</onback>
 		<onfocus>Control.Move($PARAM[list_id],-$INFO[Container($PARAM[list_id]).Position])</onfocus>
 		<onunfocus>SetProperty(listposition,$INFO[Container($PARAM[list_id]).Position],home)</onunfocus>
-		<!-- <preloaditems>2</preloaditems> -->
 	</include>
 
 	<include name="WidgetListCommonStacked">
-    <scrolltime tween="cubic" easing="out">500</scrolltime>
-    <orientation>horizontal</orientation>
-    <onleft>9000</onleft>
-    <onright>$PARAM[list_id]</onright>
+		<scrolltime tween="cubic" easing="out">500</scrolltime>
+		<orientation>horizontal</orientation>
+		<onleft>9000</onleft>
+		<onright>$PARAM[list_id]</onright>
 		<onback>9000</onback>
-    <onback>SetFocus($PARAM[list_id],0,absolute)</onback>
-    <onfocus>RunScript(script.fentastic.helper,mode=widget_monitor&amp;list_id=$PARAM[list_id])</onfocus>
-    <!-- <preloaditems>2</preloaditems> -->
-  </include>
+		<onback>SetFocus($PARAM[list_id],0,absolute)</onback>
+		<onfocus>RunScript(script.fentastic.helper,mode=widget_monitor&amp;list_id=$PARAM[list_id])</onfocus>
+	</include>
 
 	<include name="BusyListSpinner">
 		<param name="posy">160</param>

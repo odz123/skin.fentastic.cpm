@@ -146,7 +146,6 @@
 						<width>174</width>
 						<height>26</height>
 						<texture>info/dolby.vision.horizontal.small.png</texture>
-						<visible>true</visible>
 					</control>
 					<control type="label">
 						<left>185</left>
@@ -480,7 +479,7 @@
 						<align>right</align>
 						<label>$INFO[Player.Process(video.dovi.l6.min.lum)]</label>
 						<font>font12</font>
-						<shadowcolor>black</shadowcolor>	
+						<shadowcolor>black</shadowcolor>
 					</control>
 					<control type="label">
 						<left>350</left>
@@ -948,7 +947,7 @@
 					</control>
 				</control>
 			</control>
-			
+
 			<!-- Player Left -->
 			<control type="grouplist">
 				<left>50</left>

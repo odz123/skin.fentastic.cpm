@@ -249,7 +249,7 @@
 						<shadowcolor>text_shadow</shadowcolor>
 						<height>100</height>
 						<width>auto</width>
-						<visible>!String.isempty(Player.Duration)</visible>
+						<visible>!String.IsEmpty(Player.Duration)</visible>
 						<visible>Player.HasVideo + ![Player.HasGame | VideoPlayer.HasEpg]</visible>
 					</control>
 					<control type="label">

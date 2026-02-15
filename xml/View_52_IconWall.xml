@@ -26,7 +26,6 @@
 							<width>396</width>
 							<height>245</height>
 							<texture colordiffuse="button_focus2">masks/landscape-unfocused.png</texture>
-							<!-- <bordertexture border="21" infill="false">overlays/shadow.png</bordertexture> -->
 							<bordersize>20</bordersize>
 						</control>
 						<!-- IMAGE CONTROL -->
@@ -68,7 +67,6 @@
 							<width>396</width>
 							<height>245</height>
 							<texture colordiffuse="dialog_bg">masks/landscape-unfocused.png</texture>
-							<!-- <bordertexture border="21" infill="false">overlays/shadow.png</bordertexture> -->
 							<bordersize>20</bordersize>
 						</control>
 						<control type="image">

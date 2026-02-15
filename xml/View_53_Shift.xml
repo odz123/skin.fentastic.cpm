@@ -41,7 +41,6 @@
 							<width>370</width>
 							<height>480</height>
 							<texture>dialogs/dialog-bg-nobo.png</texture>
-							<!-- <bordertexture border="21" infill="false">overlays/shadow.png</bordertexture> -->
 							<bordersize>20</bordersize>
 							<visible>String.IsEmpty(ListItem.Art(poster)) + [Container.Content(movies) | Container.Content(tvshows)]</visible>
 						</control>
@@ -53,7 +52,6 @@
 							<height>480</height>
 							<aspectratio aligny="center">keep</aspectratio>
 							<texture diffuse="masks/poster.png" fallback="DefaultVideo.png" background="true">$VAR[ShiftThumbVar]</texture>
-							<!-- <bordertexture border="21" infill="false">overlays/shadow.png</bordertexture> -->
 							<bordersize>20</bordersize>
 						</control>
 						<control type="textbox">
@@ -68,7 +66,7 @@
 							<textcolor>unfocused_text</textcolor>
 						</control>
 						<control type="group">
-							<visible>String.IsEqual(ListItem.DBtype,tvshow)</visible>
+							<visible>String.IsEqual(ListItem.DBType,tvshow)</visible>
 							<control type="image">
 								<left>31</left>
 								<top>450</top>
@@ -99,7 +97,7 @@
 							</control>
 						</control>
 						<control type="image">
-							<visible>String.IsEqual(ListItem.DBType,movie) + [Listitem.IsCollection | ListItem.IsPlaying | Integer.IsGreater(ListItem.Playcount,0)]</visible>
+							<visible>String.IsEqual(ListItem.DBType,movie) + [ListItem.IsCollection | ListItem.IsPlaying | Integer.IsGreater(ListItem.Playcount,0)]</visible>
 							<left>29</left>
 							<top>432</top>
 							<width>119</width>
@@ -143,7 +141,6 @@
 							<width>370</width>
 							<height>480</height>
 							<texture>dialogs/dialog-bg-nobo.png</texture>
-							<!-- <bordertexture border="21" infill="false">overlays/shadow.png</bordertexture> -->
 							<bordersize>20</bordersize>
 							<visible>String.IsEmpty(ListItem.Art(poster)) + [Container.Content(movies) | Container.Content(tvshows)]</visible>
 						</control>
@@ -155,7 +152,6 @@
 							<height>480</height>
 							<aspectratio aligny="center">keep</aspectratio>
 							<texture diffuse="masks/poster.png" fallback="DefaultVideo.png" background="true">$VAR[ShiftThumbVar]</texture>
-							<!-- <bordertexture border="21" infill="false">overlays/shadow.png</bordertexture> -->
 							<bordersize>20</bordersize>
 						</control>
 						<control type="label">
@@ -172,7 +168,7 @@
 							<scrollspeed>200</scrollspeed>
 						</control>
 						<control type="group">
-							<visible>String.IsEqual(ListItem.DBtype,tvshow)</visible>
+							<visible>String.IsEqual(ListItem.DBType,tvshow)</visible>
 							<control type="image">
 								<left>31</left>
 								<top>450</top>
@@ -203,7 +199,7 @@
 							</control>
 						</control>
 						<control type="image">
-							<visible>String.IsEqual(ListItem.DBType,movie) + [Listitem.IsCollection | ListItem.IsPlaying | Integer.IsGreater(ListItem.Playcount,0)]</visible>
+							<visible>String.IsEqual(ListItem.DBType,movie) + [ListItem.IsCollection | ListItem.IsPlaying | Integer.IsGreater(ListItem.Playcount,0)]</visible>
 							<left>29</left>
 							<top>432</top>
 							<width>119</width>

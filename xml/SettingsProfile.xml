@@ -50,7 +50,6 @@
 						<width>320</width>
 						<height>380</height>
 						<texture colordiffuse="dialog_bg">masks/addons.png</texture>
-						<!-- <bordertexture border="21" infill="false">overlays/shadow.png</bordertexture> -->
 						<bordersize>20</bordersize>
 					</control>
 					<control type="image">
@@ -58,8 +57,7 @@
 						<top>38</top>
 						<width>215</width>
 						<height>215</height>
-						<!-- <aspectratio>scale</aspectratio> -->
-						<texture diffuse="masks/landscapeinfo.png" fallback="DefaultUser.png">$INFO[Listitem.Icon]</texture>
+						<texture diffuse="masks/landscapeinfo.png" fallback="DefaultUser.png">$INFO[ListItem.Icon]</texture>
 					</control>
 					<control type="label">
 						<left>10</left>
@@ -81,7 +79,7 @@
 						<aligny>top</aligny>
 						<label>$LOCALIZE[31029]:</label>
 						<textcolor>unfocused_text</textcolor>
-						<visible>!String.IsEqual(Listitem.Label,$LOCALIZE[20058])</visible>
+						<visible>!String.IsEqual(ListItem.Label,$LOCALIZE[20058])</visible>
 					</control>
 					<control type="label">
 						<left>10</left>
@@ -93,7 +91,7 @@
 						<aligny>top</aligny>
 						<label fallback="13170">$INFO[ListItem.Label2]</label>
 						<textcolor>unfocused_text</textcolor>
-						<visible>!String.Contains(Listitem.Label,$LOCALIZE[20058])</visible>
+						<visible>!String.Contains(ListItem.Label,$LOCALIZE[20058])</visible>
 					</control>
 				</itemlayout>
 				<focusedlayout height="390" width="354">
@@ -103,7 +101,6 @@
 							<width>320</width>
 							<height>380</height>
 							<texture colordiffuse="dialog_bg">masks/addons.png</texture>
-							<!-- <bordertexture border="21" infill="false">overlays/shadow.png</bordertexture> -->
 							<bordersize>20</bordersize>
 						</control>
 						<control type="image">
@@ -120,8 +117,7 @@
 							<top>38</top>
 							<width>215</width>
 							<height>215</height>
-							<!-- <aspectratio>scale</aspectratio> -->
-							<texture diffuse="masks/landscapeinfo.png" fallback="DefaultUser.png">$INFO[Listitem.Icon]</texture>
+							<texture diffuse="masks/landscapeinfo.png" fallback="DefaultUser.png">$INFO[ListItem.Icon]</texture>
 						</control>
 						<control type="label">
 							<left>10</left>
@@ -143,7 +139,7 @@
 							<aligny>top</aligny>
 							<label>$LOCALIZE[31029]:</label>
 							<textcolor>focused_text</textcolor>
-							<visible>!String.Contains(Listitem.Label,$LOCALIZE[20058])</visible>
+							<visible>!String.Contains(ListItem.Label,$LOCALIZE[20058])</visible>
 						</control>
 						<control type="label">
 							<left>10</left>
@@ -155,7 +151,7 @@
 							<aligny>top</aligny>
 							<label fallback="13170">$INFO[ListItem.Label2]</label>
 							<textcolor>focused_text</textcolor>
-							<visible>!String.Contains(Listitem.Label,$LOCALIZE[20058])</visible>
+							<visible>!String.Contains(ListItem.Label,$LOCALIZE[20058])</visible>
 						</control>
 					</control>
 				</focusedlayout>

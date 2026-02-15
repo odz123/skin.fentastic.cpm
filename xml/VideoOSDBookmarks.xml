@@ -81,9 +81,7 @@
 							<top>5</top>
 							<width>330</width>
 							<height>250</height>
-							<!-- <aspectratio>scale</aspectratio> -->
 							<texture diffuse="masks/landscape.png" fallback="DefaultVideo.png">$INFO[ListItem.Art(thumb)]</texture>
-							<!-- <bordertexture colordiffuse="border_alpha">colors/black.png</bordertexture> -->
 							<bordersize>4</bordersize>
 						</control>
 						<control type="label">
@@ -114,9 +112,7 @@
 							<top>5</top>
 							<width>330</width>
 							<height>250</height>
-							<!-- <aspectratio>scale</aspectratio> -->
 							<texture diffuse="masks/landscape.png" fallback="DefaultVideo.png">$INFO[ListItem.Art(thumb)]</texture>
-							<!-- <bordertexture colordiffuse="border_alpha">colors/black.png</bordertexture> -->
 							<bordersize>4</bordersize>
 						</control>
 						<control type="label">
