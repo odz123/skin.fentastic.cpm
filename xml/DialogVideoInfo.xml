@@ -44,6 +44,76 @@
 			<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
 		</control>
 
+		<!-- ==================== -->
+		<!-- BACK BUTTON TOP-LEFT -->
+		<!-- ==================== -->
+		<control type="group">
+			<depth>DepthBars</depth>
+			<left>20</left>
+			<top>20</top>
+			<animation effect="fade" start="0" end="100" time="300" delay="200">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+			<control type="button" id="9901">
+				<width>50</width>
+				<height>50</height>
+				<label></label>
+				<texturefocus colordiffuse="button_focus">buttons/roundbutton-fo.png</texturefocus>
+				<texturenofocus colordiffuse="40FFFFFF">buttons/roundbutton-fo.png</texturenofocus>
+				<onclick>Dialog.Close(MovieInformation)</onclick>
+				<onright>50</onright>
+				<ondown>138</ondown>
+			</control>
+			<control type="image">
+				<left>12</left>
+				<top>12</top>
+				<width>26</width>
+				<height>26</height>
+				<texture colordiffuse="unfocused_text">icons/back.png</texture>
+			</control>
+		</control>
+
+		<!-- ====================== -->
+		<!-- TOP-RIGHT ICON BUTTONS -->
+		<!-- ====================== -->
+		<control type="group">
+			<depth>DepthBars</depth>
+			<animation effect="fade" start="0" end="100" time="300" delay="200">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+			<!-- Fullscreen button -->
+			<control type="group">
+				<right>75</right>
+				<top>20</top>
+				<visible>Player.HasMedia</visible>
+				<control type="button" id="9902">
+					<width>50</width>
+					<height>50</height>
+					<label></label>
+					<texturefocus colordiffuse="button_focus">buttons/roundbutton-fo.png</texturefocus>
+					<texturenofocus colordiffuse="30FFFFFF">buttons/roundbutton-fo.png</texturenofocus>
+					<onclick>Fullscreen</onclick>
+				</control>
+				<control type="image">
+					<left>13</left>
+					<top>13</top>
+					<width>24</width>
+					<height>24</height>
+					<texture colordiffuse="unfocused_text">icons/now-playing/fullscreen.png</texture>
+				</control>
+			</control>
+			<!-- Profile avatar -->
+			<control type="group">
+				<right>20</right>
+				<top>20</top>
+				<visible>Integer.IsGreater(System.ProfileCount,1)</visible>
+				<control type="image">
+					<width>45</width>
+					<height>45</height>
+					<texture>$INFO[System.ProfileThumb]</texture>
+					<aspectratio>scale</aspectratio>
+				</control>
+			</control>
+		</control>
+
 		<!-- MAIN CONTENT -->
 		<control type="group">
 			<centertop>50%</centertop>
@@ -58,31 +128,31 @@
 			<!-- LEFT INFO COLUMN    -->
 			<!-- =================== -->
 			<control type="group">
-				<left>80</left>
+				<left>60</left>
 
 				<!-- Clearlogo -->
 				<control type="image">
-					<top>100</top>
-					<width>420</width>
-					<height>160</height>
+					<top>70</top>
+					<width>450</width>
+					<height>170</height>
 					<texture background="true">$INFO[ListItem.Art(clearlogo)]</texture>
 					<aspectratio align="left" aligny="center">keep</aspectratio>
 					<visible>!String.IsEmpty(ListItem.Art(clearlogo))</visible>
 				</control>
 				<!-- Fallback: tvshow clearlogo for episodes -->
 				<control type="image">
-					<top>100</top>
-					<width>420</width>
-					<height>160</height>
+					<top>70</top>
+					<width>450</width>
+					<height>170</height>
 					<texture background="true">$INFO[ListItem.Art(tvshow.clearlogo)]</texture>
 					<aspectratio align="left" aligny="center">keep</aspectratio>
 					<visible>String.IsEmpty(ListItem.Art(clearlogo)) + !String.IsEmpty(ListItem.Art(tvshow.clearlogo))</visible>
 				</control>
 				<!-- Title text fallback when no clearlogo -->
 				<control type="textbox">
-					<top>110</top>
-					<width>550</width>
-					<height>130</height>
+					<top>80</top>
+					<width>600</width>
+					<height>140</height>
 					<font>font52_title</font>
 					<label>$VAR[VideoInfoMainLabelVar]</label>
 					<shadowcolor>text_shadow</shadowcolor>
@@ -91,218 +161,244 @@
 
 				<!-- Tagline -->
 				<control type="label">
-					<top>275</top>
-					<width>600</width>
+					<top>255</top>
+					<width>700</width>
 					<height>30</height>
-					<font>font12</font>
-					<textcolor>grey</textcolor>
+					<font>font13</font>
+					<textcolor>unfocused_text</textcolor>
 					<shadowcolor>text_shadow</shadowcolor>
 					<label>[I]$INFO[ListItem.Tagline][/I]</label>
 					<visible>!String.IsEmpty(ListItem.Tagline)</visible>
 				</control>
 
-				<!-- Year | Duration | MPAA | Season/Episode -->
-				<control type="grouplist">
-					<top>310</top>
-					<width>650</width>
-					<height>32</height>
-					<orientation>horizontal</orientation>
-					<itemgap>20</itemgap>
-					<control type="label">
-						<width>auto</width>
-						<height>32</height>
-						<font>font12</font>
-						<textcolor>unfocused_text</textcolor>
-						<shadowcolor>text_shadow</shadowcolor>
-						<label>$INFO[ListItem.Year]</label>
-						<visible>!String.IsEmpty(ListItem.Year)</visible>
-					</control>
-					<control type="label">
-						<width>auto</width>
-						<height>32</height>
-						<font>font12</font>
-						<textcolor>grey</textcolor>
-						<shadowcolor>text_shadow</shadowcolor>
-						<label>$INFO[ListItem.Duration]</label>
-						<visible>!String.IsEmpty(ListItem.Duration)</visible>
-					</control>
-					<control type="label">
-						<width>auto</width>
-						<height>32</height>
-						<font>font12</font>
-						<textcolor>grey</textcolor>
-						<shadowcolor>text_shadow</shadowcolor>
-						<label>$INFO[ListItem.Mpaa]</label>
-						<visible>!String.IsEmpty(ListItem.Mpaa)</visible>
-					</control>
-					<control type="label">
-						<width>auto</width>
-						<height>32</height>
-						<font>font12</font>
-						<textcolor>grey</textcolor>
-						<shadowcolor>text_shadow</shadowcolor>
-						<label>Season $INFO[ListItem.Season], Episode $INFO[ListItem.Episode]</label>
-						<visible>String.IsEqual(ListItem.DBType,episode)</visible>
-					</control>
+				<!-- Year • Duration • Network/Studio -->
+				<control type="label">
+					<top>292</top>
+					<width>700</width>
+					<height>28</height>
+					<font>font12</font>
+					<textcolor>grey</textcolor>
+					<shadowcolor>text_shadow</shadowcolor>
+					<label>$INFO[ListItem.Year]$INFO[ListItem.Duration,  •  ,]$INFO[ListItem.Studio,  •  ,]</label>
 				</control>
 
-				<!-- Ratings Badges Row -->
+				<!-- ========================= -->
+				<!-- RATINGS BADGES ROW        -->
+				<!-- Colored icon+score badges -->
+				<!-- ========================= -->
 				<control type="grouplist">
-					<top>355</top>
-					<width>700</width>
-					<height>40</height>
+					<top>328</top>
+					<width>750</width>
+					<height>32</height>
 					<orientation>horizontal</orientation>
-					<itemgap>18</itemgap>
+					<itemgap>10</itemgap>
 					<visible>![Skin.HasSetting(Disable.RatingsINF) | String.IsEmpty(Skin.String(mdblist_api_key))]</visible>
+					<!-- IMDb -->
+					<control type="grouplist">
+						<width>95</width>
+						<height>28</height>
+						<orientation>horizontal</orientation>
+						<itemgap>5</itemgap>
+						<visible>![String.IsEmpty(Window(Home).Property(fentastic.imdbRating)) | Skin.HasSetting(Disable.IMDbRating)]</visible>
+						<control type="image">
+							<width>30</width>
+							<height>28</height>
+							<aspectratio aligny="center">keep</aspectratio>
+							<texture>$INFO[Window(Home).Property(fentastic.imdbImage)]</texture>
+						</control>
+						<control type="label">
+							<width max="55">auto</width>
+							<height>28</height>
+							<aligny>center</aligny>
+							<font>font12</font>
+							<textcolor>FFFFD700</textcolor>
+							<shadowcolor>text_shadow</shadowcolor>
+							<label>[B]$INFO[Window(Home).Property(fentastic.imdbRating)][/B]</label>
+						</control>
+					</control>
 					<!-- Metacritic -->
 					<control type="grouplist">
-						<width>90</width>
-						<height>36</height>
+						<width>80</width>
+						<height>28</height>
 						<orientation>horizontal</orientation>
-						<itemgap>6</itemgap>
+						<itemgap>5</itemgap>
 						<visible>![String.IsEmpty(Window(Home).Property(fentastic.metascore)) | Skin.HasSetting(Disable.MetacriticRating)]</visible>
 						<control type="image">
-							<width>24</width>
-							<height>36</height>
+							<width>26</width>
+							<height>28</height>
 							<aspectratio aligny="center">keep</aspectratio>
 							<texture>$INFO[Window(Home).Property(fentastic.metascoreImage)]</texture>
 						</control>
 						<control type="label">
-							<width max="60">auto</width>
-							<height>36</height>
+							<width max="45">auto</width>
+							<height>28</height>
 							<aligny>center</aligny>
 							<font>font12</font>
-							<textcolor>unfocused_text</textcolor>
+							<textcolor>FF66CC33</textcolor>
 							<shadowcolor>text_shadow</shadowcolor>
-							<label>$INFO[Window(Home).Property(fentastic.metascore)]</label>
+							<label>[B]$INFO[Window(Home).Property(fentastic.metascore)][/B]</label>
 						</control>
 					</control>
 					<!-- RT Critic -->
 					<control type="grouplist">
-						<width>90</width>
-						<height>36</height>
+						<width>85</width>
+						<height>28</height>
 						<orientation>horizontal</orientation>
-						<itemgap>6</itemgap>
+						<itemgap>5</itemgap>
 						<visible>![String.IsEmpty(Window(Home).Property(fentastic.tomatoMeter)) | Skin.HasSetting(Disable.RTCRating)]</visible>
 						<control type="image">
-							<width>24</width>
-							<height>36</height>
+							<width>26</width>
+							<height>28</height>
 							<aspectratio aligny="center">keep</aspectratio>
 							<texture>$INFO[Window(Home).Property(fentastic.tomatoImage)]</texture>
 						</control>
 						<control type="label">
-							<width max="60">auto</width>
-							<height>36</height>
+							<width max="50">auto</width>
+							<height>28</height>
 							<aligny>center</aligny>
 							<font>font12</font>
-							<textcolor>unfocused_text</textcolor>
+							<textcolor>FFFA3232</textcolor>
 							<shadowcolor>text_shadow</shadowcolor>
-							<label>$INFO[Window(Home).Property(fentastic.tomatoMeter)]</label>
+							<label>[B]$INFO[Window(Home).Property(fentastic.tomatoMeter)][/B]</label>
 						</control>
 					</control>
 					<!-- RT Audience -->
 					<control type="grouplist">
 						<width>90</width>
-						<height>36</height>
+						<height>28</height>
 						<orientation>horizontal</orientation>
-						<itemgap>6</itemgap>
+						<itemgap>5</itemgap>
 						<visible>![String.IsEmpty(Window(Home).Property(fentastic.tomatoUserMeter)) | Skin.HasSetting(Disable.RTARating)]</visible>
 						<control type="image">
-							<width>24</width>
-							<height>36</height>
+							<width>30</width>
+							<height>28</height>
 							<aspectratio aligny="center">keep</aspectratio>
 							<texture>$INFO[Window(Home).Property(fentastic.tomatoUserImage)]</texture>
 						</control>
 						<control type="label">
-							<width max="60">auto</width>
-							<height>36</height>
+							<width max="50">auto</width>
+							<height>28</height>
 							<aligny>center</aligny>
 							<font>font12</font>
-							<textcolor>unfocused_text</textcolor>
+							<textcolor>FF21D07A</textcolor>
 							<shadowcolor>text_shadow</shadowcolor>
-							<label>$INFO[Window(Home).Property(fentastic.tomatoUserMeter)]</label>
+							<label>[B]$INFO[Window(Home).Property(fentastic.tomatoUserMeter)][/B]</label>
 						</control>
 					</control>
-					<!-- IMDb -->
+					<!-- Popular -->
 					<control type="grouplist">
-						<width>90</width>
-						<height>36</height>
+						<width>95</width>
+						<height>28</height>
 						<orientation>horizontal</orientation>
-						<itemgap>6</itemgap>
-						<visible>![String.IsEmpty(Window(Home).Property(fentastic.imdbRating)) | Skin.HasSetting(Disable.IMDbRating)]</visible>
+						<itemgap>5</itemgap>
+						<visible>![String.IsEmpty(Window(Home).Property(fentastic.popularRating)) | Skin.HasSetting(Disable.IMDbPopularRating)]</visible>
 						<control type="image">
-							<width>24</width>
-							<height>36</height>
+							<width>30</width>
+							<height>28</height>
 							<aspectratio aligny="center">keep</aspectratio>
-							<texture>$INFO[Window(Home).Property(fentastic.imdbImage)]</texture>
+							<texture>$INFO[Window(Home).Property(fentastic.popularImage)]</texture>
 						</control>
 						<control type="label">
-							<width max="60">auto</width>
-							<height>36</height>
+							<width max="55">auto</width>
+							<height>28</height>
 							<aligny>center</aligny>
 							<font>font12</font>
-							<textcolor>unfocused_text</textcolor>
+							<textcolor>FFFF9800</textcolor>
 							<shadowcolor>text_shadow</shadowcolor>
-							<label>$INFO[Window(Home).Property(fentastic.imdbRating)]</label>
+							<label>[B]$INFO[Window(Home).Property(fentastic.popularRating)][/B]</label>
 						</control>
 					</control>
 					<!-- TMDb -->
 					<control type="grouplist">
-						<width>90</width>
-						<height>36</height>
+						<width>85</width>
+						<height>28</height>
 						<orientation>horizontal</orientation>
-						<itemgap>6</itemgap>
+						<itemgap>5</itemgap>
 						<visible>![String.IsEmpty(Window(Home).Property(fentastic.tmdbRating)) | Skin.HasSetting(Disable.TMDbRating)]</visible>
 						<control type="image">
-							<width>24</width>
-							<height>36</height>
+							<width>26</width>
+							<height>28</height>
 							<aspectratio aligny="center">keep</aspectratio>
 							<texture>$INFO[Window(Home).Property(fentastic.tmdbImage)]</texture>
 						</control>
 						<control type="label">
-							<width max="60">auto</width>
-							<height>36</height>
+							<width max="50">auto</width>
+							<height>28</height>
 							<aligny>center</aligny>
 							<font>font12</font>
-							<textcolor>unfocused_text</textcolor>
+							<textcolor>FF01D277</textcolor>
 							<shadowcolor>text_shadow</shadowcolor>
-							<label>$INFO[Window(Home).Property(fentastic.tmdbRating)]</label>
+							<label>[B]$INFO[Window(Home).Property(fentastic.tmdbRating)][/B]</label>
 						</control>
 					</control>
 				</control>
 
-				<!-- Genre -->
-				<control type="label">
-					<top>410</top>
-					<width>600</width>
-					<height>28</height>
-					<font>font12</font>
-					<textcolor>accent_color</textcolor>
-					<shadowcolor>text_shadow</shadowcolor>
-					<label>$INFO[ListItem.Genre]</label>
-					<visible>!String.IsEmpty(ListItem.Genre)</visible>
+				<!-- ========================= -->
+				<!-- GENRE & MPAA PILLS        -->
+				<!-- ========================= -->
+				<control type="grouplist">
+					<top>368</top>
+					<width>750</width>
+					<height>30</height>
+					<orientation>horizontal</orientation>
+					<itemgap>8</itemgap>
+					<!-- MPAA bordered pill -->
+					<control type="group">
+						<width>75</width>
+						<height>26</height>
+						<visible>!String.IsEmpty(ListItem.Mpaa)</visible>
+						<control type="image">
+							<width>75</width>
+							<height>26</height>
+							<texture border="10" colordiffuse="50FFFFFF">lists/rounded_corners.png</texture>
+						</control>
+						<control type="label">
+							<width>75</width>
+							<height>26</height>
+							<align>center</align>
+							<aligny>center</aligny>
+							<font>font10</font>
+							<textcolor>unfocused_text</textcolor>
+							<label>$INFO[ListItem.Mpaa]</label>
+						</control>
+					</control>
+					<!-- Genre text as bordered label -->
+					<control type="group">
+						<width>650</width>
+						<height>26</height>
+						<visible>!String.IsEmpty(ListItem.Genre)</visible>
+						<control type="label">
+							<width>650</width>
+							<height>26</height>
+							<aligny>center</aligny>
+							<font>font10</font>
+							<textcolor>grey</textcolor>
+							<shadowcolor>text_shadow</shadowcolor>
+							<label>$INFO[ListItem.Genre]</label>
+						</control>
+					</control>
 				</control>
 
 				<!-- SUMMARY heading -->
 				<control type="label">
-					<top>455</top>
-					<width>600</width>
-					<height>30</height>
-					<font>font25_title</font>
-					<textcolor>unfocused_text</textcolor>
+					<top>410</top>
+					<width>700</width>
+					<height>28</height>
+					<font>font12</font>
+					<textcolor>grey</textcolor>
 					<shadowcolor>text_shadow</shadowcolor>
-					<label>SUMMARY</label>
+					<label>[UPPERCASE]SUMMARY[/UPPERCASE]</label>
 				</control>
 
 				<!-- Plot area with clickable button overlay -->
 				<control type="group" id="140">
-					<top>495</top>
-					<width>650</width>
-					<height>140</height>
-					<!-- Clickable plot button (opens text viewer) - with cast visible -->
+					<top>442</top>
+					<width>700</width>
+					<height>120</height>
+					<!-- Clickable plot button (opens text viewer) - with metadata visible -->
 					<control type="button" id="138">
-						<width>650</width>
-						<height>140</height>
+						<width>700</width>
+						<height>120</height>
 						<label></label>
 						<texturefocus></texturefocus>
 						<texturenofocus></texturenofocus>
@@ -315,10 +411,10 @@
 						<onright>4000</onright>
 						<visible>Integer.IsGreater(Container(4000).NumItems,0)</visible>
 					</control>
-					<!-- Clickable plot button (opens text viewer) - no cast/metadata fallback -->
+					<!-- Clickable plot button - no metadata fallback -->
 					<control type="button" id="139">
-						<width>650</width>
-						<height>140</height>
+						<width>700</width>
+						<height>120</height>
 						<label></label>
 						<texturefocus></texturefocus>
 						<texturenofocus></texturenofocus>
@@ -333,8 +429,8 @@
 					</control>
 					<!-- Plot text overlay -->
 					<control type="textbox">
-						<width>650</width>
-						<height>140</height>
+						<width>700</width>
+						<height>120</height>
 						<font>font12</font>
 						<textcolor>unfocused_text</textcolor>
 						<shadowcolor>text_shadow</shadowcolor>
@@ -342,28 +438,255 @@
 						<autoscroll delay="10000" time="5000" repeat="10000">Skin.HasSetting(AutoScroll)</autoscroll>
 					</control>
 				</control>
+
+				<!-- ========================= -->
+				<!-- CAST & CREW SECTION       -->
+				<!-- ========================= -->
+				<control type="group">
+					<top>572</top>
+
+					<!-- CAST & CREW heading -->
+					<control type="label">
+						<width>300</width>
+						<height>26</height>
+						<font>font12</font>
+						<textcolor>grey</textcolor>
+						<shadowcolor>text_shadow</shadowcolor>
+						<label>[UPPERCASE]CAST &amp; CREW[/UPPERCASE]</label>
+						<visible>Integer.IsGreater(Container(50).NumItems,0) + !Container.Content(Sets)</visible>
+					</control>
+					<!-- COLLECTION heading for sets -->
+					<control type="label">
+						<width>300</width>
+						<height>26</height>
+						<font>font12</font>
+						<textcolor>grey</textcolor>
+						<shadowcolor>text_shadow</shadowcolor>
+						<label>[UPPERCASE]COLLECTION[/UPPERCASE]</label>
+						<visible>Container.Content(Sets)</visible>
+					</control>
+					<!-- Banner fallback when no cast -->
+					<control type="group">
+						<visible>Integer.IsEqual(Container(50).NumItems,0) + !Container.Content(Sets)</visible>
+						<control type="image">
+							<top>35</top>
+							<width>750</width>
+							<height>200</height>
+							<fadetime>150</fadetime>
+							<aspectratio>keep</aspectratio>
+							<texture>$VAR[BannerVar]</texture>
+						</control>
+						<control type="group">
+							<visible>String.IsEmpty(ListItem.Art(tvshow.banner)) + String.IsEmpty(ListItem.Art(banner))</visible>
+							<control type="textbox">
+								<top>35</top>
+								<width>400</width>
+								<height>120</height>
+								<aligny>center</aligny>
+								<font>font14</font>
+								<textcolor>grey</textcolor>
+								<label>$LOCALIZE[31079]</label>
+							</control>
+						</control>
+					</control>
+
+					<!-- Cast/Collection panel - 2 rows of circular photos -->
+					<control type="panel" id="50">
+						<top>32</top>
+						<width>770</width>
+						<height>310</height>
+						<onup condition="System.AddonIsEnabled(script.embuary.info) + Control.HasFocus(50) + !String.IsEqual(ListItem.DBType,set)">RunScript(script.embuary.info,call=person,query='$ESCINFO[Container(50).ListItem.Label]')</onup>
+						<onup condition="System.HasAddon(script.embuary.info) + !System.AddonIsEnabled(script.embuary.info) + !String.IsEqual(ListItem.DBType,set)">EnableAddon(script.embuary.info)</onup>
+						<onup condition="!System.HasAddon(script.embuary.info) + !String.IsEqual(ListItem.DBType,set)">InstallAddon(script.embuary.info)</onup>
+						<onleft>50</onleft>
+						<onright>50</onright>
+						<ondown>5000</ondown>
+						<scrolltime>200</scrolltime>
+						<orientation>horizontal</orientation>
+						<!-- Cast: Circular photo + name + role (non-Sets) -->
+						<itemlayout height="152" width="140" condition="!Container.Content(Sets)">
+							<control type="group">
+								<top>5</top>
+								<!-- Circular photo -->
+								<control type="image">
+									<left>15</left>
+									<width>100</width>
+									<height>100</height>
+									<texture diffuse="masks/circle.png">DefaultActorSolid.png</texture>
+									<aspectratio>scale</aspectratio>
+								</control>
+								<control type="image">
+									<left>15</left>
+									<width>100</width>
+									<height>100</height>
+									<texture diffuse="masks/circle.png" background="true">$INFO[ListItem.Thumb]</texture>
+									<aspectratio>scale</aspectratio>
+								</control>
+								<!-- Actor name -->
+								<control type="label">
+									<left>0</left>
+									<width>130</width>
+									<height>22</height>
+									<top>108</top>
+									<align>center</align>
+									<font>font10</font>
+									<textcolor>unfocused_text</textcolor>
+									<shadowcolor>text_shadow</shadowcolor>
+									<label>$INFO[ListItem.Label]</label>
+								</control>
+								<!-- Role -->
+								<control type="label">
+									<left>0</left>
+									<width>130</width>
+									<height>20</height>
+									<top>128</top>
+									<align>center</align>
+									<font>font10</font>
+									<textcolor>grey</textcolor>
+									<shadowcolor>text_shadow</shadowcolor>
+									<label>$INFO[ListItem.Label2]</label>
+								</control>
+							</control>
+						</itemlayout>
+						<focusedlayout height="152" width="140" condition="!Container.Content(Sets)">
+							<control type="group">
+								<top>5</top>
+								<!-- Focus ring -->
+								<control type="image">
+									<left>12</left>
+									<top>-3</top>
+									<width>106</width>
+									<height>106</height>
+									<include>FocusBounce</include>
+									<texture colordiffuse="button_focus" diffuse="masks/circle.png">colors/white.png</texture>
+								</control>
+								<!-- Circular photo -->
+								<control type="image">
+									<left>15</left>
+									<width>100</width>
+									<height>100</height>
+									<texture diffuse="masks/circle.png">DefaultActorSolid.png</texture>
+									<aspectratio>scale</aspectratio>
+								</control>
+								<control type="image">
+									<left>15</left>
+									<width>100</width>
+									<height>100</height>
+									<texture diffuse="masks/circle.png" background="true">$INFO[ListItem.Thumb]</texture>
+									<aspectratio>scale</aspectratio>
+								</control>
+								<!-- Actor name -->
+								<control type="label">
+									<left>0</left>
+									<width>130</width>
+									<height>22</height>
+									<top>108</top>
+									<align>center</align>
+									<font>font10</font>
+									<scroll>true</scroll>
+									<shadowcolor>text_shadow</shadowcolor>
+									<label>$INFO[ListItem.Label]</label>
+								</control>
+								<!-- Role -->
+								<control type="label">
+									<left>0</left>
+									<width>130</width>
+									<height>20</height>
+									<top>128</top>
+									<align>center</align>
+									<font>font10</font>
+									<textcolor>grey</textcolor>
+									<scroll>true</scroll>
+									<shadowcolor>text_shadow</shadowcolor>
+									<label>$INFO[ListItem.Label2]</label>
+								</control>
+							</control>
+						</focusedlayout>
+						<!-- Sets: Movie posters -->
+						<itemlayout height="210" width="140" condition="Container.Content(Sets)">
+							<control type="group">
+								<top>5</top>
+								<control type="image">
+									<left>5</left>
+									<width>130</width>
+									<height>195</height>
+									<texture fallback="DefaultMovies.png" background="true">$INFO[ListItem.Art(poster)]</texture>
+									<aspectratio aligny="center">keep</aspectratio>
+								</control>
+								<control type="image">
+									<left>5</left>
+									<width>130</width>
+									<height>130</height>
+									<bottom>0</bottom>
+									<texture>overlays/overlayfade.png</texture>
+									<animation effect="fade" start="100" end="70" time="0" condition="true">Conditional</animation>
+								</control>
+								<control type="textbox">
+									<left>10</left>
+									<width>120</width>
+									<height>50</height>
+									<top>140</top>
+									<align>center</align>
+									<font>font10</font>
+									<label>$INFO[ListItem.Label]</label>
+									<visible>String.IsEmpty(ListItem.Art(poster))</visible>
+								</control>
+							</control>
+						</itemlayout>
+						<focusedlayout height="210" width="140" condition="Container.Content(Sets)">
+							<control type="group">
+								<top>5</top>
+								<control type="image">
+									<left>2</left>
+									<top>-3</top>
+									<width>136</width>
+									<height>201</height>
+									<include>FocusBounce</include>
+									<texture border="8" colordiffuse="button_focus">buttons/thumbnail_focused.png</texture>
+								</control>
+								<control type="image">
+									<left>5</left>
+									<width>130</width>
+									<height>195</height>
+									<texture fallback="DefaultMovies.png" background="true">$INFO[ListItem.Art(poster)]</texture>
+									<aspectratio aligny="center">keep</aspectratio>
+								</control>
+								<control type="textbox">
+									<left>10</left>
+									<width>120</width>
+									<height>50</height>
+									<top>140</top>
+									<align>center</align>
+									<font>font10</font>
+									<label>$INFO[ListItem.Label]</label>
+									<visible>String.IsEmpty(ListItem.Art(poster))</visible>
+								</control>
+							</control>
+						</focusedlayout>
+					</control>
+				</control>
 			</control>
 
 			<!-- ========================== -->
-			<!-- RIGHT-SIDE METADATA PANEL  -->
+			<!-- RIGHT-SIDE PANEL           -->
 			<!-- ========================== -->
 			<control type="group">
-				<left>850</left>
-				<top>100</top>
-				<width>1000</width>
-				<height>530</height>
+				<left>870</left>
+				<top>70</top>
+				<width>1010</width>
+				<height>840</height>
 				<include>OpenClose_Right</include>
 
-				<!-- Semi-transparent panel background -->
+				<!-- Panel background -->
 				<control type="image">
 					<left>0</left>
 					<top>0</top>
-					<width>1000</width>
-					<height>530</height>
-					<texture border="21" colordiffuse="60000000">dialogs/dialog-bg.png</texture>
+					<width>1010</width>
+					<height>840</height>
+					<texture border="21" colordiffuse="80181818">dialogs/dialog-bg.png</texture>
 				</control>
 
-				<!-- Poster thumbnail in panel -->
+				<!-- Poster thumbnail -->
 				<control type="group">
 					<left>30</left>
 					<top>30</top>
@@ -401,13 +724,34 @@
 					</control>
 				</control>
 
+				<!-- Title in panel -->
+				<control type="label">
+					<left>240</left>
+					<top>30</top>
+					<width>740</width>
+					<height>35</height>
+					<font>font30_title</font>
+					<textcolor>selected</textcolor>
+					<label>$VAR[VideoInfoMainLabelVar]</label>
+				</control>
+				<!-- Subtitle in panel -->
+				<control type="label">
+					<left>240</left>
+					<top>70</top>
+					<width>740</width>
+					<height>28</height>
+					<font>font12</font>
+					<textcolor>grey</textcolor>
+					<label>$VAR[VideoInfoSubLabelVar]</label>
+				</control>
+
 				<!-- Metadata list -->
 				<control type="grouplist" id="4000">
 					<orientation>vertical</orientation>
 					<left>240</left>
-					<top>30</top>
-					<width>730</width>
-					<height>470</height>
+					<top>110</top>
+					<width>740</width>
+					<height>700</height>
 					<itemgap>-8</itemgap>
 					<ondown>5000</ondown>
 					<onup>50</onup>
@@ -520,257 +864,42 @@
 				</control>
 			</control>
 
-			<!-- ========================= -->
-			<!-- CAST & CREW / COLLECTIONS -->
-			<!-- ========================= -->
-			<control type="group">
-				<left>80</left>
-				<top>650</top>
-
-				<!-- CAST & CREW heading -->
-				<control type="label">
-					<width>300</width>
-					<height>30</height>
-					<font>font25_title</font>
-					<textcolor>unfocused_text</textcolor>
-					<shadowcolor>text_shadow</shadowcolor>
-					<label>CAST &amp; CREW</label>
-					<visible>Integer.IsGreater(Container(50).NumItems,0) + !Container.Content(Sets)</visible>
-				</control>
-				<!-- COLLECTION heading for sets -->
-				<control type="label">
-					<width>300</width>
-					<height>30</height>
-					<font>font25_title</font>
-					<textcolor>unfocused_text</textcolor>
-					<shadowcolor>text_shadow</shadowcolor>
-					<label>COLLECTION</label>
-					<visible>Container.Content(Sets)</visible>
-				</control>
-				<!-- Banner fallback when no cast -->
-				<control type="group">
-					<visible>Integer.IsEqual(Container(50).NumItems,0) + !Container.Content(Sets)</visible>
-					<control type="image">
-						<top>40</top>
-						<width>1100</width>
-						<height>200</height>
-						<fadetime>150</fadetime>
-						<aspectratio>keep</aspectratio>
-						<texture>$VAR[BannerVar]</texture>
-					</control>
-					<control type="group">
-						<visible>String.IsEmpty(ListItem.Art(tvshow.banner)) + String.IsEmpty(ListItem.Art(banner))</visible>
-						<control type="textbox">
-							<top>40</top>
-							<width>600</width>
-							<height>180</height>
-							<align>center</align>
-							<aligny>center</aligny>
-							<font>font30_title</font>
-							<label>$LOCALIZE[31079]</label>
-						</control>
-					</control>
-				</control>
-
-				<!-- Cast/Collection panel -->
-				<control type="panel" id="50">
-					<top>40</top>
-					<width>1760</width>
-					<height>230</height>
-					<onup condition="System.AddonIsEnabled(script.embuary.info) + Control.HasFocus(50) + !String.IsEqual(ListItem.DBType,set)">RunScript(script.embuary.info,call=person,query='$ESCINFO[Container(50).ListItem.Label]')</onup>
-					<onup condition="System.HasAddon(script.embuary.info) + !System.AddonIsEnabled(script.embuary.info) + !String.IsEqual(ListItem.DBType,set)">EnableAddon(script.embuary.info)</onup>
-					<onup condition="!System.HasAddon(script.embuary.info) + !String.IsEqual(ListItem.DBType,set)">InstallAddon(script.embuary.info)</onup>
-					<onleft>50</onleft>
-					<onright>50</onright>
-					<ondown>5000</ondown>
-					<scrolltime>200</scrolltime>
-					<orientation>horizontal</orientation>
-					<!-- Cast layout: Circular photo + name + role -->
-					<itemlayout height="210" width="150" condition="!Container.Content(Sets)">
-						<control type="group">
-							<top>5</top>
-							<control type="image">
-								<left>15</left>
-								<width>120</width>
-								<height>120</height>
-								<texture diffuse="masks/circle.png">DefaultActorSolid.png</texture>
-								<aspectratio aligny="center">scale</aspectratio>
-							</control>
-							<control type="image">
-								<left>15</left>
-								<width>120</width>
-								<height>120</height>
-								<texture diffuse="masks/circle.png" background="true">$INFO[ListItem.Thumb]</texture>
-								<aspectratio aligny="center">scale</aspectratio>
-							</control>
-							<control type="label">
-								<left>5</left>
-								<width>140</width>
-								<height>30</height>
-								<top>128</top>
-								<align>center</align>
-								<font>font10</font>
-								<textcolor>unfocused_text</textcolor>
-								<shadowcolor>text_shadow</shadowcolor>
-								<label>$INFO[ListItem.Label]</label>
-							</control>
-							<control type="label">
-								<left>5</left>
-								<width>140</width>
-								<height>25</height>
-								<top>155</top>
-								<align>center</align>
-								<font>font10</font>
-								<textcolor>grey</textcolor>
-								<shadowcolor>text_shadow</shadowcolor>
-								<label>$INFO[ListItem.Label2]</label>
-							</control>
-						</control>
-					</itemlayout>
-					<focusedlayout height="210" width="150" condition="!Container.Content(Sets)">
-						<control type="group">
-							<top>5</top>
-							<!-- Focus ring -->
-							<control type="image">
-								<left>11</left>
-								<top>-4</top>
-								<width>128</width>
-								<height>128</height>
-								<include>FocusBounce</include>
-								<texture colordiffuse="button_focus" diffuse="masks/circle.png">colors/white.png</texture>
-							</control>
-							<control type="image">
-								<left>15</left>
-								<width>120</width>
-								<height>120</height>
-								<texture diffuse="masks/circle.png">DefaultActorSolid.png</texture>
-								<aspectratio aligny="center">scale</aspectratio>
-							</control>
-							<control type="image">
-								<left>15</left>
-								<width>120</width>
-								<height>120</height>
-								<texture diffuse="masks/circle.png" background="true">$INFO[ListItem.Thumb]</texture>
-								<aspectratio aligny="center">scale</aspectratio>
-							</control>
-							<control type="label">
-								<left>5</left>
-								<width>140</width>
-								<height>30</height>
-								<top>128</top>
-								<align>center</align>
-								<font>font10</font>
-								<scroll>true</scroll>
-								<shadowcolor>text_shadow</shadowcolor>
-								<label>$INFO[ListItem.Label]</label>
-							</control>
-							<control type="label">
-								<left>5</left>
-								<width>140</width>
-								<height>25</height>
-								<top>155</top>
-								<align>center</align>
-								<font>font10</font>
-								<textcolor>grey</textcolor>
-								<scroll>true</scroll>
-								<shadowcolor>text_shadow</shadowcolor>
-								<label>$INFO[ListItem.Label2]</label>
-							</control>
-						</control>
-					</focusedlayout>
-					<!-- Sets layout: Movie posters -->
-					<itemlayout height="210" width="140" condition="Container.Content(Sets)">
-						<control type="group">
-							<top>5</top>
-							<control type="image">
-								<left>5</left>
-								<width>130</width>
-								<height>195</height>
-								<texture fallback="DefaultMovies.png" background="true">$INFO[ListItem.Art(poster)]</texture>
-								<aspectratio aligny="center">keep</aspectratio>
-							</control>
-							<control type="image">
-								<left>5</left>
-								<width>130</width>
-								<height>130</height>
-								<bottom>0</bottom>
-								<texture>overlays/overlayfade.png</texture>
-								<animation effect="fade" start="100" end="70" time="0" condition="true">Conditional</animation>
-							</control>
-							<control type="textbox">
-								<left>10</left>
-								<width>120</width>
-								<height>50</height>
-								<top>140</top>
-								<align>center</align>
-								<font>font10</font>
-								<label>$INFO[ListItem.Label]</label>
-								<visible>String.IsEmpty(ListItem.Art(poster))</visible>
-							</control>
-						</control>
-					</itemlayout>
-					<focusedlayout height="210" width="140" condition="Container.Content(Sets)">
-						<control type="group">
-							<top>5</top>
-							<control type="image">
-								<left>2</left>
-								<top>-3</top>
-								<width>136</width>
-								<height>201</height>
-								<include>FocusBounce</include>
-								<texture border="8" colordiffuse="button_focus">buttons/thumbnail_focused.png</texture>
-							</control>
-							<control type="image">
-								<left>5</left>
-								<width>130</width>
-								<height>195</height>
-								<texture fallback="DefaultMovies.png" background="true">$INFO[ListItem.Art(poster)]</texture>
-								<aspectratio aligny="center">keep</aspectratio>
-							</control>
-							<control type="textbox">
-								<left>10</left>
-								<width>120</width>
-								<height>50</height>
-								<top>140</top>
-								<align>center</align>
-								<font>font10</font>
-								<label>$INFO[ListItem.Label]</label>
-								<visible>String.IsEmpty(ListItem.Art(poster))</visible>
-							</control>
-						</control>
-					</focusedlayout>
-				</control>
-			</control>
-
-			<!-- ======================== -->
-			<!-- ACTION BUTTONS (BOTTOM)  -->
-			<!-- ======================== -->
+			<!-- ============================== -->
+			<!-- BOTTOM ACTION BUTTONS          -->
+			<!-- Primary: text+icon bordered    -->
+			<!-- Secondary: icon-only circular  -->
+			<!-- ============================== -->
 			<control type="grouplist" id="5000">
-				<left>80</left>
-				<bottom>70</bottom>
-				<width>1760</width>
-				<height>130</height>
+				<left>60</left>
+				<bottom>50</bottom>
+				<width>1800</width>
+				<height>80</height>
 				<onleft>5000</onleft>
 				<onright>5000</onright>
 				<onup>50</onup>
 				<ondown>50</ondown>
-				<itemgap>20</itemgap>
+				<itemgap>16</itemgap>
 				<align>left</align>
 				<orientation>horizontal</orientation>
 				<scrolltime tween="quadratic">200</scrolltime>
+				<!-- Play/Browse - primary bordered button -->
 				<include content="InfoDialogToggleButton">
 					<param name="id" value="8" />
 					<param name="icon_on" value="icons/filemanager.png" />
 					<param name="icon_off" value="icons/infodialogs/play.png" />
 					<param name="selected" value="String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,set)" />
 					<param name="label" value="$VAR[VideoInfoPlayButtonLabelVar]" />
+					<param name="width" value="190" />
 				</include>
+				<!-- Trailer - primary bordered button -->
 				<include content="InfoDialogButton">
 					<param name="id" value="11" />
 					<param name="icon" value="icons/infodialogs/trailer.png" />
 					<param name="label" value="$LOCALIZE[20410]" />
 					<param name="visible" value="!String.IsEmpty(ListItem.Trailer) + ![String.StartsWith(Container.FolderPath,plugin://) + String.Contains(Container.FolderPath,trailer)]" />
+					<param name="width" value="190" />
 				</include>
+				<!-- CinemaVision -->
 				<include content="InfoDialogButton">
 					<param name="id" value="441" />
 					<param name="icon" value="icons/infodialogs/cinema.png" />
@@ -779,8 +908,9 @@
 					<param name="label" value="$LOCALIZE[31003]" />
 					<param name="visible" value="System.AddonIsEnabled(script.cinemavision) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]" />
 				</include>
+				<!-- Rate -->
 				<control type="group" id="400">
-					<width>227</width>
+					<width>130</width>
 					<visible>Control.IsEnabled(7) | !String.IsEmpty(ListItem.UserRating)</visible>
 					<control type="button" id="7">
 						<include content="VideoInfoButtonsCommon">
@@ -795,43 +925,42 @@
 					</control>
 					<control type="label">
 						<label>$INFO[ListItem.UserRating]</label>
-						<font>font45_title</font>
+						<font>font30_title</font>
 						<textcolor>focused_text</textcolor>
 						<left>0</left>
 						<top>24</top>
-						<width>214</width>
+						<width>130</width>
 						<align>center</align>
 						<visible>Control.HasFocus(7)</visible>
 					</control>
 					<control type="label">
 						<label>$INFO[ListItem.UserRating]</label>
-						<font>font45_title</font>
+						<font>font30_title</font>
 						<textcolor>unfocused_text</textcolor>
 						<left>0</left>
 						<top>24</top>
-						<width>214</width>
+						<width>130</width>
 						<align>center</align>
 						<visible>!Control.HasFocus(7)</visible>
 					</control>
 					<control type="image">
 						<texture colordiffuse="focused_text">icons/infodialogs/rating.png</texture>
-						<left>84</left>
-						<top>30</top>
+						<left>41</left>
+						<top>28</top>
 						<width>48</width>
 						<height>48</height>
-						<align>center</align>
 						<visible>String.IsEmpty(ListItem.UserRating) + Control.HasFocus(7)</visible>
 					</control>
 					<control type="image">
 						<texture colordiffuse="unfocused_text">icons/infodialogs/rating.png</texture>
-						<left>84</left>
-						<top>30</top>
+						<left>41</left>
+						<top>28</top>
 						<width>48</width>
 						<height>48</height>
-						<align>center</align>
 						<visible>String.IsEmpty(ListItem.UserRating) + !Control.HasFocus(7)</visible>
 					</control>
 				</control>
+				<!-- Embuary Info -->
 				<include content="InfoDialogButton">
 					<param name="id" value="101" />
 					<param name="icon" value="icons/infodialogs/info.png" />
@@ -844,6 +973,7 @@
 					<param name="onclick_3" value="RunScript(script.embuary.info,call=tv,query='$ESCINFO[ListItem.TVShowTitle]',year=$INFO[ListItem.Year])" />
 					<param name="visible" value="System.AddonIsEnabled(script.embuary.info) + !String.IsEmpty(ListItem.DBID) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,episode)]" />
 				</include>
+				<!-- Fanart -->
 				<include content="InfoDialogButton">
 					<param name="id" value="102" />
 					<param name="icon" value="icons/infodialogs/image.png" />
@@ -852,12 +982,14 @@
 					<param name="onclick_2" value="ActivateWindow(1104)" />
 					<param name="visible" value="!String.IsEmpty(ListItem.Art(fanart))" />
 				</include>
+				<!-- Director Search -->
 				<include content="InfoDialogButton">
 					<param name="id" value="13" />
 					<param name="icon" value="icons/infodialogs/director.png" />
 					<param name="label" value="$LOCALIZE[31123]" />
 					<param name="visible" value="!String.IsEmpty(ListItem.Director)" />
 				</include>
+				<!-- Music Video Albums -->
 				<include content="InfoDialogButton">
 					<param name="id" value="999" />
 					<param name="icon" value="DefaultMusicAlbums.png" />
@@ -866,6 +998,7 @@
 					<param name="label" value="$LOCALIZE[132]" />
 					<param name="visible" value="String.IsEqual(ListItem.DBType,musicvideo)" />
 				</include>
+				<!-- Movie Set -->
 				<include content="InfoDialogButton">
 					<param name="id" value="443" />
 					<param name="icon" value="icons/infodialogs/set.png" />
@@ -874,11 +1007,13 @@
 					<param name="onclick_2" value="ActivateWindow(Videos,videodb://movies/sets/$INFO[ListItem.SetId]/?setid=$INFO[ListItem.SetId])" />
 					<param name="visible" value="!String.IsEmpty(ListItem.SetID)" />
 				</include>
+				<!-- Choose Art -->
 				<include content="InfoDialogButton">
 					<param name="id" value="10" />
 					<param name="icon" value="icons/infodialogs/choose_image.png" />
 					<param name="label" value="$LOCALIZE[13511]" />
 				</include>
+				<!-- Refresh -->
 				<include content="InfoDialogButton">
 					<param name="id" value="6" />
 					<param name="icon" value="icons/infodialogs/update.png" />
@@ -890,17 +1025,17 @@
 			<!-- Navigation arrows for buttons -->
 			<include content="LeftRightArrows">
 				<param name="list_id" value="5000" />
-				<param name="left_posx" value="65" />
-				<param name="right_posx" value="1845" />
-				<param name="posy" value="945" />
+				<param name="left_posx" value="45" />
+				<param name="right_posx" value="1865" />
+				<param name="posy" value="975" />
 				<param name="visible" value="true" />
 			</include>
 			<!-- Navigation arrows for cast -->
 			<include content="LeftRightArrows">
 				<param name="list_id" value="50" />
-				<param name="left_posx" value="65" />
-				<param name="right_posx" value="1845" />
-				<param name="posy" value="740" />
+				<param name="left_posx" value="45" />
+				<param name="right_posx" value="835" />
+				<param name="posy" value="730" />
 				<param name="visible" value="true" />
 			</include>
 		</control>
@@ -913,25 +1048,26 @@
 			<centerleft>50%</centerleft>
 			<width>1920</width>
 			<bottom>0</bottom>
-			<height>70</height>
+			<height>50</height>
 			<include>MediaFlags</include>
 			<!-- Cast person info hint -->
 			<control type="group">
 				<visible>Control.HasFocus(50) + !String.IsEqual(ListItem.DBType,set)</visible>
 				<animation effect="fade" time="200">VisibleChange</animation>
-				<top>10</top>
+				<top>6</top>
 				<left>0</left>
 				<control type="image">
 					<left>21</left>
-					<width>36</width>
-					<height>36</height>
-					<animation effect="rotate" end="-90" center="36,19" time="0" condition="true">Conditional</animation>
+					<width>30</width>
+					<height>30</height>
+					<animation effect="rotate" end="-90" center="30,15" time="0" condition="true">Conditional</animation>
 					<texture colordiffuse="grey">frame/menu-nofo.png</texture>
 				</control>
 				<control type="label">
-					<left>74</left>
+					<left>64</left>
 					<width>500</width>
-					<height>44</height>
+					<height>36</height>
+					<font>font10</font>
 					<shadowcolor>text_shadow</shadowcolor>
 					<label>$LOCALIZE[31125]</label>
 				</control>
@@ -940,19 +1076,20 @@
 			<control type="group">
 				<visible>Control.HasFocus(138)</visible>
 				<animation effect="fade" time="200">VisibleChange</animation>
-				<top>10</top>
+				<top>6</top>
 				<left>0</left>
 				<control type="image">
-					<top>4</top>
+					<top>3</top>
 					<left>17</left>
-					<width>36</width>
-					<height>36</height>
+					<width>30</width>
+					<height>30</height>
 					<texture colordiffuse="grey">lists/played-total.png</texture>
 				</control>
 				<control type="label">
-					<left>74</left>
+					<left>64</left>
 					<width>800</width>
-					<height>44</height>
+					<height>36</height>
+					<font>font10</font>
 					<shadowcolor>text_shadow</shadowcolor>
 					<label>$LOCALIZE[31126]</label>
 				</control>
@@ -961,11 +1098,11 @@
 		<!-- Bottom label for file path -->
 		<control type="label">
 			<right>80</right>
-			<top>970</top>
+			<bottom>55</bottom>
 			<align>right</align>
 			<width>1400</width>
-			<height>44</height>
-			<font>font20_title</font>
+			<height>36</height>
+			<font>font10</font>
 			<textcolor>99FFFFFF</textcolor>
 			<shadowcolor>text_shadow</shadowcolor>
 			<haspath>true</haspath>
