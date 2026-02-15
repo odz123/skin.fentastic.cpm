@@ -524,15 +524,6 @@
 					<visible>$PARAM[focused] + Control.HasFocus($PARAM[list_id]) + String.IsEqual(ListItem.DBType,tvshow)</visible>
 					<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
 				</control>
-			<!--<control type="label">
-				<left>410</left>
-				<top>350</top>
-				<width>191</width>
-				<label>$PARAM[thumb_label]</label>
-				<font>font20_title</font>
-				<shadowcolor>text_shadow</shadowcolor>
-				<align>right</align>
-			</control>-->
 			<control type="image">
 				<visible>[String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)] + [Listitem.IsCollection | ListItem.IsPlaying | Integer.IsGreater(ListItem.Playcount,0)]</visible>
 				<left>20</left>
@@ -824,14 +815,12 @@
 					<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
 				</control>
 				<control type="image">
-					<!-- <left>15</left> -->
 					<top>-10</top>
 					<!-- 310 -->
 					<width>235</width>
 					<!-- 427 -->
 					<height>324</height>
 					<texture diffuse="masks/poster.png" background="true">$INFO[ListItem.Art(poster)]</texture>
-					<!-- <aspectratio>scale</aspectratio> -->
 					<bordersize>20</bordersize>
 				</control>
 				<control type="image">
@@ -1081,14 +1070,12 @@
 					<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
 				</control>
 				<control type="image">
-					<!-- <left>15</left> -->
 					<top>-10</top>
 					<!-- 235 -->
 					<width>275</width>
 					<!-- 324 -->
 					<height>379</height>
 					<texture diffuse="masks/poster.png" background="true">$INFO[ListItem.Art(poster)]</texture>
-					<!-- <aspectratio>scale</aspectratio> -->
 					<bordersize>20</bordersize>
 				</control>
 				<control type="image">
@@ -1147,7 +1134,7 @@
 					<width>195</width>
 					<label>$INFO[ListItem.Label]</label>
 					<font>font10</font>
-          <textcolor>unfocused_text</textcolor>
+					<textcolor>unfocused_text</textcolor>
 					<shadowcolor>text_shadow</shadowcolor>
 					<align>center</align>
 					<visible>!$PARAM[focused] + [Control.IsVisible(54) | Control.IsVisible(500)]</visible>

@@ -1,6 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
+	<include name="WidgetLabelRatingsRow">
+		<definition>
+			<control type="grouplist">
+				<visible>![String.IsEmpty(Skin.String(mdblist_api_key)) | Skin.HasSetting(Disable.WidgetLabelRatings) | Container($PARAM[list_id]).IsUpdating] + $EXP[is_video_library_content_or_episode] + !String.IsEmpty(ListItem.Genre) + Control.HasFocus($PARAM[list_id])</visible>
+				<orientation>horizontal</orientation>
+				<aligny>center</aligny>
+				<itemgap>25</itemgap>
+				<control type="grouplist">
+					<width>95</width>
+					<orientation>horizontal</orientation>
+					<itemgap>8</itemgap>
+					<align>left</align>
+					<visible>![String.IsEmpty(Window.Property(fentastic.metascore)) | Skin.HasSetting(Disable.MetacriticRating)]</visible>
+					<control type="image">
+						<top>45</top>
+						<width>35</width>
+						<aspectratio>keep</aspectratio>
+						<align>left</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Window.Property(fentastic.metascoreImage)]</texture>
+					</control>
+					<control type="label">
+						<width max="60">auto</width>
+						<height>32</height>
+						<align>left</align>
+						<label>$INFO[Window.Property(fentastic.metascore)]</label>
+					</control>
+				</control>
+				<control type="grouplist">
+					<width>95</width>
+					<orientation>horizontal</orientation>
+					<itemgap>8</itemgap>
+					<align>left</align>
+					<visible>![String.IsEmpty(Window.Property(fentastic.tomatoMeter)) | Skin.HasSetting(Disable.RTCRating)]</visible>
+					<control type="image">
+						<top>45</top>
+						<width>35</width>
+						<aspectratio>keep</aspectratio>
+						<align>left</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Window.Property(fentastic.tomatoImage)]</texture>
+					</control>
+					<control type="label">
+						<width max="60">auto</width>
+						<height>32</height>
+						<align>left</align>
+						<label>$INFO[Window.Property(fentastic.tomatoMeter)]</label>
+					</control>
+				</control>
+				<control type="grouplist">
+					<width>95</width>
+					<orientation>horizontal</orientation>
+					<itemgap>6</itemgap>
+					<align>left</align>
+					<visible>![String.IsEmpty(Window.Property(fentastic.tomatoUserMeter)) | Skin.HasSetting(Disable.RTARating)]</visible>
+					<control type="image">
+						<top>45</top>
+						<width>35</width>
+						<aspectratio>keep</aspectratio>
+						<align>left</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Window.Property(fentastic.tomatoUserImage)]</texture>
+					</control>
+					<control type="label">
+						<width max="60">auto</width>
+						<height>32</height>
+						<align>left</align>
+						<label>$INFO[Window.Property(fentastic.tomatoUserMeter)]</label>
+					</control>
+				</control>
+				<control type="grouplist">
+					<width>112</width>
+					<orientation>horizontal</orientation>
+					<itemgap>8</itemgap>
+					<align>left</align>
+					<visible>![String.IsEmpty(Window.Property(fentastic.imdbRating)) | Skin.HasSetting(Disable.IMDbRating)]</visible>
+					<control type="image">
+						<top>45</top>
+						<width>52</width>
+						<aspectratio>keep</aspectratio>
+						<align>left</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Window.Property(fentastic.imdbImage)]</texture>
+					</control>
+					<control type="label">
+						<width max="60">auto</width>
+						<height>32</height>
+						<align>left</align>
+						<label>$INFO[Window.Property(fentastic.imdbRating)]</label>
+					</control>
+				</control>
+				<control type="grouplist">
+					<width>105</width>
+					<orientation>horizontal</orientation>
+					<itemgap>10</itemgap>
+					<align>left</align>
+					<visible>![String.IsEmpty(Window.Property(fentastic.popularRating)) | Skin.HasSetting(Disable.IMDbPopularRating)]</visible>
+					<control type="image">
+						<top>45</top>
+						<width>25</width>
+						<aspectratio>keep</aspectratio>
+						<align>left</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Window.Property(fentastic.popularImage)]</texture>
+					</control>
+					<control type="label">
+						<width max="70">auto</width>
+						<height>32</height>
+						<align>left</align>
+						<label>$INFO[Window.Property(fentastic.popularRating)]</label>
+					</control>
+				</control>
+				<control type="grouplist">
+					<width>93</width>
+					<orientation>horizontal</orientation>
+					<itemgap>8</itemgap>
+					<align>left</align>
+					<visible>![String.IsEmpty(Window.Property(fentastic.tmdbRating)) | Skin.HasSetting(Disable.TMDbRating)]</visible>
+					<control type="image">
+						<top>45</top>
+						<width>36</width>
+						<aspectratio>keep</aspectratio>
+						<align>left</align>
+						<aligny>center</aligny>
+						<texture>$INFO[Window.Property(fentastic.tmdbImage)]</texture>
+					</control>
+					<control type="label">
+						<width max="60">auto</width>
+						<height>32</height>
+						<align>left</align>
+						<label>$INFO[Window.Property(fentastic.tmdbRating)]</label>
+					</control>
+				</control>
+			</control>
+		</definition>
+	</include>
+
 	<include name="WidgetGroupListCommon">
 		<orientation>vertical</orientation>
 		<height>100%</height>
@@ -93,138 +230,9 @@
 						<visible>[String.IsEqual(ListItem.DBtype,movie) + String.IsEmpty(ListItem.Genre)] + Control.HasFocus($PARAM[list_id])</visible>
 						<visible>[String.IsEmpty(Skin.String(mdblist_api_key)) | Skin.HasSetting(Disable.WidgetLabelRatings)]</visible>
 					</control>
-					<control type="grouplist">
-						<visible>![String.IsEmpty(Skin.String(mdblist_api_key)) | Skin.HasSetting(Disable.WidgetLabelRatings) | Container($PARAM[list_id]).IsUpdating] + [String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season) | String.IsEqual(ListItem.DBtype,episode)] + !String.IsEmpty(ListItem.Genre) + Control.HasFocus($PARAM[list_id])</visible>
-						<orientation>horizontal</orientation>
-						<aligny>center</aligny>
-						<itemgap>25</itemgap>
-						<control type="grouplist">
-							<width>95</width>
-							<orientation>horizontal</orientation>
-							<itemgap>8</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.metascore)) | Skin.HasSetting(Disable.MetacriticRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>35</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.metascoreImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.metascore)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>95</width>
-							<orientation>horizontal</orientation>
-							<itemgap>8</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.tomatoMeter)) | Skin.HasSetting(Disable.RTCRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>35</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.tomatoImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.tomatoMeter)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>95</width>
-							<orientation>horizontal</orientation>
-							<itemgap>6</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.tomatoUserMeter)) | Skin.HasSetting(Disable.RTARating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>35</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.tomatoUserImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.tomatoUserMeter)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>112</width>
-							<orientation>horizontal</orientation>
-							<itemgap>8</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.imdbRating)) | Skin.HasSetting(Disable.IMDbRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>52</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.imdbImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.imdbRating)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>105</width>
-							<orientation>horizontal</orientation>
-							<itemgap>10</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.popularRating)) | Skin.HasSetting(Disable.IMDbPopularRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>25</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.popularImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="70">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.popularRating)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>93</width>
-							<orientation>horizontal</orientation>
-							<itemgap>8</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.tmdbRating)) | Skin.HasSetting(Disable.TMDbRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>36</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.tmdbImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.tmdbRating)]</label>
-							</control>
-						</control>
-					</control>
+					<include content="WidgetLabelRatingsRow">
+						<param name="list_id" value="$PARAM[list_id]" />
+					</include>
 				</control>
 			</control>
 		</definition>
@@ -328,138 +336,9 @@
 						<visible>[String.IsEqual(ListItem.DBtype,movie) + String.IsEmpty(ListItem.Genre)] + Control.HasFocus($PARAM[list_id])</visible>
 						<visible>[String.IsEmpty(Skin.String(mdblist_api_key)) | Skin.HasSetting(Disable.WidgetLabelRatings)]</visible>
 					</control>
-					<control type="grouplist">
-						<visible>![String.IsEmpty(Skin.String(mdblist_api_key)) | Skin.HasSetting(Disable.WidgetLabelRatings) | Container($PARAM[list_id]).IsUpdating] + [String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season) | String.IsEqual(ListItem.DBtype,episode)] + !String.IsEmpty(ListItem.Genre) + Control.HasFocus($PARAM[list_id])</visible>
-						<orientation>horizontal</orientation>
-						<aligny>center</aligny>
-						<itemgap>25</itemgap>
-						<control type="grouplist">
-							<width>95</width>
-							<orientation>horizontal</orientation>
-							<itemgap>8</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.metascore)) | Skin.HasSetting(Disable.MetacriticRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>35</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.metascoreImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.metascore)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>95</width>
-							<orientation>horizontal</orientation>
-							<itemgap>8</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.tomatoMeter)) | Skin.HasSetting(Disable.RTCRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>35</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.tomatoImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.tomatoMeter)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>95</width>
-							<orientation>horizontal</orientation>
-							<itemgap>6</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.tomatoUserMeter)) | Skin.HasSetting(Disable.RTARating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>35</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.tomatoUserImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.tomatoUserMeter)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>112</width>
-							<orientation>horizontal</orientation>
-							<itemgap>8</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.imdbRating)) | Skin.HasSetting(Disable.IMDbRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>52</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.imdbImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.imdbRating)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>105</width>
-							<orientation>horizontal</orientation>
-							<itemgap>10</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.popularRating)) | Skin.HasSetting(Disable.IMDbPopularRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>25</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.popularImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="70">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.popularRating)]</label>
-							</control>
-						</control>
-						<control type="grouplist">
-							<width>93</width>
-							<orientation>horizontal</orientation>
-							<itemgap>8</itemgap>
-							<align>left</align>
-							<visible>![String.IsEmpty(Window.Property(fentastic.tmdbRating)) | Skin.HasSetting(Disable.TMDbRating)]</visible>
-							<control type="image">
-								<top>45</top>
-								<width>36</width>
-								<aspectratio>keep</aspectratio>
-								<align>left</align>
-								<aligny>center</aligny>
-								<texture>$INFO[Window.Property(fentastic.tmdbImage)]</texture>
-							</control>
-							<control type="label">
-								<width max="60">auto</width>
-								<height>32</height>
-								<align>left</align>
-								<label>$INFO[Window.Property(fentastic.tmdbRating)]</label>
-							</control>
-						</control>
-					</control>
+					<include content="WidgetLabelRatingsRow">
+						<param name="list_id" value="$PARAM[list_id]" />
+					</include>
 				</control>
 			</control>
 		</definition>
@@ -566,50 +445,50 @@
 	</include>
 
 	<include name="WidgetListBigPosterStacked">
-    <definition>
-      <include content="CategoryLabelWidget">
-        <param name="label">$PARAM[widget_header]</param>
-        <param name="list_id" value="$PARAM[list_id]" />
-      </include>
+		<definition>
+			<include content="CategoryLabelWidget">
+				<param name="label">$PARAM[widget_header]</param>
+				<param name="list_id" value="$PARAM[list_id]" />
+			</include>
 			<include content="BusyListSpinnerWidget">
 				<param name="list_id" value="$PARAM[list_id]" />
 			</include>
-      <control type="fixedlist" id="$PARAM[list_id]">
-        <left>0</left>
-        <top>115</top>
-        <right>0</right>
-        <height>465</height>
+			<control type="fixedlist" id="$PARAM[list_id]">
+				<left>0</left>
+				<top>115</top>
+				<right>0</right>
+				<height>465</height>
 				<onright>$PARAM[list_id]</onright>
 				<orientation>horizontal</orientation>
 				<movement>4</movement>
-        <include content="WidgetListCommonStacked">
-          <param name="list_id" value="$PARAM[list_id]" />
-        </include>
-        <itemlayout width="269" height="393">
-          <control type="group">
-            <left>68</left>
-            <top>15</top>
-            <include content="BigInfoWallMovieLayout">
-            <param name="focused" value="false" />
+				<include content="WidgetListCommonStacked">
+					<param name="list_id" value="$PARAM[list_id]" />
+				</include>
+				<itemlayout width="269" height="393">
+					<control type="group">
+						<left>68</left>
+						<top>15</top>
+						<include content="BigInfoWallMovieLayout">
+						<param name="focused" value="false" />
 						<param name="list_id" value="$PARAM[list_id]" />
-            </include>
-          </control>
-        </itemlayout>
-        <focusedlayout width="269" height="393">
-          <control type="group">
-            <depth>DepthContentPopout</depth>
-            <left>68</left>
-            <top>15</top>
-            <include content="BigInfoWallMovieLayout">
-            <param name="focused" value="true" />
+						</include>
+					</control>
+				</itemlayout>
+				<focusedlayout width="269" height="393">
+					<control type="group">
+						<depth>DepthContentPopout</depth>
+						<left>68</left>
+						<top>15</top>
+						<include content="BigInfoWallMovieLayout">
+						<param name="focused" value="true" />
 						<param name="list_id" value="$PARAM[list_id]" />
-            </include>
-          </control>
-        </focusedlayout>
-        <content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" limit="$PARAM[limit]" target="$PARAM[widget_target]">$PARAM[content_path]</content>
-      </control>
-    </definition>
-  </include>
+						</include>
+					</control>
+				</focusedlayout>
+				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" limit="$PARAM[limit]" target="$PARAM[widget_target]">$PARAM[content_path]</content>
+			</control>
+		</definition>
+	</include>
 
 	<include name="WidgetListEpisodes">
 		<param name="main_label">$INFO[ListItem.Title]</param>
@@ -1661,14 +1540,14 @@
 	</include>
 
 	<include name="WidgetListCommonStacked">
-    <scrolltime tween="cubic" easing="out">500</scrolltime>
-    <orientation>horizontal</orientation>
-    <onleft>9000</onleft>
-    <onright>$PARAM[list_id]</onright>
+		<scrolltime tween="cubic" easing="out">500</scrolltime>
+		<orientation>horizontal</orientation>
+		<onleft>9000</onleft>
+		<onright>$PARAM[list_id]</onright>
 		<onback>9000</onback>
-    <onback>SetFocus($PARAM[list_id],0,absolute)</onback>
-    <onfocus>RunScript(script.fentastic.helper,mode=widget_monitor&amp;list_id=$PARAM[list_id])</onfocus>
-  </include>
+		<onback>SetFocus($PARAM[list_id],0,absolute)</onback>
+		<onfocus>RunScript(script.fentastic.helper,mode=widget_monitor&amp;list_id=$PARAM[list_id])</onfocus>
+	</include>
 
 	<include name="BusyListSpinner">
 		<param name="posy">160</param>

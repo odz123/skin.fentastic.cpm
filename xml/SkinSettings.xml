@@ -329,7 +329,6 @@
 				</control>
 				<control type="radiobutton" id="64704">
 					<label>   - TV Shows</label>
-					<!-- <label>   - $LOCALIZE[20343]</label> -->
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.ToggleSetting(HideTVShowResults)</onclick>
 					<selected>!Skin.HasSetting(HideTVShowResults)</selected>

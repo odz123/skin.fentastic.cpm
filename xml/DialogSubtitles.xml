@@ -49,7 +49,7 @@
 							<width>380</width>
 							<height>50</height>
 							<aspectratio align="center">keep</aspectratio>
-							<texture colordiffuse="$VAR[UnfcusedTextColor]">DefaultIconInfo.png</texture>
+							<texture colordiffuse="unfocused_text">DefaultIconInfo.png</texture>
 						</control>
 						<control type="label">
 							<description>notification</description>

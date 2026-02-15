@@ -809,7 +809,7 @@
 				<left>-2</left>
 				<top>-2</top>
 				<right>-2</right>
-        <bottom>-2</bottom>
+				<bottom>-2</bottom>
 				<texture colordiffuse="unfocused_text">$PARAM[diffusetexture]</texture>
 			</control>
 			<control type="image">
@@ -1380,7 +1380,6 @@
 			<!-- Content Panel Background -->
 			<control type="image">
 				<texture flipx="$PARAM[flipx]" colordiffuse="button_focus2">lists/contentpanel-fade.png</texture>
-				<!-- <bordertexture border="21" infill="false">overlays/shadow.png</bordertexture> -->
 				<bordersize>20</bordersize>
 				<width>$PARAM[width]</width>
 				<left>$PARAM[left]</left>
@@ -1521,7 +1520,6 @@
 				<width>410</width>
 				<height>270</height>
 				<texture colordiffuse="button_focus2">masks/settingspanel-unfocused.png</texture>
-				<!-- <bordertexture border="21" infill="false">overlays/shadow.png</bordertexture> -->
 				<bordersize>20</bordersize>
 			</control>
 			<control type="image">
@@ -1551,7 +1549,6 @@
 					<width>410</width>
 					<height>270</height>
 					<texture colordiffuse="button_focus2">masks/settingspanel-unfocused.png</texture>
-					<!-- <bordertexture border="21" infill="false">overlays/shadow.png</bordertexture> -->
 					<bordersize>20</bordersize>
 				</control>
 				<control type="image">
@@ -1762,7 +1759,7 @@
 				<orientation>horizontal</orientation>
 				<itemgap>$PARAM[ratings_spacing]</itemgap>
 				<aligny>center</aligny>
-				<visible>[String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season) | String.IsEqual(ListItem.DBtype,episode)] + !String.IsEmpty(ListItem.Genre)</visible>
+				<visible>$EXP[is_video_library_content_or_episode] + !String.IsEmpty(ListItem.Genre)</visible>
 				<control type="grouplist">
 					<width>60</width>
 					<orientation>vertical</orientation>

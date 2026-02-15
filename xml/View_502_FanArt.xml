@@ -33,7 +33,6 @@
 					<height>644</height>
 					<fadetime>300</fadetime>
 					<texture diffuse="masks/landscape-502.png" border="2" fallback="special://skin/extras/home-images/movie.jpg" background="true">$VAR[FanartImageVar]</texture>
-					<!-- <aspectratio align="center" aligny="bottom">keep</aspectratio> -->
 				</control>
 				<control type="group">
 					<left>1152</left>

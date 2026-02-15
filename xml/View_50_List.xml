@@ -270,7 +270,7 @@
 						<aspectratio aligny="top">keep</aspectratio>
 						<fadetime>300</fadetime>
 						<texture diffuse="masks/landscape.png" fallback="$PARAM[fallback_image]" background="true">$VAR[IconWallThumbVar]</texture>
-						<visible>!Skin.HasSetting(UseLandscape) + ![String.IsEqual(ListItem.DbType,movie) | String.IsEqual(ListItem.DbType,tvshow) | String.IsEqual(ListItem.DbType,season) | String.IsEqual(ListItem.DbType,episode)]</visible>
+						<visible>!Skin.HasSetting(UseLandscape) + !$EXP[is_video_library_content_or_episode]</visible>
 					</control>
 					<control type="image">
 						<width>515</width>
@@ -282,7 +282,6 @@
 					<control type="image">
 						<width>540</width>
 						<height>303</height>
-						<!-- <aspectratio aligny="top">scale</aspectratio> -->
 						<fadetime>300</fadetime>
 						<texture diffuse="masks/landscape.png">$INFO[ListItem.Icon]</texture>
 						<visible>String.IsEqual(ListItem.DbType,episode)</visible>
@@ -304,7 +303,7 @@
 						<orientation>horizontal</orientation>
 						<itemgap>25</itemgap>
 						<aligny>center</aligny>
-						<visible>[String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season) | String.IsEqual(ListItem.DBtype,episode)] + !String.IsEmpty(ListItem.Genre)</visible>
+						<visible>$EXP[is_video_library_content_or_episode] + !String.IsEmpty(ListItem.Genre)</visible>
 						<control type="grouplist">
 							<width>60</width>
 							<orientation>vertical</orientation>
@@ -536,7 +535,7 @@
 						<aspectratio aligny="top">keep</aspectratio>
 						<fadetime>300</fadetime>
 						<texture diffuse="masks/addons.png" fallback="$PARAM[fallback_image]" background="true">$VAR[IconWallThumbVar]</texture>
-						<visible>!Skin.HasSetting(UseLandscape) + ![String.IsEqual(ListItem.DbType,movie) | String.IsEqual(ListItem.DbType,tvshow) | String.IsEqual(ListItem.DbType,season) | String.IsEqual(ListItem.DbType,episode)]</visible>
+						<visible>!Skin.HasSetting(UseLandscape) + !$EXP[is_video_library_content_or_episode]</visible>
 					</control>
 					<control type="image">
 						<left>30</left>
@@ -573,7 +572,6 @@
 					<top>105</top>
 					<width>540</width>
 					<height>303</height>
-					<!-- <aspectratio aligny="top">scale</aspectratio> -->
 					<fadetime>300</fadetime>
 					<texture diffuse="masks/landscape.png">$INFO[ListItem.Icon]</texture>
 					<visible>String.IsEmpty(Skin.String(mdblist_api_key)) + String.IsEqual(ListItem.DbType,episode)</visible>

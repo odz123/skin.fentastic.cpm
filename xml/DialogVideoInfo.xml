@@ -306,8 +306,6 @@
 								<height>277</height>
 								<texture diffuse="masks/poster.png">DefaultActorSolid.png</texture>
 								<aspectratio aligny="center">keep</aspectratio>
-								<!-- <bordertexture border="21" infill="false">overlays/shadow.png</bordertexture> -->
-								<!-- <bordersize>20</bordersize> -->
 							</control>
 							<control type="image">
 								<top>20</top>
@@ -359,8 +357,6 @@
 								<height>277</height>
 								<texture diffuse="masks/poster.png">DefaultActorSolid.png</texture>
 								<aspectratio aligny="center">keep</aspectratio>
-								<!-- <bordertexture border="21" infill="false">overlays/shadow.png</bordertexture> -->
-								<!-- <bordersize>20</bordersize> -->
 							</control>
 							<control type="image">
 								<top>20</top>
@@ -405,7 +401,6 @@
 								<height>317</height>
 								<texture>DefaultMovies.png</texture>
 								<aspectratio aligny="center">scale</aspectratio>
-								<!-- <bordertexture border="21" infill="false">overlays/shadow.png</bordertexture> -->
 								<bordersize>20</bordersize>
 							</control>
 							<control type="image">

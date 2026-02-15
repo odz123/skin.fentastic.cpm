@@ -145,7 +145,6 @@
 						<top>430</top>
 						<width>478</width>
 						<height>375</height>
-						<!-- <aspectratio>scale</aspectratio> -->
 						<texture colordiffuse="button_focus2" border="21">masks/landscape-unfocused.png</texture>
 					</control>
 					<control type="group">
@@ -324,7 +323,6 @@
 					<top>4</top>
 					<width>540</width>
 					<height>540</height>
-					<!-- <aspectratio>scale</aspectratio> -->
 					<texture diffuse="masks/landscapeinfo.png" colordiffuse="button_focus2">dialogs/dialog-bg-nobo.png</texture>
 					<bordersize>20</bordersize>
 				</control>
@@ -333,7 +331,6 @@
 					<top>24</top>
 					<width>500</width>
 					<height>500</height>
-					<!-- <aspectratio aligny="top">scale</aspectratio> -->
 					<fadetime>300</fadetime>
 					<texture diffuse="masks/landscapeinfo.png" fallback="DefaultAddon.png" background="true">$INFO[ListItem.Art(thumb)]</texture>
 				</control>

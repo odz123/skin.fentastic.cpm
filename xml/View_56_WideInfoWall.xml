@@ -139,10 +139,10 @@
 				</include>
 				<control type="image">
 					<include>FocusBounce</include>
-          <left>-4</left>
+					<left>-4</left>
 					<top>-14</top>
-          <width>354</width>
-          <height>230</height>
+					<width>354</width>
+					<height>230</height>
 					<texture colordiffuse="button_focus">masks/landscape.png</texture>
 					<bordersize>19</bordersize>
 					<visible>$PARAM[focused] + [Control.IsVisible(56) | Control.IsVisible(504)]</visible>
@@ -150,10 +150,10 @@
 				</control>
 				<control type="image">
 					<include>FocusBounce</include>
-          <left>-4</left>
+					<left>-4</left>
 					<top>-14</top>
-          <width>354</width>
-          <height>230</height>
+					<width>354</width>
+					<height>230</height>
 					<texture colordiffuse="button_focus">masks/landscape.png</texture>
 					<bordersize>19</bordersize>
 					<visible>$PARAM[focused] + Control.HasFocus($PARAM[list_id])</visible>
@@ -214,10 +214,10 @@
 				</include>
 				<control type="image">
 					<include>FocusBounce</include>
-          <left>-4</left>
+					<left>-4</left>
 					<top>-14</top>
-          <width>354</width>
-          <height>230</height>
+					<width>354</width>
+					<height>230</height>
 					<texture colordiffuse="button_focus">masks/landscape.png</texture>
 					<bordersize>19</bordersize>
 					<visible>$PARAM[focused] + [Control.IsVisible(56) | Control.IsVisible(504)]</visible>
@@ -225,10 +225,10 @@
 				</control>
 				<control type="image">
 					<include>FocusBounce</include>
-          <left>-4</left>
+					<left>-4</left>
 					<top>-14</top>
-          <width>354</width>
-          <height>230</height>
+					<width>354</width>
+					<height>230</height>
 					<texture colordiffuse="button_focus">masks/landscape.png</texture>
 					<bordersize>19</bordersize>
 					<visible>$PARAM[focused] + Control.HasFocus($PARAM[list_id])</visible>
@@ -266,7 +266,7 @@
 				</control>
 				<control type="image">
 					<left>20</left>
-          <top>112</top>
+					<top>112</top>
 					<width>80</width>
 					<height>80</height>
 					<texture>overlays/overlaybg.png</texture>
@@ -330,8 +330,8 @@
 				</control>
 				<!-- 6 -->
 				<control type="label">
-          <left>130</left>
-          <top>-158</top>
+					<left>130</left>
+					<top>-158</top>
 					<width>154</width>
 					<label>$INFO[ListItem.Property(WatchedEpisodes)]$INFO[ListItem.Property(TotalEpisodes), / ,]</label>
 					<font>font20_title</font>
@@ -341,8 +341,8 @@
 					<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
 				</control>
 				<control type="image">
-          <left>291</left>
-          <top>-156</top>
+					<left>291</left>
+					<top>-156</top>
 					<width>24</width>
 					<height>24</height>
 					<texture>lists/played-total.png</texture>
@@ -361,8 +361,8 @@
 				</control>
 				<!-- 6 -->
 				<control type="label">
-          <left>130</left>
-          <top>-158</top>
+					<left>130</left>
+					<top>-158</top>
 					<width>154</width>
 					<label>$INFO[ListItem.Property(WatchedEpisodes)]$INFO[ListItem.Property(TotalEpisodes), / ,]</label>
 					<font>font20_title</font>
@@ -372,8 +372,8 @@
 					<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
 				</control>
 				<control type="image">
-          <left>291</left>
-          <top>-156</top>
+					<left>291</left>
+					<top>-156</top>
 					<width>24</width>
 					<height>24</height>
 					<texture>lists/played-total.png</texture>
@@ -392,14 +392,14 @@
 				<align>right</align>
 			</control>
 			<control type="image">
-        <left>23</left>
-        <top>157</top>
+				<left>23</left>
+				<top>157</top>
 				<width>32</width>
 				<height>32</height>
 				<texture>$VAR[WallWatchedIconVar]</texture>
 			</control>
 			<control type="group">
-        <left>279</left>
+				<left>279</left>
 				<top>-7</top>
 				<include content="RatingCircle" condition="Skin.HasSetting(circle_rating) | Skin.HasSetting(circle_userrating)">
 					<param name="left">-72</param>
@@ -426,10 +426,10 @@
 				</include>
 				<control type="image">
 					<include>FocusBounce</include>
-          <left>-4</left>
+					<left>-4</left>
 					<top>-14</top>
-          <width>462</width>
-          <height>289</height>
+					<width>462</width>
+					<height>289</height>
 					<texture colordiffuse="button_focus">masks/landscape.png</texture>
 					<bordersize>17</bordersize>
 					<visible>$PARAM[focused] + [Control.IsVisible(56) | Control.IsVisible(504)]</visible>
@@ -437,10 +437,10 @@
 				</control>
 				<control type="image">
 					<include>FocusBounce</include>
-          <left>-4</left>
+					<left>-4</left>
 					<top>-14</top>
-          <width>462</width>
-          <height>289</height>
+					<width>462</width>
+					<height>289</height>
 					<texture colordiffuse="button_focus">masks/landscape.png</texture>
 					<bordersize>17</bordersize>
 					<visible>$PARAM[focused] + Control.HasFocus($PARAM[list_id])</visible>
@@ -502,10 +502,10 @@
 				</include>
 				<control type="image">
 					<include>FocusBounce</include>
-          <left>-4</left>
+					<left>-4</left>
 					<top>-14</top>
-          <width>462</width>
-          <height>289</height>
+					<width>462</width>
+					<height>289</height>
 					<texture colordiffuse="button_focus">masks/landscape.png</texture>
 					<bordersize>17</bordersize>
 					<visible>$PARAM[focused] + [Control.IsVisible(56) | Control.IsVisible(504)]</visible>
@@ -513,10 +513,10 @@
 				</control>
 				<control type="image">
 					<include>FocusBounce</include>
-          <left>-4</left>
+					<left>-4</left>
 					<top>-14</top>
-          <width>462</width>
-          <height>289</height>
+					<width>462</width>
+					<height>289</height>
 					<texture colordiffuse="button_focus">masks/landscape.png</texture>
 					<bordersize>17</bordersize>
 					<visible>$PARAM[focused] + Control.HasFocus($PARAM[list_id])</visible>
@@ -542,7 +542,7 @@
 				</control>
 				<control type="image">
 					<left>20</left>
-          <top>143</top>
+					<top>143</top>
 					<width>108</width>
 					<height>108</height>
 					<texture>overlays/overlaybg.png</texture>
@@ -619,7 +619,7 @@
 					<width>357</width>
 					<label>$INFO[ListItem.Label]</label>
 					<font>font10</font>
-          <textcolor>unfocused_text</textcolor>
+					<textcolor>unfocused_text</textcolor>
 					<shadowcolor>text_shadow</shadowcolor>
 					<align>center</align>
 					<visible>!$PARAM[focused] + [Control.IsVisible(56) | Control.IsVisible(504)]</visible>
@@ -651,8 +651,8 @@
 				</control>
 				<!-- 6 -->
 				<control type="label">
-          <left>229</left>
-          <top>-102</top>
+					<left>229</left>
+					<top>-102</top>
 					<width>154</width>
 					<label>$INFO[ListItem.Property(WatchedEpisodes)]$INFO[ListItem.Property(TotalEpisodes), / ,]</label>
 					<font>font20_title</font>
@@ -662,8 +662,8 @@
 					<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
 				</control>
 				<control type="image">
-          <left>393</left>
-          <top>-99.5</top>
+					<left>393</left>
+					<top>-99.5</top>
 					<width>24</width>
 					<height>24</height>
 					<texture>lists/played-total.png</texture>
@@ -682,8 +682,8 @@
 				</control>
 				<!-- 6 -->
 				<control type="label">
-          <left>232</left>
-          <top>-102</top>
+					<left>232</left>
+					<top>-102</top>
 					<width>154</width>
 					<label>$INFO[ListItem.Property(WatchedEpisodes)]$INFO[ListItem.Property(TotalEpisodes), / ,]</label>
 					<font>font20_title</font>
@@ -694,7 +694,7 @@
 				</control>
 				<control type="image">
 					<left>393</left>
-          <top>-99.5</top>
+					<top>-99.5</top>
 					<width>24</width>
 					<height>24</height>
 					<texture>lists/played-total.png</texture>
@@ -713,14 +713,14 @@
 				<align>right</align>
 			</control>
 			<control type="image">
-        <left>29</left>
-        <top>212</top>
+				<left>29</left>
+				<top>212</top>
 				<width>32</width>
 				<height>32</height>
 				<texture>$VAR[WallWatchedIconVar]</texture>
 			</control>
 			<control type="group">
-        <left>279</left>
+				<left>279</left>
 				<top>-7</top>
 				<include content="RatingCircle" condition="Skin.HasSetting(circle_rating) | Skin.HasSetting(circle_userrating)">
 					<param name="left">-2</param>
