@@ -60,7 +60,6 @@
 		<value condition="String.IsEqual(listitem.dbtype,album)">DefaultAlbumCover.png</value>
 		<value>DefaultAudio.png</value>
 	</variable>
-	<!-- interesting -->
 	<variable name="InfoWallThumbVar">
 		<value condition="!String.IsEqual(listitem.dbtype,musicvideo) + !String.IsEmpty(Listitem.Art(poster))">$INFO[Listitem.Art(poster)]</value>
 		<value condition="String.IsEqual(ListItem.DbType,episode) + System.Setting(hideunwatchedepisodethumbs) + Integer.IsEqual(ListItem.Playcount,0) + !String.IsEmpty(Listitem.Art(fanart))">$INFO[Listitem.Art(fanart)]</value>
@@ -69,9 +68,6 @@
 		<value condition="!String.IsEmpty(Listitem.Art(thumb))">$INFO[Listitem.Art(thumb)]</value>
 		<value condition="!String.IsEmpty(Listitem.Art(poster))">$INFO[Listitem.Art(poster)]</value>
 		<value>$INFO[ListItem.Icon]</value>
-	</variable>
-	<variable name="FanartThumbVar">
-		<value condition="!String.IsEmpty(Listitem.Art(poster))">$INFO[Listitem.Art(thumb)]</value>
 	</variable>
 	<variable name="PosterThumbVar">
 		<value condition="!String.IsEmpty(Listitem.Art(poster))">$INFO[Listitem.Art(poster)]</value>
@@ -137,11 +133,6 @@
 		<value condition="!String.isempty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
 		<value>dialogs/dialog-bg-nobo.png</value>
 	</variable>
-	<!-- <variable name="landscapeVar">
-		<value condition="!String.IsEmpty(ListItem.Art(landscape))">$INFO[ListItem.Art(landscape)]</value>
-		<value condition="!String.IsEmpty(ListItem.Art(landscape))">$INFO[ListItem.Art(fanart)]</value>
-		<value>$INFO[ListItem.Art(fanart)]</value>
-	</variable> -->
 	<variable name="FanartImageVar">
 		<value condition="ListItem.IsParentFolder">special://skin/extras/home-images/movie.jpg</value>
 		<value>$INFO[ListItem.Art(fanart)]</value>
@@ -173,10 +164,6 @@
 		<value condition="MusicPlayer.IsMultiDisc + Window.IsActive(visualisation)">$INFO[MusicPlayer.DiscNumber, - [$LOCALIZE[427] ,] ]$INFO[MusicPlayer.DiscTitle]</value>
 		<value condition="MusicPlayer.IsMultiDisc">$INFO[MusicPlayer.DiscNumber]$INFO[MusicPlayer.DiscTitle, - ]</value>
 	</variable>
-	<variable name="WidgetGenreIconVar">
-		<value condition="System.AddonIsEnabled(resource.images.moviegenreicons.transparent)">$INFO[ListItem.Label,resource://resource.images.moviegenreicons.transparent/,.png]</value>
-		<value>DefaultGenre.png</value>
-	</variable>
 	<variable name="WidgetStudioIconVar">
 		<value condition="System.AddonIsEnabled(resource.images.studios.white)">$INFO[ListItem.Label,resource://resource.images.studios.white/,.png]</value>
 		<value>DefaultStudios.png</value>
@@ -197,51 +184,12 @@
 		<value condition="Skin.HasSetting(show_profileavatar)">$LOCALIZE[31166]</value>
 		<value>$LOCALIZE[16018]</value>
 	</variable>
-	<variable name="AlbumOnClickActionLabel2Var">
-		<value condition="Skin.HasSetting(album_onclick_browse)">$LOCALIZE[37015]</value>
-		<value condition="Skin.HasSetting(album_onclick_play)">$LOCALIZE[208]</value>
-		<value condition="Skin.HasSetting(album_onclick_playnext)">$LOCALIZE[10008]</value>
-		<value condition="Skin.HasSetting(album_onclick_queue)">$LOCALIZE[13347]</value>
-		<value>$LOCALIZE[37015]</value>
-	</variable>
 	<variable name="AlbumOnClickActionVar">
 		<value condition="Skin.HasSetting(album_onclick_browse)">ActivateWindow(music,musicdb://albums/$INFO[ListItem.DBID]/,return)</value>
 		<value condition="Skin.HasSetting(album_onclick_play)">PlayMedia(musicdb://albums/$INFO[ListItem.DBID]/)</value>
 		<value condition="Skin.HasSetting(album_onclick_playnext)">QueueMedia(musicdb://albums/$INFO[ListItem.DBID]/,playnext)</value>
 		<value condition="Skin.HasSetting(album_onclick_queue)">QueueMedia(musicdb://albums/$INFO[ListItem.DBID]/)</value>
 		<value>ActivateWindow(music,musicdb://albums/$INFO[ListItem.DBID]/,return)</value>
-	</variable>
-	<variable name="TVShowOnClickActionLabel2Var">
-		<value condition="Skin.HasSetting(tvshow_onclick_browse)">$LOCALIZE[37015]</value>
-		<value condition="Skin.HasSetting(tvshow_onclick_continuewatching)">$LOCALIZE[13362]</value>
-		<value condition="Skin.HasSetting(tvshow_onclick_playfrombeginning)">$LOCALIZE[12021]</value>
-		<value condition="Skin.HasSetting(tvshow_onclick_playnext)">$LOCALIZE[10008]</value>
-		<value condition="Skin.HasSetting(tvshow_onclick_queue)">$LOCALIZE[13347]</value>
-		<value>$LOCALIZE[37015]</value>
-	</variable>
-	<variable name="TVShowOnClickActionVar">
-		<value condition="Skin.HasSetting(tvshow_onclick_browse)">ActivateWindow(videos,videodb://tvshows/titles/$INFO[ListItem.DBID]/,return)</value>
-		<value condition="Skin.HasSetting(tvshow_onclick_continuewatching)">PlayMedia(videodb://tvshows/titles/$INFO[ListItem.DBID]/,resume)</value>
-		<value condition="Skin.HasSetting(tvshow_onclick_playfrombeginning)">PlayMedia(videodb://tvshows/titles/$INFO[ListItem.DBID]/,noresume)</value>
-		<value condition="Skin.HasSetting(tvshow_onclick_playnext)">QueueMedia(videodb://tvshows/titles/$INFO[ListItem.DBID]/,playnext)</value>
-		<value condition="Skin.HasSetting(tvshow_onclick_queue)">QueueMedia(videodb://tvshows/titles/$INFO[ListItem.DBID]/)</value>
-		<value>ActivateWindow(videos,videodb://tvshows/titles/$INFO[ListItem.DBID]/,return)</value>
-	</variable>
-	<variable name="MovieSetOnClickActionLabel2Var">
-		<value condition="Skin.HasSetting(movieset_onclick_browse)">$LOCALIZE[37015]</value>
-		<value condition="Skin.HasSetting(movieset_onclick_continuewatching)">$LOCALIZE[13362]</value>
-		<value condition="Skin.HasSetting(movieset_onclick_playfrombeginning)">$LOCALIZE[12021]</value>
-		<value condition="Skin.HasSetting(movieset_onclick_playnext)">$LOCALIZE[10008]</value>
-		<value condition="Skin.HasSetting(movieset_onclick_queue)">$LOCALIZE[13347]</value>
-		<value>$LOCALIZE[37015]</value>
-	</variable>
-	<variable name="MovieSetOnClickActionVar">
-		<value condition="Skin.HasSetting(movieset_onclick_browse)">ActivateWindow(videos,videodb://movies/sets/$INFO[ListItem.DBID]/,return)</value>
-		<value condition="Skin.HasSetting(movieset_onclick_continuewatching)">PlayMedia(videodb://movies/sets/$INFO[ListItem.DBID]/,resume)</value>
-		<value condition="Skin.HasSetting(movieset_onclick_playfrombeginning)">PlayMedia(videodb://movies/sets/$INFO[ListItem.DBID]/,noresume)</value>
-		<value condition="Skin.HasSetting(movieset_onclick_playnext)">QueueMedia(videodb://movies/sets/$INFO[ListItem.DBID]/,playnext)</value>
-		<value condition="Skin.HasSetting(movieset_onclick_queue)">QueueMedia(videodb://movies/sets/$INFO[ListItem.DBID]/)</value>
-		<value>ActivateWindow(videos,videodb://movies/sets/$INFO[ListItem.DBID]/,return)</value>
 	</variable>
 	<variable name="AddonLifecycleType">
 		<value condition="String.IsEqual(ListItem.AddonLifecycleType,$LOCALIZE[24170])">[COLOR button_focus]$LOCALIZE[24170][/COLOR][CR]$INFO[ListItem.AddonLifecycleDesc]</value> <!-- Deprecated -->
@@ -728,7 +676,7 @@
 	<variable name="CurrentSearchProviderVar">
     <value condition="String.IsEqual(Skin.String(current_search_provider),0)">FEN</value>
     <value condition="String.IsEqual(Skin.String(current_search_provider),1)">FEN Light</value>
-    <value condition="String.IsEqual(Skin.String(current_search_provider),2)">Umbrella</value>
+    <value condition="$EXP[search_provider_trakt]">Umbrella</value>
     <value condition="String.IsEqual(Skin.String(current_search_provider),3)">POV</value>
     <value condition="String.IsEqual(Skin.String(current_search_provider),4)">Seren</value>
 		<value>FEN</value>
@@ -738,7 +686,7 @@
     <value condition="String.IsEqual(Skin.String(current_search_provider),0)">Skin.SetString(current_search_provider,1)</value>
     <value condition="String.IsEqual(Skin.String(current_search_provider),1)">Skin.SetString(current_search_provider,3)</value>
     <value condition="String.IsEqual(Skin.String(current_search_provider),3)">Skin.SetString(current_search_provider,2)</value>
-    <value condition="String.IsEqual(Skin.String(current_search_provider),2)">Skin.SetString(current_search_provider,4)</value>
+    <value condition="$EXP[search_provider_trakt]">Skin.SetString(current_search_provider,4)</value>
     <value condition="String.IsEqual(Skin.String(current_search_provider),4)">Skin.SetString(current_search_provider,0)</value>
 		<value>Skin.SetString(current_search_provider,0)</value>
 	</variable>
@@ -746,7 +694,7 @@
 	<variable name="TRAKTButtonActionsVar">
     <value condition="String.IsEqual(Skin.String(current_search_provider),0)">ActivateWindow(10025,plugin://plugin.video.fen/?&amp;mode=navigator.trakt_lists,return)</value>
     <value condition="String.IsEqual(Skin.String(current_search_provider),1)">ActivateWindow(10025,plugin://plugin.video.fenlight/?&amp;mode=navigator.my_content&amp;name=My%20Lists,return)</value>
-    <value condition="String.IsEqual(Skin.String(current_search_provider),2)">ActivateWindow(10025,plugin://plugin.video.umbrella/?action=trakt_Navigator,return)</value>
+    <value condition="$EXP[search_provider_trakt]">ActivateWindow(10025,plugin://plugin.video.umbrella/?action=trakt_Navigator,return)</value>
     <value condition="String.IsEqual(Skin.String(current_search_provider),3)">ActivateWindow(10025,plugin://plugin.video.pov/?mode=navigator.my_content&amp;name=32454,return)</value>
 		<value>ActivateWindow(10025,plugin://plugin.video.fen/?&amp;mode=navigator.trakt_lists,return)</value>
 	</variable>
@@ -765,7 +713,7 @@
 	<variable name="SearchProviderMoviesVar">
     <value condition="String.IsEqual(Skin.String(current_search_provider),0)">plugin://plugin.video.fen/?mode=build_movie_list&amp;action=tmdb_movies_search&amp;query=$INFO[Skin.String(SearchInputEncoded)]</value>
     <value condition="String.IsEqual(Skin.String(current_search_provider),1)">plugin://plugin.video.fenlight/?mode=build_movie_list&amp;action=tmdb_movies_search&amp;query=$INFO[Skin.String(SearchInputEncoded)]</value>
-    <value condition="String.IsEqual(Skin.String(current_search_provider),2)">plugin://plugin.video.umbrella/?action=movieSearchterm&amp;name=$INFO[Skin.String(SearchInputEncoded)]</value>
+    <value condition="$EXP[search_provider_trakt]">plugin://plugin.video.umbrella/?action=movieSearchterm&amp;name=$INFO[Skin.String(SearchInputEncoded)]</value>
     <value condition="String.IsEqual(Skin.String(current_search_provider),3)">plugin://plugin.video.pov/?mode=build_movie_list&amp;action=tmdb_movies_search&amp;query=$INFO[Skin.String(SearchInputEncoded)]</value>
 		<value condition="String.IsEqual(Skin.String(current_search_provider),4)">plugin://plugin.video.seren/?action=moviesSearchResults&amp;actionArgs=$INFO[Skin.String(SearchInputEncoded)]</value>
     <value>plugin://plugin.video.fen/?mode=build_movie_list&amp;action=tmdb_movies_search&amp;query=$INFO[Skin.String(SearchInputEncoded)]</value>
@@ -773,7 +721,7 @@
 	<variable name="SearchProviderTVShowsVar">
     <value condition="String.IsEqual(Skin.String(current_search_provider),0)">plugin://plugin.video.fen/?mode=build_tvshow_list&amp;action=tmdb_tv_search&amp;query=$INFO[Skin.String(SearchInputEncoded)]</value>
     <value condition="String.IsEqual(Skin.String(current_search_provider),1)">plugin://plugin.video.fenlight/?mode=build_tvshow_list&amp;action=tmdb_tv_search&amp;query=$INFO[Skin.String(SearchInputEncoded)]</value>
-    <value condition="String.IsEqual(Skin.String(current_search_provider),2)">plugin://plugin.video.umbrella/?action=tvSearchterm&amp;name=$INFO[Skin.String(SearchInputEncoded)]</value>
+    <value condition="$EXP[search_provider_trakt]">plugin://plugin.video.umbrella/?action=tvSearchterm&amp;name=$INFO[Skin.String(SearchInputEncoded)]</value>
     <value condition="String.IsEqual(Skin.String(current_search_provider),3)">plugin://plugin.video.pov/?mode=build_tvshow_list&amp;action=tmdb_tv_search&amp;query=$INFO[Skin.String(SearchInputEncoded)]</value>
 		<value condition="String.IsEqual(Skin.String(current_search_provider),4)">plugin://plugin.video.seren/?action=showsSearchResults&amp;actionArgs=$INFO[Skin.String(SearchInputEncoded)]</value>
 		<value>plugin://plugin.video.fen/?mode=build_tvshow_list&amp;action=tmdb_tv_search&amp;query=$INFO[Skin.String(SearchInputEncoded)]</value>
@@ -956,7 +904,7 @@
 		<!-- EPISODES -->
 		<value condition="!ListItem.IsCollection + String.IsEqual(ListItem.DBtype,episode)">$VAR[RI_EpisodeType]$VAR[RI_Aired]$VAR[RI_Network]$VAR[RI_RuntimeEpisodes]$VAR[RI_Endsat]</value>
 	</variable>
-	
+
 	<variable name="InfoPanelBottom">
 		<!-- COLLECTIONS -->
 		<!-- MOVIES, TVSHOWS, SEASONS, EPISODES -->
@@ -978,7 +926,7 @@
 	<variable name="InfoPanelEpisode">
 		<value condition="!ListItem.IsCollection + String.IsEqual(ListItem.DBtype,episode)">$VAR[RI_EpisodeType]$VAR[_Aired]$VAR[_Network]$VAR[_RuntimeEpisodes]$VAR[_Endsat][CR]$VAR[_Plot][CR]</value>
 	</variable>
-	
+
 	<!-- Episode Type for widgets (season premiere, season finale, etc) -->
 	<variable name="EpisodeType">
 		<value condition="String.IsEqual(ListItem.Property(episode_type), series_premiere)"> • [COLOR ff8fc5d9]Series Premiere[/COLOR]</value>
@@ -988,7 +936,7 @@
 		<value condition="String.IsEqual(ListItem.Property(episode_type), season_finale)"> • [COLOR ffd98fc5]Season Finale[/COLOR]</value>
 		<value condition="String.IsEqual(ListItem.Property(episode_type), mid_season_finale)"> • [COLOR ffd9c58f]Mid-Season Finale[/COLOR]</value>
 	</variable>
-	
+
 	<!-- Episode Type for info/rating left panel (season premiere, season finale, etc) -->
 	<variable name="EpisodeType2">
 		<value condition="String.IsEqual(ListItem.Property(episode_type), series_premiere)">[COLOR ff8fc5d9][UPPERCASE]Series Premiere[/UPPERCASE][/COLOR]</value>
@@ -998,7 +946,7 @@
 		<value condition="String.IsEqual(ListItem.Property(episode_type), season_finale)">[COLOR ffd98fc5][UPPERCASE]Season Finale[/UPPERCASE][/COLOR]</value>
 		<value condition="String.IsEqual(ListItem.Property(episode_type), mid_season_finale)">[COLOR ffd9c58f][UPPERCASE]Mid-Season Finale[/UPPERCASE][/COLOR]</value>
 	</variable>
-	
+
 	<!-- Episode Type for WideList view (season premiere, season finale, etc) -->
 	<variable name="EpisodeType3">
 		<value condition="String.IsEqual(ListItem.Property(episode_type), series_premiere)">[COLOR ff8fc5d9] (Series Premiere)[/COLOR]</value>
@@ -1008,7 +956,7 @@
 		<value condition="String.IsEqual(ListItem.Property(episode_type), season_finale)">[COLOR ffd98fc5] (Season Finale)[/COLOR]</value>
 		<value condition="String.IsEqual(ListItem.Property(episode_type), mid_season_finale)">[COLOR ffd9c58f] (Mid-Season Finale)[/COLOR]</value>
 	</variable>
-	
+
 	<!-- CoreELEC CPM goodies -->
 	<variable name="DVELVar">
 		<value condition="String.IsEqual(Player.Process(video.dovi.el.type),minimum)">[COLOR lightgreen]MEL[/COLOR]</value>

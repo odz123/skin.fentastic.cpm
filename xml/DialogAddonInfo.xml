@@ -165,7 +165,7 @@
 									<height>30</height>
 									<font>font27_narrow</font>
 									<label>$INFO[ListItem.Label,[COLOR accent_color],[/COLOR]]</label>
-									<textcolor>unfocused_text</textcolor> 
+									<textcolor>unfocused_text</textcolor>
 								</control>
 								<control type="label">
 									<left>10</left>

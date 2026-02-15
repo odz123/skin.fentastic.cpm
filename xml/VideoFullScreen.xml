@@ -82,9 +82,9 @@
 			<animation type="Hidden">
 				<effect type="fade" start="100" end="0" delay="6000" time="500" tween="sine"/>
 			</animation>
-			
+
 			<!-- Video Codec Flags -->
-			
+
 			<!-- SDR_Bypass_Flag -->
 			<include content="VideoCodecFlag">
 				<param name="groupId">44</param><param name="imageId">45</param>

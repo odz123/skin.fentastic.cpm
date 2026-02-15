@@ -9,7 +9,7 @@
 				<include>Visible_Right</include>
 				<control type="fixedlist" id="55">
 					<left>554</left>
-					<top>list_top_offset</top>			
+					<top>list_top_offset</top>
 					<bottom>$PARAM[bottom_offset]</bottom>
 					<right>25</right>
 					<height>83%</height>

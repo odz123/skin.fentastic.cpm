@@ -49,67 +49,67 @@
               <param name="widget_target" value="videos"/>
               <param name="list_id" value="27013"/>
             </include>
-            <include content="WidgetListBigPoster" condition="!Skin.HasSetting(HidePeopleResults) + [String.IsEqual(Skin.String(current_search_provider),0) | String.IsEqual(Skin.String(current_search_provider),1) | String.IsEqual(Skin.String(current_search_provider),3)]">
+            <include content="WidgetListBigPoster" condition="!Skin.HasSetting(HidePeopleResults) + [$EXP[search_provider_non_trakt]]">
               <param name="content_path" value="$VAR[SearchProviderPeopleVar]"/>
               <param name="widget_header" value="Actors/Actresses"/>
               <param name="widget_target" value="videos"/>
               <param name="list_id" value="27014"/>
             </include>
-            <include content="WidgetListBigPoster" condition="!Skin.HasSetting(HidePeopleResults) + String.IsEqual(Skin.String(current_search_provider),2)">
+            <include content="WidgetListBigPoster" condition="!Skin.HasSetting(HidePeopleResults) + $EXP[search_provider_trakt]">
               <param name="content_path" value="plugin://plugin.video.umbrella/?action=actorSearchMovies&amp;name=$INFO[Skin.String(SearchInputEncoded)]"/>
               <param name="widget_header" value="Actors/Actresses (Movies)"/>
               <param name="widget_target" value="videos"/>
               <param name="list_id" value="27015"/>
             </include>
-            <include content="WidgetListBigPoster" condition="!Skin.HasSetting(HidePeopleResults) + String.IsEqual(Skin.String(current_search_provider),2)">
+            <include content="WidgetListBigPoster" condition="!Skin.HasSetting(HidePeopleResults) + $EXP[search_provider_trakt]">
               <param name="content_path" value="plugin://plugin.video.umbrella/?action=actorSearchTV&amp;name=$INFO[Skin.String(SearchInputEncoded)]"/>
               <param name="widget_header" value="Actors/Actresses (TV Shows)"/>
               <param name="widget_target" value="videos"/>
               <param name="list_id" value="27016"/>
             </include>
-            <include content="WidgetListBigPoster" condition="!Skin.HasSetting(HideMovieKeywordResults) + [String.IsEqual(Skin.String(current_search_provider),0) | String.IsEqual(Skin.String(current_search_provider),1) | String.IsEqual(Skin.String(current_search_provider),3)]">
+            <include content="WidgetListBigPoster" condition="!Skin.HasSetting(HideMovieKeywordResults) + [$EXP[search_provider_non_trakt]]">
 							<param name="content_path" value="$VAR[SearchProviderKeywordMoviesVar]"/>
               <param name="widget_header" value="$VAR[KeywordMoviesLabelVar]"/>
               <param name="widget_target" value="videos"/>
               <param name="list_id" value="27015"/>
             </include>
-            <include content="WidgetListBigPoster" condition="!Skin.HasSetting(HideTVShowKeywordResults) + [String.IsEqual(Skin.String(current_search_provider),0) | String.IsEqual(Skin.String(current_search_provider),1) | String.IsEqual(Skin.String(current_search_provider),3)]">
+            <include content="WidgetListBigPoster" condition="!Skin.HasSetting(HideTVShowKeywordResults) + [$EXP[search_provider_non_trakt]]">
 							<param name="content_path" value="$VAR[SearchProviderKeywordTVShowsVar]"/>
               <param name="widget_header" value="$VAR[KeywordTVShowsLabelVar]"/>
               <param name="widget_target" value="videos"/>
               <param name="list_id" value="27016"/>
             </include>
-						<include content="WidgetListCategoryStacked" condition="!Skin.HasSetting(HideTraktResults) + [String.IsEqual(Skin.String(current_search_provider),0) | String.IsEqual(Skin.String(current_search_provider),1) | String.IsEqual(Skin.String(current_search_provider),3)]">
+						<include content="WidgetListCategoryStacked" condition="!Skin.HasSetting(HideTraktResults) + [$EXP[search_provider_non_trakt]]">
 							<param name="content_path" value="$VAR[SearchProviderTRAKTListsVar]"/>
 							<param name="widget_header" value="TRAKT Lists"/>
 							<param name="widget_target" value="videos"/>
 							<param name="list_id" value="27017"/>
 						</include>
-						<include content="WidgetListBigPosterStacked" condition="!Skin.HasSetting(HideTraktResults) + [String.IsEqual(Skin.String(current_search_provider),0) | String.IsEqual(Skin.String(current_search_provider),1) | String.IsEqual(Skin.String(current_search_provider),3)]">
+						<include content="WidgetListBigPosterStacked" condition="!Skin.HasSetting(HideTraktResults) + [$EXP[search_provider_non_trakt]]">
 							<param name="content_path" value="$INFO[Window(1121).Property(fentastic.27017.path)]"/>
 							<param name="widget_header" value="$INFO[Window(1121).Property(fentastic.27017.label)]"/>
 							<param name="widget_target" value="videos"/>
 							<param name="list_id" value="270171"/>
 						</include>
-						<include content="WidgetListCategoryStacked" condition="!Skin.HasSetting(HideTraktResults) + String.IsEqual(Skin.String(current_search_provider),2)">
+						<include content="WidgetListCategoryStacked" condition="!Skin.HasSetting(HideTraktResults) + $EXP[search_provider_trakt]">
 							<param name="content_path" value="plugin://plugin.video.umbrella/?action=trakt_search_lists&amp;media_type=movies&amp;name=$INFO[Skin.String(SearchInputTraktEncoded)]"/>
 							<param name="widget_header" value="TRAKT Lists (Movies)"/>
 							<param name="widget_target" value="videos"/>
 							<param name="list_id" value="27018"/>
 						</include>
-						<include content="WidgetListBigPosterStacked" condition="!Skin.HasSetting(HideTraktResults) + String.IsEqual(Skin.String(current_search_provider),2)">
+						<include content="WidgetListBigPosterStacked" condition="!Skin.HasSetting(HideTraktResults) + $EXP[search_provider_trakt]">
 							<param name="content_path" value="$INFO[Window(1121).Property(fentastic.27018.path)]"/>
 							<param name="widget_header" value="$INFO[Window(1121).Property(fentastic.27018.label)]"/>
 							<param name="widget_target" value="videos"/>
 							<param name="list_id" value="270181"/>
 						</include>
-						<include content="WidgetListCategoryStacked" condition="!Skin.HasSetting(HideTraktResults) + String.IsEqual(Skin.String(current_search_provider),2)">
+						<include content="WidgetListCategoryStacked" condition="!Skin.HasSetting(HideTraktResults) + $EXP[search_provider_trakt]">
 							<param name="content_path" value="plugin://plugin.video.umbrella/?action=trakt_search_lists&amp;media_type=tvshows&amp;name=$INFO[Skin.String(SearchInputTraktEncoded)]"/>
 							<param name="widget_header" value="TRAKT Lists (TV Shows)"/>
 							<param name="widget_target" value="videos"/>
 							<param name="list_id" value="27019"/>
 						</include>
-						<include content="WidgetListBigPosterStacked" condition="!Skin.HasSetting(HideTraktResults) + String.IsEqual(Skin.String(current_search_provider),2)">
+						<include content="WidgetListBigPosterStacked" condition="!Skin.HasSetting(HideTraktResults) + $EXP[search_provider_trakt]">
 							<param name="content_path" value="$INFO[Window(1121).Property(fentastic.27019.path)]"/>
 							<param name="widget_header" value="$INFO[Window(1121).Property(fentastic.27019.label)]"/>
 							<param name="widget_target" value="videos"/>

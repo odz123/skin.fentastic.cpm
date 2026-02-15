@@ -57,6 +57,10 @@
 	<expression name="infodialog_active">Window.IsActive(musicinformation) | Window.IsActive(songinformation) | Window.IsActive(movieinformation) | Window.IsActive(addoninformation) | Window.IsActive(pvrguideinfo) | Window.IsActive(pvrrecordinginfo) | Window.IsActive(pictureinfo) | Window.IsVisible(script-embuary-video.xml) | Window.IsVisible(script-embuary-person.xml) | Window.IsVisible(script-embuary-image.xml)</expression>
 	<expression name="sidebar_visible">ControlGroup(9000).HasFocus | Control.HasFocus(6130) | Control.HasFocus(6131)</expression>
 	<expression name="ProgessBarMovie">String.IsEqual(ListItem.DBtype,movie) + !String.IsEmpty(Container($PARAM[id]).ListItem.Property(WatchedProgress)) + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0)</expression>
+	<expression name="is_video_library_content">[String.IsEqual(ListItem.DbType,movie) | String.IsEqual(ListItem.DbType,tvshow) | String.IsEqual(ListItem.DbType,season)]</expression>
+	<expression name="is_video_library_content_or_episode">[String.IsEqual(ListItem.DbType,movie) | String.IsEqual(ListItem.DbType,tvshow) | String.IsEqual(ListItem.DbType,season) | String.IsEqual(ListItem.DbType,episode)]</expression>
+	<expression name="search_provider_non_trakt">String.IsEqual(Skin.String(current_search_provider),0) | String.IsEqual(Skin.String(current_search_provider),1) | String.IsEqual(Skin.String(current_search_provider),3)</expression>
+	<expression name="search_provider_trakt">String.IsEqual(Skin.String(current_search_provider),2)</expression>
 	<include name="CommonScrollbars">
 		<param name="bottom_offset">list_bottom_offset</param>
 		<definition>
@@ -346,27 +350,6 @@
 				</control>
 			</focusedlayout>
 		</definition>
-	</include>
-	<include name="InfoFlag">
-		<control type="group">
-			<width>180</width>
-			<visible>$PARAM[visible]</visible>
-			<control type="image">
-				<top>-3</top>
-				<left>0</left>
-				<width>40</width>
-				<height>40</height>
-				<texture colordiffuse="white">$PARAM[icon]</texture>
-			</control>
-			<control type="label">
-				<left>50</left>
-				<width>180</width>
-				<height>35</height>
-				<aligny>center</aligny>
-				<font>font12</font>
-				<label>$PARAM[label]</label>
-			</control>
-		</control>
 	</include>
 	<include name="MediaFlag">
 		<param name="width">115</param>
@@ -837,13 +820,13 @@
 				<texture colordiffuse="dialog_bg">$PARAM[diffusetexture]</texture>
 			</control>
 			<control type="label" id="$PARAM[header_id]">
-				<posx>0</posx> 
+				<posx>0</posx>
 				<top>20</top>
-				<width>$PARAM[width]</width> 
+				<width>$PARAM[width]</width>
 				<height>70</height>
 				<font>font32_title</font>
 				<label>$PARAM[header_label]</label>
-				<align>center</align> 
+				<align>center</align>
 				<aligny>center</aligny>
 				<textcolor>unfocused_text</textcolor>
 				<shadowcolor>black</shadowcolor>
@@ -1607,7 +1590,7 @@
 	<include name="VisibleFadeEffect">
 		<animation effect="fade" time="1300">VisibleChange</animation>
 	</include>
-	
+
 	<include name="RainDropAnimationBackground">
 		<control type="group">
 			<visible>Skin.HasSetting(HideRainDrops) + ![Player.HasVideo + Player.HasAudio] + Skin.HasSetting(no_fanart)</visible>
@@ -1740,7 +1723,7 @@
 			</control>
 		</control>
 	</include>
-	
+
 	<include name="ProgressBar">
 		<control type="progress">
 			<left>$PARAM[left]</left>
@@ -1945,7 +1928,7 @@
 			</control>
 		</control>
 	</include>
-	
+
 	<include name="VideoCodecFlag">
 		<param name="groupId"/>
 		<param name="imageId"/>
